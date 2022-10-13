@@ -18,7 +18,7 @@ image: https://image.nikolazhang.top/leimumolisa.jpg
 go语言的设计很有c的风格, 包括这个结构体的概念.
 通过如下方式可以定义一个构造体:
 
-```golang
+```go
 type Person struct {
     Name string
     Age int
@@ -43,7 +43,7 @@ type Person struct {
 
 还可以通过new关键字, 赋值直接.下面的属性赋值, 不过要注意此时的person为指针类型
 
-```golang
+```go
     person := new(Person)
     person.Name = "zhangxu"
     person.Age = 23
@@ -55,7 +55,7 @@ type Person struct {
 
 将方法与结构体进行绑定可以参考如下示例
 
-```golang
+```go
 func (p *Person) changeAge() {
     p.Age += 100
 }
@@ -70,7 +70,7 @@ func (p *Person) changeAge() {
 
 很遗憾没有构造器. 但是可以使用方法实现:
 
-```golang
+```go
 func NewPerson(name string, age int) Person {
    return Person{name, age}
 }

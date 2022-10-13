@@ -37,7 +37,7 @@ WebSocket是HTML5下一种新的协议。它实现了浏览器与服务器`全�
 
 在客户端通过new WebSocket方式创建客户端对象, 之后请求服务端websocket url `ws://yourdomain:port/path`, 发送数据格式:
 
-```plain
+```
 GET /webfin/websocket/ HTTP/1.1
 Host: localhost
 Upgrade: websocket
@@ -56,7 +56,7 @@ Sec-WebSocket-Version: 13
 
 服务端收到报文后返回的数据格式类似：
 
-```plain
+```
 HTTP/1.1 101 Switching Protocols
 Upgrade: websocket
 Connection: Upgrade

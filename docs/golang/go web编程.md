@@ -144,7 +144,7 @@ func main() {
 
 对于形如:
 
-```text
+```
 POST /post?ids[a]=1234&ids[b]=hello HTTP/1.1
 Content-Type: application/x-www-form-urlencoded
 

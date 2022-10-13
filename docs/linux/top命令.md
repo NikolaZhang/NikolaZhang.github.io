@@ -28,7 +28,7 @@ top [选项]
 
 ## top命令输出及含义
 
-```plain
+```
 top - 14:18:24 up 32 days, 18:52,  1 user,  load average: 0.05, 0.08, 0.08
 Tasks:  96 total,   2 running,  94 sleeping,   0 stopped,   0 zombie
 %Cpu(s):  2.4 us,  1.4 sy,  0.0 ni, 94.9 id,  1.4 wa,  0.0 hi,  0.0 si,  0.0 st
@@ -122,7 +122,7 @@ MiB Swap:      0.0 total,      0.0 free,      0.0 used.    744.4 avail Mem
 
 进入top命令后, 按?可以查看帮助:
 
-```text
+```
 Help for Interactive Commands - procps-ng UNKNOWN
 Window 1:Def: Cumulative mode Off.  System: Delay 3.0 secs; Secure mode Off.
 

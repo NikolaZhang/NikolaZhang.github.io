@@ -129,7 +129,7 @@ public void testCallbackFilter() {
 
 接下来我们看看执行结果:
 
-```plain
+```
 demo.service.InfoService.select
 ====== begin
 demo.service.InfoService.update

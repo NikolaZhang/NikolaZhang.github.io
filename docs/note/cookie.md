@@ -25,7 +25,7 @@ Cookie总时由用户客户端进行保存的（一般是浏览器），按其�
 
 1. 当客户端首次向腾讯云的服务器发起请求时，HTTP 请求头如下
 
-```plain
+```
 Accept:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,/;q=0.8
 Accept-Encoding:gzip, deflate, sdch
 Accept-Language:en,zh-CN;q=0.8,zh;q=0.6
@@ -35,7 +35,7 @@ Host:cloud.tencent.com
 
 2. 请求到达腾讯云的服务器以后，腾讯云的服务器生成响应，并在响应的头部写入 Cookie 信息
 
-```plain
+```
 Set-Cookie:BD_HOME=1; path=/ 
 Set-Cookie:__bsi=14934756243064632384_00_0_I_R_174_0303_C02F_N_I_I_0; expires=Thu, 19-Nov-15 14:14:50 GMT; domain=www.qcloud; path=/
 Set-Cookie:BDSVRTM=172; path=/
@@ -45,7 +45,7 @@ Set-Cookie:BDSVRTM=172; path=/
 4. 当客户端接收到响应头以后，会读取 Cookie 信息并写入本地进行管理。
 5. 再次向服务器发起请求时，客户端通过发送一个带有 Cookie: name=value; name2=value2 的 HTTP 请求头将之前存在本地的 Cookie 一起发送过去。请求的头部信息为：
 
-```plain
+```
 Accept:text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,/;q=0.8
 Accept-Encoding:gzip, deflate, sdch
 Accept-Language:en,zh-CN;q=0.8,zh;q=0.6

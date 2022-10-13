@@ -78,7 +78,7 @@ func main()  {
 
 结果输出为:
 
-```plain
+```
 ==== new sell
 Book AutoSell
 ==== new sell

@@ -103,7 +103,7 @@ service ssh restart
 1. 在本地`.ssh`目录下创建config文件.
 2. 文件内容如下:
 
-```plain
+```
 Host localroot
 HostName 192.168.0.106
 User root
