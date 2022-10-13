@@ -1,5 +1,6 @@
 {
   "name": "blog-nikola",
+  "homePage": "https://nikolazhang.github.io/blog-nikola",
   "version": "1.0.0",
   "description": "我的博客",
   "license": "MIT",
