@@ -5,10 +5,10 @@
   "description": "我的博客",
   "license": "MIT",
   "scripts": {
-    "docs:build": "vuepress build ./",
-    "docs:clean-dev": "vuepress dev ./ --no-cache",
-    "docs:dev": "vuepress dev ./",
-    "docs:eject-theme": "vuepress eject-hope ./"
+    "build": "vuepress build ./",
+    "clean-dev": "vuepress dev ./ --no-cache",
+    "dev": "vuepress dev ./",
+    "eject-theme": "vuepress eject-hope ./"
   },
   "devDependencies": {
     "material-design-icons-iconfont": "^6.1.0",
