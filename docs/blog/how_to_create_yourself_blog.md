@@ -1,0 +1,134 @@
+---
+title: 博客搭建及部署
+original: true
+tags:
+  - hexo
+  - nginx
+  - jenkins
+category: blog
+description: 简单介绍搭建一个博客的过程
+image: http://image.nikolazhang.top/c4be70fe09704c9ade9929b95d94934b.jpg
+time: 2019-12-29
+---
+
+
+> 这篇博客主要分享一下自己搭建这个博客中遇到的一些问题和经验。
+
+## 准备
+
+之前曾使用hexo搭建过一个简易的博客. 这个博客就是在之前的基础上搭建的. 但是不同之处在于这次博客不再依赖于代码仓库(像github,gitee都会支持静态页面之类的部署).
+gitee部署博客可以通过gitee pages进行. 如下图所示:
+![gitee部署博客](http://image.nikolazhang.top/20191229173723.png)
+![部署详情](http://image.nikolazhang.top/20191229173845.png)
+但是部署之后域名都会是相关平台的域名.
+[gitee 部署的博客](https://nikolazhang.gitee.io/nikola-blog/)
+![域名](http://image.nikolazhang.top/20191229174157.png)
+没有灵魂的感觉~当然也可以有其他方法去替换. 这不是重点就不说了.
+
+这个博客是搭建在阿里云服务器上的. (单核2G89 你值得拥有, 但是不得不吐槽的是2G不够用).
+
+## 网站部署
+
+### 一键式部署
+
+hexo 支持[一键式博客部署](https://hexo.io/zh-cn/docs/one-command-deployment),
+注意一键式部署会将 public 目录中的文件和目录推送至 _config.yml 中指定的远端仓库和分支中，并且完全覆盖该分支下的已有内容。
+我的`_config.yml`配置如下:
+
+```yml
+deploy:
+  type: git
+  repo: git@gitee.com:NikolaZhang/nikola-blog.git
+  branch: master
+  message: 'web updata: {{now("YYYY-MM-DD HH/mm/ss")}}'
+```
+
+博客的静态文件推送到代码库之后, 通过jenkins拉取代码, 将public/目录下的文件全部拷贝到网站的root目录下. 后面的部署过程可以说对于我们是无感的.
+我们只要执行以下`hexo g -d`就完成了 生成-->推送-->发布 整个过程 (
+最全的命令应该是`hexo clean && hexo g -d` 先将之前生成的目录清除掉).
+
+这种方式就带来了一个问题, 如果换个终端就要重新配置一套环境. 虽然安装的东西不多, 但是总觉得有些累赘.
+因此我强烈推荐你使用下面的方式.
+
+### 另一种部署方式
+
+这种部署方式, 就是将环境配置到服务器去, 使用git按照正常流程提交代码, 之后的构建过程, 由服务器完成. 构建之后将, public/下文件拷贝.
+因此对于终端来说只要有git就可以了.
+
+无论是哪种部署方式我们都需要jenkins帮助我们完成构建.
+
+## 关于静态资源文件
+
+不建议将静态资源放到博客目录中, 可以放到第三方的云存储中. 比如七牛等.
+如果你是用vscode进行编辑文章, 建议安装`qiniu-upload-image`插件, 这个插件可以将截图,本地图片上传到七牛,并将文件的链接返回.
+
+![res](http://image.nikolazhang.top/res.gif)
+
+## 关于博客的目录与文件介绍
+
+主要介绍一下经常操作的目录与文件
+
+1. _config.yml 博客的基本信息配置
+  具体配置信息为:可以参考`https://hexo.io/zh-cn/docs/configuration`
+2. public/ 这个目录上面已经提到了是生成的最终的网页. 所有变动都会被覆盖, 因此不进行操作.
+3. scaffolds是博客脚手架文件夹 配置了生成一个博客文章的模板
+4. source是博客的源文件, 该目录下也主要用来放置我们的markdown格式的文章.
+5. themes 下放置[主题](https://hexo.io/zh-cn/docs/themes)文件
+6. 主题中的_config.yml用来配置该主题的样式
+7. 主题中的layout是构建博客主题的具体逻辑, 如果有什么配置不清楚基本可以在这里找到对应的代码, 大概就知道该怎么配置markdown或者yml了.
+
+总的来说, 我们最常操作的无非就是我们的博客文件(.md)还有配置文件(.yml)
+
+## 使用域名及访问
+
+域名可以在阿里云上申请, 注意申请之后要进行备案. 我也是最近刚进行备案, 时长大概有13-20天, 只有备案之后才可使用80端口进行访问. 因此目前我使用nginx配置了81端口进行访问博客. 我的nginx配置如下:
+
+```shell
+server {
+    listen          81;
+    server_name     blog.nikolazhang.top;
+
+    location / {
+        root        /home/nikola/app/blog/nikola-blog/public;
+        index       index.html;
+        try_files $uri $uri/ /index.html;
+        proxy_set_header   Host             $host;
+        proxy_set_header   X-Real-IP        $remote_addr;
+        proxy_set_header   X-Forwarded-For  $proxy_add_x_forwarded_for;
+        proxy_set_header   X-Forwarded-Proto  $scheme;
+    }
+
+}
+```
+
+## jenkins配置
+
+再介绍一下jenkins的配置方式:
+
+1. 首先要指定代码库位置:
+![配置git](http://image.nikolazhang.top/20191229200856.png)
+2. 使用钩子作为构建触发器
+![触发器](http://image.nikolazhang.top/20191229201112.png)
+3. 构建的脚本, 主要就是在服务器上进行博客的生成和目录迁移.
+
+  ```shell
+  cd /var/lib/jenkins/workspace/nikola-blog;
+  cnpm install;
+  cd /var/lib/jenkins/workspace/nikola-blog/themes/sakura;
+  cnpm install;
+  cd /var/lib/jenkins/workspace/nikola-blog;
+  hexo clean;
+  hexo g;
+  rm -rf /home/nikola/app/blog/public;
+  mkdir /home/nikola/app/blog/public;
+  cp -r /var/lib/jenkins/workspace/nikola-blog/public /home/nikola/app/blog/nikola-blog/;
+  ```
+
+## bug及注意事项
+
+- 根目录下_config.yml中的relative_link要设置为false. 否则分页会出现问题.
+- clone项目到本地之后, 根目录和主题目录下都要执行npm install命令. 否则生成的index.html中将没有内容.
+
+## 致谢
+
+最后致敬Mashiro和honjun的付出和开源精神. Thank you ~

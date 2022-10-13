@@ -1,0 +1,98 @@
+---
+original: true
+title: 搭建专属博客进阶
+tags:
+  - hexo
+category: blog
+description: 关于最新的一次更新内容, 以及一些细节的介绍
+image: https://tech.nikolazhang.top/2020-06-10-13-40-51.png
+time: 2020-06-10
+---
+
+
+> 最近对博客做了一次重大更新. 本文主要讲讲这次的更新内容以及在整个过程中遇到的问题.
+
+## 更新内容
+
+- [x] 聊天室功能
+- [x] 更换live2d模型
+- [x] 二维码分享功能
+
+### 聊天室
+
+![2020-06-10-13-33-29](https://tech.nikolazhang.top/2020-06-10-13-33-29.png)
+
+主要功能: 登录注册, 聊天, 聊天室列表, 聊天记录
+
+1. 使用es, 作为数据库, 包括其他数据的存储也都使用es. 主要是学习新的技术, 另外日后做聊天记录查询会更加优秀.
+2. 后端spring websocket , 主要是基于STOMP. 前端使用SockJS+STOMP.
+3. 使用jwt作为无状态认证
+
+### live2d
+
+使用高配的live2d, 具有tag功能, 更加可控.
+
+### 二维码功能
+
+为当前页面生成二维码, 这个功能在live2d上增加的.
+
+生成一个页面上显示的二维码, 同时下载一个含有二维码的图片.
+以下为效果图:
+![2020-06-11-19-33-01](https://tech.nikolazhang.top/2020-06-11-19-33-01.png)
+![2020-06-11-19-33-24](https://tech.nikolazhang.top/2020-06-11-19-33-24.png)
+
+## 关于ejs与md渲染问题
+
+目前博客使用的ejs无法使用renderFile方式进行渲染, 因此页面上一些动态元素都是通过字符串拼接进行渲染的.
+![2020-06-10-13-37-49](https://tech.nikolazhang.top/2020-06-10-13-37-49.png)
+
+如果你写好了md文件, 如果需要指定渲染的ejs则需要通过layout属性指定对应的ejs文件名
+![2020-06-10-13-39-35](https://tech.nikolazhang.top/2020-06-10-13-39-35.png)
+
+之后在layout目录下创建该文件,即可
+![2020-06-10-13-41-43](https://tech.nikolazhang.top/2020-06-10-13-41-43.png)
+
+## 跨域配置
+
+前后端分离必然要考虑跨域问题
+
+```java
+@Configuration
+public class CorsConfig implements WebMvcConfigurer {
+    private CorsConfiguration buildConfig() {
+        CorsConfiguration corsConfiguration = new CorsConfiguration();
+        corsConfiguration.addAllowedOrigin("http://localhost:4000");
+        corsConfiguration.addAllowedOrigin("https://blog.nikolazhang.top");
+        corsConfiguration.addAllowedHeader("*");
+        corsConfiguration.addAllowedMethod("*");
+        corsConfiguration.setAllowCredentials(true);
+        corsConfiguration.addExposedHeader(ConstantProperty.ACCESS_TOKEN);
+        return corsConfiguration;
+    }
+
+    @Bean
+    public CorsFilter corsFilter() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", buildConfig());
+        return new CorsFilter(source);
+    }
+
+    @Override
+    public void addCorsMappings(CorsRegistry registry) {
+        registry.addMapping("/**")
+                .allowedOrigins("*")
+                .allowCredentials(true)
+                .allowedMethods("GET", "POST", "DELETE", "PUT")
+                .maxAge(3600);
+    }
+}
+```
+
+## end
+
+关于飞机大战
+
+live2d有一个飞机大战的小游戏, 发射子弹, 消除页面元素, 说一下按键.
+wasd调整方向
+长按w前进
+空格发射子弹

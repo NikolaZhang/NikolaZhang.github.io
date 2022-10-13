@@ -1,0 +1,361 @@
+---
+original: true
+title: 源码分析[7] HashMap之红黑树自平衡2
+mathjax: true
+tags:
+  - hashmap
+  - 红黑树
+category: 源码
+time: 2020-01-26
+description: 分析一下hashmap的红黑树实现
+image: https://tech.nikolazhang.top/wallhaven-0qjrzq.jpg
+---
+
+## remove
+
+在介绍`balanceDeletion`之前我们先分析一下, 从HashMap中删除一个节点的逻辑.
+
+```java
+public V remove(Object key) {
+    Node<K,V> e;
+    return (e = removeNode(hash(key), key, null, false, true)) == null ?
+        null : e.value;
+}
+```
+
+主要看一下`removeNode`这个方法:
+
+```java
+final Node<K,V> removeNode(int hash, Object key, Object value,
+                            boolean matchValue, boolean movable) {
+    Node<K,V>[] tab; Node<K,V> p; int n, index;
+    if ((tab = table) != null && (n = tab.length) > 0 &&
+        (p = tab[index = (n - 1) & hash]) != null) {
+        Node<K,V> node = null, e; K k; V v;
+...............
+```
+
+这个条件不解释了, 删除得确定是有才能删除, 否则直接返回null; 唯一有点难度的`tab[index = (n - 1) & hash]`这个之前我们也说了.
+
+```java
+if (p.hash == hash &&
+    ((k = p.key) == key || (key != null && key.equals(k))))
+    node = p;
+else if ((e = p.next) != null) {
+    if (p instanceof TreeNode)
+        node = ((TreeNode<K,V>)p).getTreeNode(hash, key);
+    else {
+        do {
+            if (e.hash == hash &&
+                ((k = e.key) == key ||
+                    (key != null && key.equals(k)))) {
+                node = e;
+                break;
+            }
+            p = e;
+        } while ((e = e.next) != null);
+    }
+}
+```
+
+1. 如果数组中该位置的key和目标key相同, 就找到了.
+2. 如果不相同, 判断当前位置是否含有子节点. 如果有分成树和链表分别进行查找, 找到之后返回对应节点. `getTreeNode`中调用了红黑树`find`方法
+
+之后进行如下处理:
+
+```java
+if (node != null && (!matchValue || (v = node.value) == value ||
+                                 (value != null && value.equals(v)))) {
+    if (node instanceof TreeNode)
+        ((TreeNode<K,V>)node).removeTreeNode(this, tab, movable);
+    else if (node == p)
+        tab[index] = node.next;
+    else
+        p.next = node.next;
+    ++modCount;
+    --size;
+    afterNodeRemoval(node);
+    return node;
+}
+```
+
+`matchValue`是指当值相同的时候才移除. 如果设置其为true, 那么只要key相同就可以移除. 而不用判断值是否相同. `(v = node.value) == value || (value != null && value.equals(v))`
+
+1. 当我们上一步查到的节点是TreeNode的实现那么使用`removeTreeNode`进行节点的移除.
+2. 后面的条件都是链表处理, 当这个节点是头节点, 那么将该节点的next节点放到table数组index位置上去. 否则将next节点指向到p. 这就是从链表中删除一个节点的逻辑. 毕竟这是一个单向链表.
+3. 最后记录操作数, 用于fastfail. 数量减一. 调用一个空方法. 返回删除掉的节点. 逻辑很清晰也很好理解.
+
+## removeTreeNode
+
+上一节我们对从红黑树中删除节点的方法`removeTreeNode`一笔带过了. 这一节进行详细分析.
+
+```java
+final void removeTreeNode(HashMap<K,V> map, Node<K,V>[] tab,
+                            boolean movable) {
+    int n;
+    if (tab == null || (n = tab.length) == 0)
+        return;
+    int index = (n - 1) & hash;
+    TreeNode<K,V> first = (TreeNode<K,V>)tab[index], root = first, rl;
+    TreeNode<K,V> succ = (TreeNode<K,V>)next, pred = prev;
+    if (pred == null)
+        tab[index] = first = succ;
+    else
+        pred.next = succ;
+    if (succ != null)
+        succ.prev = pred;
+    if (first == null)
+        return;
+    if (root.parent != null)
+        root = root.root();
+    if (root == null
+        || (movable
+            && (root.right == null
+                || (rl = root.left) == null
+                || rl.left == null))) {
+        tab[index] = first.untreeify(map);  // too small
+        return;
+    }
+    ...............................
+```
+
+这里要提及一下, hash, next, prev等都是调用这个方法的对象中的属性(全局), 这也是导致hashmap线程不安全的原因. 这些属性是调用这个方法的node节点(将要删除掉的当前节点)的.
+
+1. 如果当前节点的前一个节点为空, 那当前节点也就是头节点. 这个时候直接将当前节点的next节点放到table的index位置上即可.
+2. 如果当前节点不是头节点则打断其和前一个节点的联系, 并建立前一个节点和后一个节点的联系. 这个联系只是将前一个节点的next指向到后一个节点(不用考虑后一个节点是否存在)
+3. 如果后一个节点不是空, 就将后一个节点的前一个节点设置为2中的那个前一个节点. 2,3 两步的实质就是链表的删除.
+4. `first == null`头节点为空, 则直接退出, 因为之前在pred为空的时候我们将后面的节点succ设置到first, 如果succ为空, 则处理完毕.
+5. `root.parent != null`为什么根节点的父节点会出先为非空的情况, 因为: 当我们设置`tab[index] = first = succ`的时候, 就已经改变了root. 此时为了重新获取根节点就需要调用root().
+6. 如果根节点为空或者树节点较少(算是我的猜测吧, 如果红黑树右节点,左节点非空, 在左节点的左子树为空的情况下, 这个树最多会含有9个节点). 节点数量少, 则重新生成链表, 并将头节点放到table上后返回. (每当hashmap的size发生变动的时候都要试着进行数据结构转换)
+![2020-01-21-21-32-09](https://tech.nikolazhang.top/2020-01-21-21-32-09.png)
+
+以上是解除当前节点和链表之间的关系. 之后要解除节点和树中节点的关系, 以及进行红黑树的自平衡.
+
+删除当前红黑树当前节点我们想的不是取直接删掉该节点而是找到一个节点用它来替换原来节点的值.
+之后为了获取替换当前节点的`replacement`节点, 分四种情况进行处理:
+
+1. 当前节点的孩子节点都存在
+2. 只存在左节点
+3. 只存在右节点
+4. 没有孩子
+
+下面我们依次看下:
+
+### 孩子节点都存在
+
+```java
+if (pl != null && pr != null) {
+    TreeNode<K,V> s = pr, sl;
+    while ((sl = s.left) != null) // find successor
+        s = sl;
+    boolean c = s.red; s.red = p.red; p.red = c; // swap colors
+    TreeNode<K,V> sr = s.right;
+    TreeNode<K,V> pp = p.parent;
+    if (s == pr) { // p was s's direct parent
+        p.parent = s;
+        s.right = p;
+    }
+    else {
+        TreeNode<K,V> sp = s.parent;
+        if ((p.parent = sp) != null) {
+            if (s == sp.left)
+                sp.left = p;
+            else
+                sp.right = p;
+        }
+        if ((s.right = pr) != null)
+            pr.parent = s;
+    }
+    p.left = null;
+    if ((p.right = sr) != null)
+        sr.parent = p;
+    if ((s.left = pl) != null)
+        pl.parent = s;
+    if ((s.parent = pp) == null)
+        root = s;
+    else if (p == pp.left)
+        pp.left = s;
+    else
+        pp.right = s;
+    ...........
+
+```
+
+这一部分的逻辑主要是为了寻找一个后继节点去替换p节点. 这个后继节点寻找的规则是:
+
+```java
+while ((sl = s.left) != null) // find successor
+    s = sl;
+```
+
+其实不难理解替换一个局部根节点的后继节点应该为左子树的最大叶子节点或者为右子树最小叶子节点. 如果叶子为空那么应该使用其父节点.
+下面的截图展示了`s != pr`时的变换情况. 我们可以看到最终的效果是s和p交换了位置.
+![2020-01-27-11-34-50](https://tech.nikolazhang.top/2020-01-27-11-34-50.png)
+`s==pr`情况比较简单, 此时pr和p交换了位置, 见下图:
+![2020-01-27-12-26-39](https://tech.nikolazhang.top/2020-01-27-12-26-39.png)
+
+```java
+if (sr != null)
+    replacement = sr;
+else
+    replacement = p;
+```
+
+这个地方如果删除节点p的sr节点存在(注意交换p和s之后sr为p的子节点),则使用sr作为`replacement`, 否则使用p作为`replacement`. sr作为`replacement`可以理解, 至于为什么使用p作为`replacement`而不是直接设置为null, 还得继续往下看才知道.
+
+### 当左子节点存在
+
+replacement = pl;
+
+### 当右子节点存在
+
+replacement = pr;
+
+### 当没有孩子
+
+replacement = p;
+
+综合上面四种情况下`replacement`的设置, 可以发现当p存在子节点则设置为子节点, 否则为p本身. 这时候就大概清楚了.继续往下分析:
+
+```java
+if (replacement != p) {
+    TreeNode<K,V> pp = replacement.parent = p.parent;
+    if (pp == null)
+        root = replacement;
+    else if (p == pp.left)
+        pp.left = replacement;
+    else
+        pp.right = replacement;
+    p.left = p.right = p.parent = null;
+}
+```
+
+上面对`replacement != p`的情况进行了处理, 其目的在于用replacement替换p节点. 最后移除p
+
+```java
+TreeNode<K,V> r = p.red ? root : balanceDeletion(root, replacement);
+```
+
+如果删除的节点是红色的, 则不需要进行再平衡(删除红色之后不会影响红黑树的5个条件), 不为红色调用`balanceDeletion`进行再平衡. 这个方法我们暂时作为黑盒, 最终会返回平衡后的根节点.
+
+```java
+if (replacement == p) {  // detach
+    TreeNode<K,V> pp = p.parent;
+    p.parent = null;
+    if (pp != null) {
+        if (p == pp.left)
+            pp.left = null;
+        else if (p == pp.right)
+            pp.right = null;
+    }
+}
+```
+
+自平衡之后再进行`replacement == p`的处理, 其目的在于切断p与父节点的关系.
+为什么必须要在自平衡之后进行处理呢? 为什么最后去掉节点不用担心树是否不满足5个条件?
+TODO
+
+```java
+if (movable)
+    moveRootToFront(tab, r);
+```
+
+最后将新的根节点重新放到table数组上去.
+
+## balanceDeletion
+
+```java
+static <K,V> TreeNode<K,V> balanceDeletion(TreeNode<K,V> root,
+                                            TreeNode<K,V> x) {
+    for (TreeNode<K,V> xp, xpl, xpr;;) {
+        if (x == null || x == root)
+            return root;
+        else if ((xp = x.parent) == null) {
+            x.red = false;
+            return x;
+        }
+        else if (x.red) {
+            x.red = false;
+            return root;
+        }
+        else if ((xpl = xp.left) == x) {
+            ............
+        }
+        else {
+            .............
+        }
+```
+
+x可能会有以下5种情况.
+
+1. x为空或者为根节点, 此时不做任何处理直接返回根节点root
+2. x的父节点为空, 则x为根节点重新设置x颜色, 并返回x作为新的根节点.(之所以有这一步其实是和`TreeNode<K,V> r = p.red ? root : balanceDeletion(root, replacement);`有关系的. 当删除的节点为黑色, 则路径上黑色节点数量就会不一致, 因此直接将替换节点(红色)变为黑色, 可以避免这个问题.)
+3. x为红色则x重新涂为黑色, 并直接返回root.
+4. x为其父节点xp的左子节点
+5. x为其父节点的右子节点(和4处理相似. 手性操作)
+
+我们着重看一下4时候的情况:
+
+在分析下面的代码之前建议查看[红黑树详细分析，看了都说好](https://www.cnblogs.com/nullllun/p/8214599.html#autoid-3-2-0)这篇博客详细介绍了红黑树删除的几种情况有助于我们下一步的分析.
+
+```java
+if ((xpr = xp.right) != null && xpr.red) {
+    xpr.red = false;
+    xp.red = true;
+    root = rotateLeft(root, xp);
+    xpr = (xp = x.parent) == null ? null : xp.right;
+}
+```
+
+这种情况可以参考博文中的情况二.
+当xp右节点为红色, 此时右节点变为黑色, 父节点变为红色, 之后在xp上进行左旋. 并将新的xp的右子节点作为xpr.
+
+```java
+if (xpr == null)
+    x = xp;
+```
+
+如果在某次遍历之后xpr不存在, 则已经遍历到叶子节点, 此时将x向上增加一级, 开始下一次循环. 继续平衡操作.
+
+下面讨论xpr为黑色的情况:
+
+```java
+TreeNode<K,V> sl = xpr.left, sr = xpr.right;
+if ((sr == null || !sr.red) &&
+    (sl == null || !sl.red)) {
+    xpr.red = true;
+    x = xp;
+}
+```
+
+如果孩子节点均为黑色, xpr变为红色, 并且x向上推一级, 开始下一次循环. 这种情况同博文中的情况三.
+
+```java
+else {
+    if (sr == null || !sr.red) {
+        if (sl != null)
+            sl.red = false;
+        xpr.red = true;
+        root = rotateRight(root, xpr);
+        xpr = (xp = x.parent) == null ?
+            null : xp.right;
+    }
+    if (xpr != null) {
+        xpr.red = (xp == null) ? false : xp.red;
+        if ((sr = xpr.right) != null)
+            sr.red = false;
+    }
+    if (xp != null) {
+        xp.red = false;
+        root = rotateLeft(root, xp);
+    }
+    x = root;
+}
+```
+
+如果右孩子非空并且为黑色, 如果左孩子存在(为红色)就将其涂为黑色.
+父节点涂为红色. 之后对xpr进行右旋. 此时情况类似情况六.
+
+## 最后
+
+大概用了7篇文章去介绍hashmap, 主要介绍了扩容, 增加, 删除. 红黑树等相关知识. 由于是边看边写, 不一定保证完全正确. 还需要日后不断完善. 之前的很多文章虽然比较简单, 但还是欠缺一些图表. 这个日后会补充上. hashmap中还有一些方法没有提到. 不过很难懂得应该是没有了. 因此就到此吧....

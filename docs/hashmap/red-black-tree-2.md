@@ -1,0 +1,293 @@
+---
+original: true
+title: 源码分析[5] HashMap之红黑树2
+mathjax: true
+tags:
+  - hashmap
+  - 红黑树
+category: 源码
+time: 2020-01-15
+description: 分析一下hashmap的红黑树实现
+image: https://tech.nikolazhang.top/db22df83325d65e99be3037e93bbae750bf72eb8.jpg
+---
+
+> 终于到了HashMap中的红黑树实现的分析了, 我不确定自己能否解释清楚这部分. 颇有如临大敌, 如履薄冰, 胆战心惊之感. 毕竟我是个菜鸡da☆ze~
+
+## 红黑树的结构定义
+
+hashmap中红黑树的实现类是`TreeNode`, 其中的属性如下:
+
+```java
+static final class TreeNode<K,V> extends LinkedHashMap.Entry<K,V> {
+    TreeNode<K,V> parent;  // red-black tree links
+    TreeNode<K,V> left;
+    TreeNode<K,V> right;
+    TreeNode<K,V> prev;    // needed to unlink next upon deletion
+    boolean red;
+    TreeNode(int hash, K key, V val, Node<K,V> next) {
+        super(hash, key, val, next);
+    }
+    .....................
+}
+
+```
+
+我们再说一下这里的`super(hash, key, val, next)`, 真正调用的是`Node`类的构造器.
+
+## putTreeVal
+
+我们先分析一下添加节点的方法.
+
+```java
+final TreeNode<K,V> putTreeVal(HashMap<K,V> map, Node<K,V>[] tab,
+                                int h, K k, V v) {
+    Class<?> kc = null;
+    boolean searched = false;
+    TreeNode<K,V> root = (parent != null) ? root() : this;
+    for (TreeNode<K,V> p = root;;) {
+        .............
+```
+
+这里有个`root`方法, 方法的具体实现见下:
+
+```java
+final TreeNode<K,V> root() {
+    for (TreeNode<K,V> r = this, p;;) {
+        if ((p = r.parent) == null)
+            return r;
+        r = p;
+    }
+}
+```
+
+通过不断获取当前节点的父节点, 向上遍历直到父节点为null. 此时便得到了根节点. 因为每次插入新的节点的时候, 需要和之前的节点进行比较, 以确定最新的节点应该放在什么位置上.
+
+下面看一下遍历的逻辑:
+
+```java
+int dir, ph; K pk;
+if ((ph = p.hash) > h)
+    dir = -1;
+else if (ph < h)
+    dir = 1;
+else if ((pk = p.key) == k || (k != null && k.equals(pk)))
+    return p;
+else if ((kc == null &&
+            (kc = comparableClassFor(k)) == null) ||
+            (dir = compareComparables(kc, k, pk)) == 0) {
+    if (!searched) {
+        TreeNode<K,V> q, ch;
+        searched = true;
+        if (((ch = p.left) != null &&
+                (q = ch.find(h, k, kc)) != null) ||
+            ((ch = p.right) != null &&
+                (q = ch.find(h, k, kc)) != null))
+            return q;
+    }
+    dir = tieBreakOrder(k, pk);
+}
+
+```
+
+上面的这段代码就是一个比较的逻辑, 分为四种情况:
+
+1. 当前节点的hash大于待放入数据的key的hash, 则dir为-1. 这里提前剧透一下: dir为-1表示应该放于左节点
+2. 当小于则dir为1, 放于右节点
+3. 当前节点的key和待放入的key相同, 则直接返回当前节点, 对最新数据不做处理.
+4. 当key不能比较, 或者能比较但是结果相同 `(kc == null && (kc = comparableClassFor(k)) == null) || (dir = compareComparables(kc, k, pk)) == 0` 之后还会使用`tieBreakOrder`进行比较, 最终确定dir.
+5. 回头看一下seached的判断逻辑, 很明显这段逻辑只有头节点才会起作用, 这段的意思是从分别从左右节点中寻找和待放入的hash, key相同的节点并返回. 
+
+确定dir之后, 如果dir小于等于0, 则将创建的新节点放到左节点, 否则放于右节点. 
+之后设置新节点的pre, parent属性为当前节点, 当前节点的next设置为新节点. 如果当前节点的next之前不为空则将新节点放到next节点之前.
+上面简直不是句人话.
+pre和next是一对链表属性, parent, left, right是一组树属性.
+这段逻辑在于更新(分别)原来的链表和树的关系. 可见TreeNode不仅仅维护了红黑树结构, 其还维护了一个链表结构.
+
+最后`moveRootToFront(tab, balanceInsertion(root, x));`, `balanceInsertion`是红黑树的自平衡实现. 自平衡之后有可能会变更根节点, 因此有必要使用`moveRootToFront`重新更新一下根节点的指向.
+
+```java
+TreeNode<K,V> xp = p;
+if ((p = (dir <= 0) ? p.left : p.right) == null) {
+    Node<K,V> xpn = xp.next;
+    TreeNode<K,V> x = map.newTreeNode(h, k, v, xpn);
+    if (dir <= 0)
+        xp.left = x;
+    else
+        xp.right = x;
+    xp.next = x;
+    x.parent = x.prev = xp;
+    if (xpn != null)
+        ((TreeNode<K,V>)xpn).prev = x;
+    moveRootToFront(tab, balanceInsertion(root, x));
+    return null;
+}
+```
+
+## find
+
+查找tree中的指定节点, 每次要将给定hash值和当前的节点hash进行比较, 
+
+1. 如果当前节点的hash大则应该查找左子节点.
+2. 如果小于则,应该查找右子节点
+3. 相等则找到, 直接返回当前节点
+4. 当key实现Comparable接口并且比较结果不相同, 则根据比较的结果确定应该查找左子节点或者右子节点.
+5. 当从右子节点开始查找找到节点后直接返回.
+6. 不满足以上条件(比如: 当key没有实现Comparable, 或者实现了该接口但比较结果相同, 从右子节点查找不到), 则设置下一节点为左子节点.
+
+```java
+final TreeNode<K,V> find(int h, Object k, Class<?> kc) {
+    TreeNode<K,V> p = this;
+    do {
+        int ph, dir; K pk;
+        TreeNode<K,V> pl = p.left, pr = p.right, q;
+        if ((ph = p.hash) > h)
+            p = pl;
+        else if (ph < h)
+            p = pr;
+        else if ((pk = p.key) == k || (k != null && k.equals(pk)))
+            return p;
+        else if (pl == null)
+            p = pr;
+        else if (pr == null)
+            p = pl;
+        else if ((kc != null ||
+                    (kc = comparableClassFor(k)) != null) &&
+                    (dir = compareComparables(kc, k, pk)) != 0)
+            p = (dir < 0) ? pl : pr;
+        else if ((q = pr.find(h, k, kc)) != null)
+            return q;
+        else
+            p = pl;
+    } while (p != null);
+    return null;
+}
+```
+
+这个判断逻辑真的是强啊. 666
+
+## getTreeNode
+
+```java
+final TreeNode<K,V> getTreeNode(int h, Object k) {
+    return ((parent != null) ? root() : this).find(h, k, null);
+}
+```
+
+这个方法没什么好说的, 确保从根节点调用find开始查找节点.
+
+## tieBreakOrder
+
+不知你还记得putTreeVal中在key无法比较的情况下, 使用的默认比较方法吗.
+下面这段逻辑就是其庐山真面目.
+
+```java
+static int tieBreakOrder(Object a, Object b) {
+    int d;
+    if (a == null || b == null ||
+        (d = a.getClass().getName().
+            compareTo(b.getClass().getName())) == 0)
+        d = (System.identityHashCode(a) <= System.identityHashCode(b) ? -1 : 1);
+    return d;
+}
+```
+
+当入参不是null, 比较其class name. class name相同, 这时通过`System.identityHashCode` 来比较两个类的hash, 以此确定d;
+如果if条件不满足, 则返回默认值0.
+
+
+## treeify
+
+树化, 还记得之前我们分析`putVal`中判断链表长度大于`TREEIFY_THRESHOLD`就要进行树化吗? 那个地方就用到了这个方法.
+
+```java
+for (TreeNode<K,V> x = this, next; x != null; x = next) {
+    next = (TreeNode<K,V>)x.next;
+    x.left = x.right = null;
+    if (root == null) {
+        x.parent = null;
+        x.red = false;
+        root = x;
+    }
+    else {
+...........
+```
+
+之前提到过, TreeNode实际上维护了两套数据结构, 链表和红黑树. 注意当调用该方法的时候虽然对象是个TreeNode但其本来的面目是个链表.
+
+`next = (TreeNode<K,V>)x.next;` 是为了达成遍历节点的条件.
+第一次遍历的时候, 设置当前node(即: this)为根节点, 并初始化根节点的相关属性, 根节点的父节点为null, 且为黑色.
+之后的遍历都进else
+
+```java
+else {
+    K k = x.key;
+    int h = x.hash;
+    Class<?> kc = null;
+    for (TreeNode<K,V> p = root;;) {
+        int dir, ph;
+        K pk = p.key;
+        if ((ph = p.hash) > h)
+            dir = -1;
+        else if (ph < h)
+            dir = 1;
+        else if ((kc == null &&
+                    (kc = comparableClassFor(k)) == null) ||
+                    (dir = compareComparables(kc, k, pk)) == 0)
+            dir = tieBreakOrder(k, pk);
+
+        TreeNode<K,V> xp = p;
+        if ((p = (dir <= 0) ? p.left : p.right) == null) {
+            x.parent = xp;
+            if (dir <= 0)
+                xp.left = x;
+            else
+                xp.right = x;
+            root = balanceInsertion(root, x);
+            break;
+        }
+    }
+}
+```
+
+这段代码的目的是为了构建一个红黑树, 上面的比较逻辑我们大概已经经历了两次了, 此处就不再分析了. 忘了的自己分析一下, 加强认知.
+`balanceInsertion` 是为了自平衡. 上篇文章分析过, 增加新的节点都会有可能导致树不再满足5个条件.
+新节点增加之后, break退出当前循环, 并将链表的下一节点, 添加到树上.
+
+树化的最后有一步`moveRootToFront(tab, root);`就是重新确定在table中的节点是我们新生成树的根节点.
+
+## untreeify
+
+链化, 这个很简单. 终于有个不费脑子的了.
+虽然很简单但是我们还是谈一下吧, hd这个变量是为了放置头节点的, 这个头节点同样是要设置到table上去的(我可算知道写这个代码的人的尿性了), tl就是用于构造链表的一个变量.
+每次循环调用`replacementNode`使用当前节点重新构建Node, 之后将新节点指向tl的尾部, `tl = p`更新链尾节点.
+
+```java
+final Node<K,V> untreeify(HashMap<K,V> map) {
+    Node<K,V> hd = null, tl = null;
+    for (Node<K,V> q = this; q != null; q = q.next) {
+        Node<K,V> p = map.replacementNode(q, null);
+        if (tl == null)
+            hd = p;
+        else
+            tl.next = p;
+        tl = p;
+    }
+    return hd;
+}
+
+......
+
+Node<K,V> replacementNode(Node<K,V> p, Node`<K,V> next) {
+    return new Node<>(p.hash, p.key, p.value, next);
+}
+```
+
+如果你好奇为什么这个代码没有树啊, 那么你应该打死你. 因为TreeNode已经维护了一份链表了.
+![15](https://tech.nikolazhang.top/15.jpg)
+但是如果你好奇为什么`treeify`方法, 树化的时候没有维护链表.
+那么恭喜你, 发现了我上面没有讲的地方. 原因很简单,(或许是我以为简单, 欢迎大家提意见, 发表自己的看法), 因为树化之前就是个链表啊, 树化并没有改变这个链表, 只是多设置了几个属性, 而~已~啊~~~~.
+
+## end
+
+暂时告一段落吧, 这篇文章也是蛮硬核的. 我不能保证我的分析一定正确, 希望各位大佬多多批评, 不吝赐教.
+![21](https://tech.nikolazhang.top/21.gif)
