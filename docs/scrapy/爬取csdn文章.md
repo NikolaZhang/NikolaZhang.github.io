@@ -260,7 +260,7 @@ class CsdnArticleItemExporter(CsvItemExporter):
 
 - scrapy.cfg 这个是scrapy框架的配置文件, 这里我们指定了settings文件名. 因此settings.py文件中的属性都会加载到settings属性中去.
 
-  ```cfg
+  ```
     [settings]
     default = article.csdn_article_settings
     ;default = src.csdn_query_settings
