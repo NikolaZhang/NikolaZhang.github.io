@@ -2,6 +2,7 @@ const { config } = require("vuepress-theme-hope");
 
 module.exports = config({
     title: "我小叮当、",
+    base: '/blog-nikola/',
     description: "全人类的幻想乡",
     sidebar: "auto",
 

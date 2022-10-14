@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "build": "vuepress build ./",
-    "clean-dev": "vuepress dev ./ --no-cache",
+    "clean": "vuepress dev ./ --no-cache",
     "dev": "vuepress dev ./",
     "eject-theme": "vuepress eject-hope ./"
   },
