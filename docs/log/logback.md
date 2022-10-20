@@ -1,6 +1,6 @@
 ---
 original: true
-title: 日志框架-logback
+title: 日志框架-logback配置
 time: 2022-10-13
 tags: 
   - logback
