@@ -7,7 +7,7 @@ module.exports = [
         "link": "/docs/blog/"
       },
       {
-        "text": "database",
+        "text": "数据库",
         "link": "/docs/database/"
       },
       {
@@ -47,11 +47,7 @@ module.exports = [
         "link": "/docs/mybatis/"
       },
       {
-        "text": "note",
-        "link": "/docs/note/"
-      },
-      {
-        "text": "pattern",
+        "text": "设计模式",
         "link": "/docs/pattern/"
       },
       {
@@ -63,16 +59,29 @@ module.exports = [
         "link": "/docs/springcloud/"
       },
       {
-        "text": "thread",
+        "text": "线程",
         "link": "/docs/thread/"
       },
       {
-        "text": "tools",
+        "text": "工具",
         "link": "/docs/tools/"
       },
       {
-        "text": "vm",
+        "text": "虚拟机",
         "link": "/docs/vm/"
+      },
+      {
+        "text": "日志",
+        "link": "/docs/log/"
+      }
+    ]
+  },
+  {
+    "text": "笔记",
+    "items": [
+      {
+        "text": "笔记",
+        "link": "/docs/note/"
       }
     ]
   },
