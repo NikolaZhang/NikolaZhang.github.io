@@ -42,7 +42,7 @@ module.exports = config({
         logo: "/head.svg",
         hostname: "https://blog.nikolazhang.top",
         author: "我小叮当、",
-        repo: "https://gitee.com/NikolaZhang/blog-nikola-new",
+        repo: "https://github.com/NikolaZhang/blog-nikola",
         displayAllHeaders: true,
         activeHeaderLinks: true,
         search: true,
