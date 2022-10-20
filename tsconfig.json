@@ -4,6 +4,8 @@
         "allowSyntheticDefaultImports": true, // 规避 vuepress-types 的类型定义问题
         "experimentalDecorators": true, // Vue 的 TypeScript 写法需要开启此选项
         "module": "commonjs", // 为了避免 vuepress-types 解析失败
+        "forceConsistentCasingInFileNames": true,
+        "strict": true,
         "types": [
             "@mr-hope/vuepress-theme-types"
         ]
