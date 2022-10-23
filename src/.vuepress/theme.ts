@@ -59,29 +59,8 @@ export default hopeTheme({
         // The following config is for demo ONLY, if you need comment feature, please generate and use your own config, see comment plugin documentation for details.
         // To avoid disturbing the theme developer and consuming his resources, please DO NOT use the following config directly in your production environment!!!!!
         comment: {
-            /**
-             * Using Giscus
-             */
-            provider: "Giscus",
-            repo: "vuepress-theme-hope/giscus-discussions",
-            repoId: "R_kgDOG_Pt2A",
-            category: "Announcements",
-            categoryId: "DIC_kwDOG_Pt2M4COD69",
-
-            /**
-             * Using Twikoo
-             */
-            // provider: "Twikoo",
-            // envId: "https://twikoo.ccknbc.vercel.app",
-
-            /**
-             * Using Waline
-             */
-            // provider: "Waline",
-            // serverURL: "https://vuepress-theme-hope-comment.vercel.app",
-
-
-            // provider: 'valine',
+            provider: "Waline",
+            serverURL: "https://blog-9sgcdmfq3-nikolazhang.vercel.app/",
             // el: '#valine-vuepress-comment',
             // appId: 'qAVFKUfEt4etAYmdCwMaXL7o-gzGzoHsz',
             // appKey: 'dMvLljvHYdgzKj5mgP6BzI1Y',
@@ -150,7 +129,6 @@ export default hopeTheme({
             vpre: true,
             vuePlayground: true,
         },
-
         pwa: {
             favicon: "/favicon.ico",
             cacheHTML: true,

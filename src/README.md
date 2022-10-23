@@ -8,37 +8,27 @@ heroText: 全人类的幻想乡
 tagline: ( •̀ ω •́ )✧
 heroFullScreen: true
 projects:
-  - icon: project
-    name: project name
-    desc: project detailed description
-    link: https://your.project.link
+  - type: project
+    name: be-kami
+    desc: java开发代码案例（springboot框架）
+    link: https://gitee.com/NikolaZhang/be-kami
+    
+  - type: link
+    name: 管理后台
+    desc: 博客管理后台
+    link: https://admin.nikolazhang.top
+    
+  - type: link
+    name: springboot fun
+    desc: springboot 学习demo
+    link: http://springboot.fun/
+    
+  - type: link
+    name: baeldung
+    desc: spring学习网站
+    link: https://www.baeldung.com/
 
-  - icon: link
-    name: link name
-    desc: link detailed description
-    link: https://link.address
-
-  - icon: book
-    name: book name
-    desc: Detailed description of the book
-    link: https://link.to.your.book
-
-  - icon: article
-    name: article name
-    desc: Detailed description of the article
-    link: https://link.to.your.article
-
-  - icon: friend
-    name: friend name
-    desc: Detailed description of friend
-    link: https://link.to.your.friend
-
-  - icon: /logo.svg
-    name: custom item
-    desc: Detailed description of this custom item
-    link: https://link.to.your.friend
-
-footer: customize your footer text
+footer: nikola | 鲁ICP备20000559号-1
 ---
 
 This is a blog home page demo.

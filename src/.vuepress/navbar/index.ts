@@ -3,7 +3,6 @@ import {navbar} from "vuepress-theme-hope";
 
 export const zhNavbar = navbar([
     "/",
-    {text: "Demo", icon: "discover", link: "/demo/"},
     {
         text: "Posts",
         icon: "edit",

@@ -9,6 +9,6 @@ export default defineUserConfig({
   plugins: [
     searchPlugin({
       maxSuggestions: 10,
-    }),
+    })
   ],
 });
