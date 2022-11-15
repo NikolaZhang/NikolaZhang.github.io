@@ -59,41 +59,20 @@ export default hopeTheme({
         // The following config is for demo ONLY, if you need comment feature, please generate and use your own config, see comment plugin documentation for details.
         // To avoid disturbing the theme developer and consuming his resources, please DO NOT use the following config directly in your production environment!!!!!
         comment: {
-            /**
-             * Using Giscus
-             */
-            provider: "Giscus",
-            repo: "vuepress-theme-hope/giscus-discussions",
-            repoId: "R_kgDOG_Pt2A",
-            category: "Announcements",
-            categoryId: "DIC_kwDOG_Pt2M4COD69",
-
-            /**
-             * Using Twikoo
-             */
-            // provider: "Twikoo",
-            // envId: "https://twikoo.ccknbc.vercel.app",
-
-            /**
-             * Using Waline
-             */
-            // provider: "Waline",
-            // serverURL: "https://vuepress-theme-hope-comment.vercel.app",
-
-
-            // provider: 'valine',
-            // el: '#valine-vuepress-comment',
-            // appId: 'qAVFKUfEt4etAYmdCwMaXL7o-gzGzoHsz',
-            // appKey: 'dMvLljvHYdgzKj5mgP6BzI1Y',
-            // path: '<%- frontmatter.title %>',
-            // visitor: true,
-            // highlight: true,
-            // recordIP: true,
-            // enableQQ: true,
-            // requiredFields: ['nick'],
-            // pageSize: 10,
-            // avatar: 'retro',
-            // placeholder: '说点啥吧 =￣ω￣=',
+            provider: "Waline",
+            serverURL: "http://comment.nikolazhang.top/",
+            meta: ['nick', 'mail', 'link'],
+            requiredMeta: ['nick'],
+            reaction: true,
+            emoji: [
+                '//unpkg.com/@waline/emojis@1.1.0/bilibili',
+                '//unpkg.com/@waline/emojis@1.1.0/bmoji',
+                '//unpkg.com/@waline/emojis@1.1.0/alus',
+                '//unpkg.com/@waline/emojis@1.1.0/qq',
+                '//unpkg.com/@waline/emojis@1.1.0/tieba',
+                '//unpkg.com/@waline/emojis@1.1.0/tw-emoji',
+                '//unpkg.com/@waline/emojis@1.1.0/weibo',
+            ],
             // emojiCDN: 'https://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/',
             // // 表情title和图片映射
             // emojiMaps: Object.assign(
