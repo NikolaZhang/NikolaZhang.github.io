@@ -125,7 +125,6 @@ export default hopeTheme({
             vpre: true,
             vuePlayground: true,
         },
-
         pwa: {
             favicon: "/favicon.ico",
             cacheHTML: true,
