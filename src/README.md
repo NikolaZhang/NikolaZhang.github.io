@@ -7,37 +7,17 @@ heroImage: /head.svg
 heroText: 全人类的幻想乡
 tagline: ( •̀ ω •́ )✧
 heroFullScreen: true
+bgImage: /wallhaven-vgw355.jpg
 projects:
   - icon: project
-    name: project name
-    desc: project detailed description
-    link: https://your.project.link
+    name: be-kami
+    desc: java开发代码案例（springboot框架）
+    link: https://gitee.com/NikolaZhang/be-kami
 
-  - icon: link
-    name: link name
-    desc: link detailed description
-    link: https://link.address
+  - icon: project
+    name: mybatis-tools
+    desc: mybatis的vscode插件
+    link: https://gitee.com/NikolaZhang/mybatis-tools
 
-  - icon: book
-    name: book name
-    desc: Detailed description of the book
-    link: https://link.to.your.book
-
-  - icon: article
-    name: article name
-    desc: Detailed description of the article
-    link: https://link.to.your.article
-
-  - icon: friend
-    name: friend name
-    desc: Detailed description of friend
-    link: https://link.to.your.friend
-
-  - icon: /logo.svg
-    name: custom item
-    desc: Detailed description of this custom item
-    link: https://link.to.your.friend
-
-footer: customize your footer text
+footer: nikola | 鲁ICP备20000559号-1
 ---
-
