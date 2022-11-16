@@ -5,7 +5,7 @@ export const zhNavbar = navbar([
     "/",
     {text: "Demo", icon: "discover", link: "/demo/"},
     {
-        text: "Posts",
+        text: "文章",
         icon: "edit",
         prefix: "/posts/",
         children: [
@@ -88,7 +88,7 @@ export const zhNavbar = navbar([
         children: [
             {
                 text: "笔记",
-                link: "/posts/note/"
+                link: "/posts/web-net/"
             }
         ]
     },
