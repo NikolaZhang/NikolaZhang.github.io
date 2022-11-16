@@ -7,7 +7,7 @@ heroText: 我小叮当、の博客 ( •̀ ω •́ )✧
 heroImage: /head.svg
 tagline: 全世界的幻想乡
 heroFullScreen: true
-bgImage: /bg2.png
+bgImage: /background1.jpg
 project:
   - type: project
     name: be-kami

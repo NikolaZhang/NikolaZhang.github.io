@@ -1,6 +1,6 @@
 ---
 original: true
-title: Git命令学习笔记
+title: 常用的git命令
 date: 2018-11-25
 tags: 
   - git

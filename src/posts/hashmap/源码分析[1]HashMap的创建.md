@@ -1,6 +1,6 @@
 ---
 original: true
-title: 源码分析[1] HashMap之创生
+title: 源码分析[1] HashMap的创建
 mathjax: true
 tags:
   - hashmap

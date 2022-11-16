@@ -1,6 +1,6 @@
 ---
 original: false
-title: 如何使用hexo命令
+title: 使用hexo搭建博客
 tags: 
   - hexo
 category: blog

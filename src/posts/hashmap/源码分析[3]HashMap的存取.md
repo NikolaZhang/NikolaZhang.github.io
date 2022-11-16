@@ -1,6 +1,6 @@
 ---
 original: true
-title: 源码分析[3] HashMap之各得其所
+title: 源码分析[3] HashMap的存取
 mathjax: true
 tags:
   - hashmap
@@ -13,7 +13,7 @@ image: http://image.nikolazhang.top/d8c686dbd6af4697619c11fc042f232d.jpg
 
 > 续上节, 当hashmap为空或者table长度为0时, 会进行扩容. 这一节分析单hashmap中含有值的情况
 
-## 各得其所
+## 存取方法
 
 下面的代码实现了对输入键值对的存储
 
