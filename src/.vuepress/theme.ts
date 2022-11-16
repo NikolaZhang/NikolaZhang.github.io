@@ -12,7 +12,7 @@ export default hopeTheme({
     logo: "/head.svg",
     repo: "https://github.com/NikolaZhang/blog-nikola",
     docsDir: "docs",
-    pageInfo: ["Author", "Original", "Date", "Category", "Tag", "ReadingTime"],
+    pageInfo: ["Date", "Original", "Category", "Tag", "Word", "ReadingTime"],
     blog: {
         name: "我小叮当、",
         avatar: "/head.svg",
@@ -21,7 +21,7 @@ export default hopeTheme({
         sidebarDisplay: "none",
         timeline: "朝花夕拾",
         articlePerPage: 10,
-        articleInfo: ["Date", "Original", "Category", "Tag", "PageView",],
+        articleInfo: ["Date", "Original", "Category", "Tag", "Word", "ReadingTime"],
         intro: "/",
         medias: {
             Email: "mailto:nikolazhang@163.com",

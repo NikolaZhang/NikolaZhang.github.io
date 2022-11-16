@@ -1,8 +1,7 @@
 import theme from "./theme.js";
 import {defineUserConfig} from "vuepress";
-
 import {searchPlugin} from "@vuepress/plugin-search";
-// import {photoSwipePlugin} from "vuepress-plugin-photo-swipe";
+import {registerComponentsPlugin} from "@vuepress/plugin-register-components";
 
 export default defineUserConfig({
     base: "/",
@@ -13,5 +12,11 @@ export default defineUserConfig({
             maxSuggestions: 10,
         }),
         // photoSwipePlugin({}),
+
+        // 自定义插件
+        registerComponentsPlugin({
+            // 配置项
+            componentsPatterns: ["components/**/*.vue"]
+        }),
     ],
 });
