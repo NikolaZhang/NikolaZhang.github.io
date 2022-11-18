@@ -2,7 +2,7 @@
 original: false
 title: selectors
 date: 2021-05-12
-tags: 
+tag:
   - 爬虫
   - scrapy
   - selectors

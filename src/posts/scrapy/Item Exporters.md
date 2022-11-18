@@ -2,7 +2,7 @@
 original: false
 title: Item Exporter
 date: 2021-05-20
-tags: 
+tag:
   - 爬虫
   - scrapy
   - exports

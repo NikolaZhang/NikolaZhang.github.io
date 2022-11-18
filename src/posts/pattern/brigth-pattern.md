@@ -4,7 +4,7 @@ title: brigth pattern
 date: 2018-12-05
 
 
-tags: 
+tag:
   - brigth pattern
 category: 技术
 description: 桥梁模式的介绍和实现

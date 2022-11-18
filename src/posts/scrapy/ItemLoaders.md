@@ -2,7 +2,7 @@
 original: false
 title: Item Pipeline
 date: 2021-05-16
-tags: 
+tag:
   - 爬虫
   - scrapy
   - Pipeline

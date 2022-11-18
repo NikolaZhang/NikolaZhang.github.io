@@ -4,7 +4,7 @@ title: decorator pattern
 date: 2018-12-09
 
 
-tags: 
+tag:
   - decorator pattern
 category: 技术
 description: 装饰器模式的介绍和实现

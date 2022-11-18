@@ -4,7 +4,7 @@ title: strategy pattern
 date: 2018-11-28
 
 
-tags: 
+tag:
   - strategy pattern
 category: 技术
 description: 策略模式的实现和介绍

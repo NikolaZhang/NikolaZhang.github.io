@@ -4,7 +4,7 @@ title: 工厂模式②
 date: 2018-11-27
 
 
-tags: 
+tag:
   - factory pattern
 category: patterns
 description: 抽象工厂模式

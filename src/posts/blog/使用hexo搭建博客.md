@@ -1,7 +1,7 @@
 ---
 original: false
 title: 使用hexo搭建博客
-tags: 
+tag:
   - hexo
 category: blog
 description: 如何使用hexo命令

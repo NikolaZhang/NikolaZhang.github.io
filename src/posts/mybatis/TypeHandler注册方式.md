@@ -2,7 +2,7 @@
 original: true
 title: TypeHandler注册方式
 date: 2021-03-03
-tags: 
+tag:
   - mybatis
   - configuration
   - typeHandler

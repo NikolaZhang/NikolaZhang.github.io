@@ -4,7 +4,7 @@ title: multiton pattern
 date: 2018-11-30
 
 
-tags: 
+tag:
   - multiton pattern
 category: 技术
 description: 多例模式的实现方法

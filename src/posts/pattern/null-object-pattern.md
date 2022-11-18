@@ -4,7 +4,7 @@ title: null object pattern
 date: 2018-12-15
 
 
-tags: 
+tag:
   - null object pattern
 category: 技术
 description: 空对象模式的实现和介绍

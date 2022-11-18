@@ -2,7 +2,7 @@
 original: true
 title: 通过nps访问内网pc
 date: 2021-06-25
-tags: 
+tag:
   - nps
   - 内网穿透
   - 远程

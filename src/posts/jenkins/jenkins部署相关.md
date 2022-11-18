@@ -2,7 +2,7 @@
 original: true
 title: jenkins部署相关
 date: 2020-04-02
-tags: 
+tag:
   - jenkins
   - 部署
   - webhook

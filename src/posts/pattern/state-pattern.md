@@ -4,7 +4,7 @@ title: state pattern
 date: 2018-12-13
 
 
-tags: 
+tag:
   - state pattern
 category: 技术
 description: 状态模式的实现方法

@@ -2,7 +2,7 @@
 original: true
 title: 常用的git命令
 date: 2018-11-25
-tags: 
+tag:
   - git
   - 原理
 category: git

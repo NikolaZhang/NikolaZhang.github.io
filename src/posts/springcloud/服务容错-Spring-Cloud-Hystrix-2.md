@@ -2,7 +2,7 @@
 original: true
 title: '服务容错 Spring Cloud Hystrix [2]'
 date: 2018-12-22
-tags: 
+tag:
   - hystrix
 category: 技术
 description: 服务容错的简单介绍

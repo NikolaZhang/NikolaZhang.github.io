@@ -4,7 +4,7 @@ title: build pattern
 date: 2018-12-05
 
 
-tags: 
+tag:
   - build pattern
 category: 技术
 description: 建造者模式的介绍和实现

@@ -4,7 +4,7 @@ title: mediation pattern
 date: 2018-12-14
 
 
-tags: 
+tag:
   - mediation pattern
 category: 技术
 description: 中介者模式的介绍和实现

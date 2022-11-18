@@ -2,7 +2,7 @@
 original: true
 title: sql server 数据库
 date: 2018-11-13
-tags: 
+tag:
   - sql server
   - sql语法
 category: database

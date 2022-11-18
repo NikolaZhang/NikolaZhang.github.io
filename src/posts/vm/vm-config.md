@@ -2,7 +2,7 @@
 original: true
 title: 虚拟机多环境高度配置化
 date: 2021-12-07
-tags: 
+tag:
   - vbox
   - docker
 category: docker

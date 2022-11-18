@@ -4,7 +4,7 @@ title: singleton pattern
 date: 2018-11-30
 
 
-tags: 
+tag:
   - singleton pattern
 category: 技术
 description: 单例模式的实现方法

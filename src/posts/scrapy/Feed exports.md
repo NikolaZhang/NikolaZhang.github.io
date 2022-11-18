@@ -2,7 +2,7 @@
 original: false
 title: Feed exports
 date: 2021-05-21
-tags: 
+tag:
   - 爬虫
   - scrapy
   - exports

@@ -4,7 +4,7 @@ title: 工厂模式①
 date: 2018-11-26
 
 
-tags: 
+tag:
   - factory pattern
 category: 技术
 description: 简单工厂模式的介绍和实现

@@ -4,7 +4,7 @@ title: proxy pattern
 date: 2018-11-29
 
 
-tags: 
+tag:
   - proxy pattern
 category: 技术
 description: 代理模式的实现方法

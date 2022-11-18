@@ -2,7 +2,7 @@
 original: true
 title: markdown初尝试
 date: 2018-11-17
-tags: 
+tag:
   - markdown
   - 语法
 category: markdown

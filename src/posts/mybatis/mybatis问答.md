@@ -2,7 +2,7 @@
 original: true
 title: mybatis问答
 date: 2021-06-22
-tags: 
+tag:
   - mybatis
   - Q&A
 category: Q&A

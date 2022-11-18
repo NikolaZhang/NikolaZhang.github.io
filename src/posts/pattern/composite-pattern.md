@@ -4,7 +4,7 @@ title: composite pattern
 date: 2018-12-11
 
 
-tags: 
+tag:
   - composite pattern
 category: 技术
 description: 组合模式的介绍和实现

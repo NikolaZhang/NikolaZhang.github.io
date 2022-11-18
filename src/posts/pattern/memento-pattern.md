@@ -4,7 +4,7 @@ title: memento pattern
 date: 2018-12-15
 
 
-tags: 
+tag:
   - mediation pattern
 category: 技术
 description: 备忘录模式的介绍和实现

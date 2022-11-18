@@ -4,7 +4,7 @@ title: filter pattern
 date: 2018-12-15
 
 
-tags: 
+tag:
   - filter pattern
 category: 技术
 description: 过滤器模式的介绍和实现

@@ -4,7 +4,7 @@ title: iterator pattern
 date: 2018-12-10
 
 
-tags: 
+tag:
   - iterator pattern
 category: 技术
 description: 迭代器模式的介绍和实现

@@ -2,7 +2,7 @@
 original: true
 title: SqlSession与sql执行
 date: 2021-05-29
-tags: 
+tag:
   - mybatis
   - SqlSesssion
 category: 源码

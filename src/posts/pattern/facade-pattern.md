@@ -4,7 +4,7 @@ title: facade pattern
 date: 2018-11-30
 
 
-tags: 
+tag:
   - facade pattern
 category: 技术
 description: 门面模式的介绍和实现

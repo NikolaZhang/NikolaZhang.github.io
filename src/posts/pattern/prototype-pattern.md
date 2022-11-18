@@ -4,7 +4,7 @@ title: prototype pattern
 date: 2018-12-14
 
 
-tags: 
+tag:
   - prototype pattern
 category: 技术
 description: 原型模式的实现方法

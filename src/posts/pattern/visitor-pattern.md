@@ -4,7 +4,7 @@ title: visitor pattern
 date: 2018-12-13
 
 
-tags: 
+tag:
   - visitor pattern
 category: 技术
 description: 访问者模式的实现和介绍

@@ -4,7 +4,7 @@ title: command pattern
 date: 2018-12-09
 
 
-tags: 
+tag:
   - command pattern
 category: 技术
 description: 命令模式的介绍和实现

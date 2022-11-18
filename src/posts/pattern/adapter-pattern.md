@@ -4,7 +4,7 @@ title: adapter pattern
 date: 2018-12-02
 
 
-tags: 
+tag:
   - adapter pattern
 category: 技术
 description: 适配器模式

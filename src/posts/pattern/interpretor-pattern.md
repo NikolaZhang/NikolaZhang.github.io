@@ -4,7 +4,7 @@ title: interpretor pattern
 date: 2018-12-15
 
 
-tags: 
+tag:
   - interpretor pattern
 category: 技术
 description: 解释器模式的介绍和实现

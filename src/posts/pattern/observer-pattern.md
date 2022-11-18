@@ -4,7 +4,7 @@ title: observer pattern
 date: 2018-12-12
 
 
-tags: 
+tag:
   - observer pattern
 category: 技术
 description: 观察者模式的实现和介绍

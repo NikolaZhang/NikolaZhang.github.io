@@ -4,7 +4,7 @@ title: flyweight pattern
 date: 2018-12-15
 
 
-tags: 
+tag:
   - flyweight pattern
 category: 技术
 description: 享元模式的介绍和实现

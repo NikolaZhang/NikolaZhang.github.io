@@ -2,7 +2,7 @@
 original: true
 title: 日志框架-logback条件配置
 date: 2022-10-17
-tags: 
+tag:
   - logback
   - 日志
 category: 日志

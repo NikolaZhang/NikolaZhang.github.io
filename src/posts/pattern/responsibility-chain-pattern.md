@@ -4,7 +4,7 @@ title: responsibility chain pattern
 date: 2018-11-30
 
 
-tags: 
+tag:
   - responsibility chain pattern
 category: 技术
 description: 责任链模式的实现方法
