@@ -11,7 +11,7 @@ image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 sticky: false
 timeline: true
 article: true
-star: false
+star: true
 ---
 
 > 平时开发总是离不开各种环境, 甚至在公司摸鱼学习有一个自己的环境, 回到家也有一套环境. 一个新的环境就要重新配置, 总是在解决相同的问题, 实在是索然无味. 如果你也有和我一样的痛点那么这篇文章可能会比较适合你.

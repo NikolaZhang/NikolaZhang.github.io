@@ -10,7 +10,7 @@ image: https://tech.nikolazhang.top/2020-04-14-21-03-38.png
 sticky: false
 timeline: true
 article: true
-star: false
+star: true
 ---
 
 > 当多个线程同时使用共享变量时, 容易出现线程问题. ThreadLocal的作用是让每个线程访问各自的变量值. 这篇文章可能过于硬核, 我会尽量分析的详细些.

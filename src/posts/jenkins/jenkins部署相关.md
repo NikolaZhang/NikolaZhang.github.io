@@ -14,7 +14,7 @@ image: https://tech.nikolazhang.top/2020-04-03-00-57-20.png
 sticky: false
 timeline: true
 article: true
-star: false
+star: true
 ---
 
 > 谈一谈jenkins部署的一些方法, 顺便把这几天踩的的坑简单的整理一下.
