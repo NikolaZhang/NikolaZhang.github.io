@@ -84,13 +84,24 @@ export const zhNavbar = navbar([
     },
     {
         text: "笔记",
-        icon: "book",
+        icon: "footnote",
         prefix: "/notes/",
         children: [
             {
                 text: "网络",
                 link: "web-net/"
             }
+        ]
+    },
+    {
+        text: "开源工作",
+        icon: "ability",
+        prefix: "/open_source/",
+        children: [
+            {
+                text: "mybatis-tools",
+                link: "mybatis-tools/"
+            },
         ]
     },
     {

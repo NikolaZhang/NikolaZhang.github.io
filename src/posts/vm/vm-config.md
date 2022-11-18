@@ -1,12 +1,12 @@
 ---
 isOriginal: true
-title: 虚拟机多环境高度配置化
+title: 虚拟机多环境配置化
 date: 2021-12-07
 tag:
   - vbox
   - docker
 category: docker
-description: 虚拟机多环境高度配置化 
+description: 虚拟机多环境配置化 
 image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 ---
 

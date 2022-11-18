@@ -10,6 +10,7 @@ tag:
 category: jenkins
 description: jenkins项目构建的一些步骤和问题处理
 image: https://tech.nikolazhang.top/2020-04-03-00-57-20.png
+sticky: true
 ---
 
 > 谈一谈jenkins部署的一些方法, 顺便把这几天踩的的坑简单的整理一下.

@@ -10,11 +10,16 @@ export const zhSidebar = sidebar({
         },
         {
             text: "笔记",
-            icon: "note",
+            icon: "footnote",
             prefix: "notes/",
             children: "structure",
         },
-
+        {
+            text: "开源工作",
+            icon: "ability",
+            prefix: "open_source/",
+            children: "structure",
+        },
         {
             text: "分享",
             icon: "share",
