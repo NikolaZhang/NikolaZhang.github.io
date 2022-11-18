@@ -8,6 +8,11 @@ tag:
 category: database
 image: https://tech.nikolazhang.top/2020-06-04-09-49-32.png
 description: sql server数据库的基本数据类型以及相关ddl dml的使用
+
+sticky: false
+timeline: true
+article: true
+star: false
 ---
 
 ## 1. sql server

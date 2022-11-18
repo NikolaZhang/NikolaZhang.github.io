@@ -9,6 +9,10 @@ tag:
 category: scrapy
 description: scrapy中如何导出item
 image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
+sticky: false
+timeline: true
+article: true
+star: false
 ---
 
 > Scrapy提供了Item Exporters 来创建不同的输出格式，如XML，CSV或JSON。

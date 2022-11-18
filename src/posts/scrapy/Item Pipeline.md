@@ -9,6 +9,10 @@ tag:
 category: scrapy
 description: scrapy中使用管道处理item
 image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
+sticky: false
+timeline: true
+article: true
+star: false
 ---
 
 > 当Item在Spider中被收集之后，它将会被传递到Item Pipeline，一些组件会按照一定的顺序执行对Item的处理。

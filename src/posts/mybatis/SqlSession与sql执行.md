@@ -8,6 +8,10 @@ tag:
 category: 源码
 description: SqlSession与sql执行
 image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
+sticky: false
+timeline: true
+article: true
+star: false
 ---
 
 > 使用 MyBatis 的主要 Java 接口就是 SqlSession。你可以通过这个接口来执行命令，获取映射器实例和管理事务。

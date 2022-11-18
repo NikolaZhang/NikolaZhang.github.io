@@ -8,6 +8,10 @@ category: 源码
 date: 2020-05-04
 description: springboot源码分析
 image: https://tech.nikolazhang.top/2020-05-04-16-42-03.png
+sticky: false
+timeline: true
+article: true
+star: false
 ---
 
 > 看一看springboot的源码。该源码是2.2.4.RELEASE版本的。

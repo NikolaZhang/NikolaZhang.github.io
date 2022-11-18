@@ -9,6 +9,10 @@ tag:
 category: scrapy
 description: item容器是爬取数据字段的封装
 image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
+sticky: false
+timeline: true
+article: true
+star: false
 ---
 
 > Item 对象是种简单的容器，保存了爬取到得数据。 其提供了 类似于词典(dictionary-like) 的API以及用于声明可用字段的简单语法。

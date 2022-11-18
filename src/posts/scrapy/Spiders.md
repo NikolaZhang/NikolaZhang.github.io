@@ -9,6 +9,10 @@ tag:
 category: scrapy
 description: Spider类定义了如何爬取某个(或某些)网站。
 image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
+sticky: false
+timeline: true
+article: true
+star: false
 ---
 
 [https://scrapy-chs.readthedocs.io/zh_CN/latest/topics/spiders.html](https://scrapy-chs.readthedocs.io/zh_CN/latest/topics/spiders.html)

@@ -9,6 +9,10 @@ tag:
 category: 源码
 description: mybatis 配置文件解析 主要说一说TypeHandler注册方式
 image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
+sticky: false
+timeline: true
+article: true
+star: false
 ---
 
 > 本文对`typeHandlers节点`的解析进行详细的说明.

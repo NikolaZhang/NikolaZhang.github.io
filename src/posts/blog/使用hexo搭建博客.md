@@ -1,5 +1,4 @@
 ---
-isOriginal: false
 title: 使用hexo搭建博客
 tag:
   - hexo
@@ -7,6 +6,15 @@ category: blog
 description: 如何使用hexo命令
 image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 date: 2019-12-26
+
+author: nikola
+icon: book
+
+isOriginal: false
+sticky: false
+timeline: true
+article: true
+star: false
 ---
 
 > 这是最近开创的新博客， 重新记录我的生活还有技术积累。

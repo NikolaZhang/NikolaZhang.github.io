@@ -9,6 +9,10 @@ tag:
 category: 技术
 description: 服务容错的简单介绍
 image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
+sticky: false
+timeline: true
+article: true
+star: false
 ---
 
 > Hystrix具有服务降级、服务熔断、线程和信号隔离、请求缓存、请求合并以及服务监控等功能。

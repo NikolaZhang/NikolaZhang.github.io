@@ -9,6 +9,11 @@ category: linux
 description: 在Linux中使用top命令
 image: D:\works\vuepress-blog\.vuepress\public\bg2.png
 date: 2021-05-28
+
+sticky: false
+timeline: true
+article: true
+star: false
 ---
 
 > top 可以显示当前系统正在执行的进程的相关信息，包括进程ID、内存占用率、CPU占用率等.

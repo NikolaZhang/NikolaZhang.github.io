@@ -9,6 +9,10 @@ tag:
 category: scrapy
 description: 一个爬取csdn文章的案例
 image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
+sticky: false
+timeline: true
+article: true
+star: false
 ---
 
 > 前几篇文章介绍了scrapy相关的知识. 这篇文章来介绍一个我自己写的爬虫demo. 通过关键词查询爬取相关的csdn文章.

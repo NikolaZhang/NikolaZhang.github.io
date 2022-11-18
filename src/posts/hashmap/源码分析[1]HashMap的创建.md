@@ -10,6 +10,10 @@ category: 源码
 date: 2020-01-05
 description: 来一波hashmap源码分析
 image: https://tech.nikolazhang.top/2020-01-30-10-34-40.png
+sticky: false
+timeline: true
+article: true
+star: false
 ---
 
 > 基于java8介绍一下HashMap的实现. 写着写着就将近400行了, 因此打算这个作为一个系列分批次发出. 顺便还能占用一下篇数.

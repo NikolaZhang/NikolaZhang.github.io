@@ -9,6 +9,10 @@ tag:
 category: scrapy
 description: scrapy中使用管道处理item
 image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
+sticky: false
+timeline: true
+article: true
+star: false
 ---
 
 > Item Loaders提供了一种便捷的方式填充抓取到的 :Items 。 虽然Items可以使用自带的类字典形式API填充，但是Items Loaders提供了更便捷的API， 可以分析原始数据并对Item进行赋值。

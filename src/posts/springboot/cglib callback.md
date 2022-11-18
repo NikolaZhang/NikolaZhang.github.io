@@ -9,6 +9,10 @@ category: cglib
 date: 2020-06-21
 description: cglib的回调器类型及使用方法
 image: https://tech.nikolazhang.top/040156dd297fb60e53d475e3ac4425af.png
+sticky: false
+timeline: true
+article: true
+star: false
 ---
 
 > 使用Enhance的callback方法可以指定回调, 方法的参数类型为Callback类型. 这篇文章就分析这些callback的使用情景

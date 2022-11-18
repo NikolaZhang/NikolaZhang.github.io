@@ -7,6 +7,10 @@ tag:
 category: 技术
 description: 服务容错的简单介绍
 image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
+sticky: false
+timeline: true
+article: true
+star: false
 ---
 
 > 继续上一篇博客，这次我们聊一聊服务降级，请求合并等实现方法。最近内容有点多。。。。

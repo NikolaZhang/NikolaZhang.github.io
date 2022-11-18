@@ -10,6 +10,10 @@ tag:
 category: scrapy
 description: selectors用于页面字段的提取, 使用xpath语法
 image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
+sticky: false
+timeline: true
+article: true
+star: false
 ---
 
 ## **构造选择器(selectors)**

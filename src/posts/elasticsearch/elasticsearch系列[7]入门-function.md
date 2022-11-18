@@ -8,6 +8,11 @@ category: ElasticSearch
 description: Function score query的介绍
 image: https://tech.nikolazhang.top/2020-02-04-20-39-33.png
 date: 2020-02-05
+
+sticky: false
+timeline: true
+article: true
+star: false
 ---
 
 > function_score允许自定义分数计算规则, 修改文档检索后的得分. 你可以指定一个或针对不同情形指定不同的规则. 以下内容有些枯燥, 基本上是对[官方文档](https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-function-score-query.html)的翻译.

@@ -8,6 +8,10 @@ tag:
 category: 源码
 description: Sql映射文件解析
 image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
+sticky: false
+timeline: true
+article: true
+star: false
 ---
 
 > 之前谈到[配置文件解析的mappers节点](/category/mybatis/配置文件解析.html#mappers节点)时, 说到两种解析方式即:  

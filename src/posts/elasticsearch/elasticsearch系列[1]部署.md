@@ -8,6 +8,11 @@ category: ElasticSearch
 description: elasticsearch 的使用部署篇
 image: https://tech.nikolazhang.top/2020-01-31-17-02-57.png
 date: 2020-01-31
+
+sticky: false
+timeline: true
+article: true
+star: false
 ---
 
 > 开始一个新的系列谈谈关于elastic search的使用. 使用之前我们先谈一谈如何部署在服务器上部署一个elastic search应用.

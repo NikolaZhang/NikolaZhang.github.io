@@ -8,6 +8,10 @@ tag:
 category: Q&A
 description: mybatis问答 面试问题
 image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
+sticky: false
+timeline: true
+article: true
+star: false
 ---
 
 ## 源码

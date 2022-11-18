@@ -8,6 +8,10 @@ category: 源码
 date: 2020-05-10
 description: springboot 启动时是如何打印banner的, 以及如何配置一个自己的banner
 image: https://tech.nikolazhang.top/2020-05-10-09-51-02.png
+sticky: false
+timeline: true
+article: true
+star: false
 ---
 
 > springboot 启动时是如何打印banner的, 以及如何配置一个自己的banner.

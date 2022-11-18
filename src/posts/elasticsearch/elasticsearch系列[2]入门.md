@@ -8,6 +8,11 @@ category: ElasticSearch
 description: 简单介绍一下elasticsearch的使用方法
 image: 'https://tech.nikolazhang.top/2020-02-02-14-28-27.png'
 date: 2020-02-01
+
+sticky: false
+timeline: true
+article: true
+star: false
 ---
 
 > 上一篇我们已经安装好了elasticsearch以及kibana. 这一篇简单介绍一下elasticsearch的相关知识.

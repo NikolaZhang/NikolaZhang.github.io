@@ -9,6 +9,10 @@ tag:
 category: nps
 description: nps搭建内网穿透
 image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
+sticky: false
+timeline: true
+article: true
+star: false
 ---
 
 > 通过内网穿透我们可以在外网访问到内网设备，就好像内网设备拥有了公网ip一样。

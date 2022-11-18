@@ -8,6 +8,10 @@ category: cglib
 date: 2020-06-20
 description: 动态代理的第二篇文章, 讲讲cglib动态代理
 image: https://tech.nikolazhang.top/2020-06-15-18-43-48.png
+sticky: false
+timeline: true
+article: true
+star: false
 ---
 
 > 之前我们说了jdk动态代理, 今天来看看cglib动态代理. 文章的最后我们对比一下jdk动态代理和cglib动态代理

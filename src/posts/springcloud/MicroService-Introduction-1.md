@@ -9,6 +9,10 @@ tag:
 category: 技术
 description: 微服务关键技术介绍
 image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
+sticky: false
+timeline: true
+article: true
+star: false
 ---
 
 # MicroService 关键技术概要【下】

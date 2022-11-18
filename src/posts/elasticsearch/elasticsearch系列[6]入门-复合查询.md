@@ -8,6 +8,11 @@ category: ElasticSearch
 description: 简单介绍一下elasticsearch的查询
 image: https://tech.nikolazhang.top/2020-02-04-09-14-12.png
 date: 2020-02-04
+
+sticky: false
+timeline: true
+article: true
+star: false
 ---
 
 ## boolean query
