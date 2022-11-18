@@ -1,5 +1,5 @@
 ---
-original: true
+isOriginal: true
 title: cglib动态代理
 tags:
   - cglib

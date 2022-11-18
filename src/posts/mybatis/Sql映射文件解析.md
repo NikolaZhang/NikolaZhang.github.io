@@ -1,5 +1,5 @@
 ---
-original: true
+isOriginal: true
 title: Sql映射文件解析
 date: 2021-04-10
 tag:

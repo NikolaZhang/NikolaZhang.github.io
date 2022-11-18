@@ -1,5 +1,5 @@
 ---
-original: true
+isOriginal: true
 title: 如何优雅的使用枚举[2]以及函数式编程
 tags:
   - enum

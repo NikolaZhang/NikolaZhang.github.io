@@ -1,5 +1,5 @@
 ---
-original: true
+isOriginal: true
 title: 源码分析[1] HashMap的创建
 mathjax: true
 tags:

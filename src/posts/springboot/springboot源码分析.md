@@ -1,5 +1,5 @@
 ---
-original: true
+isOriginal: true
 title: springboot 源码分析[1] new SpringApplication
 tags:
   - springboot

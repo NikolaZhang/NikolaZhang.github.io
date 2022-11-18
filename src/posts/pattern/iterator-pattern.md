@@ -1,5 +1,5 @@
 ---
-original: true
+isOriginal: true
 title: iterator pattern
 date: 2018-12-10
 

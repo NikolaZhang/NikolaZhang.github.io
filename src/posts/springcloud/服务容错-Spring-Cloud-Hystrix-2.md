@@ -1,5 +1,5 @@
 ---
-original: true
+isOriginal: true
 title: '服务容错 Spring Cloud Hystrix [2]'
 date: 2018-12-22
 tag:

@@ -1,5 +1,5 @@
 ---
-original: false
+isOriginal: false
 title: Item Pipeline
 date: 2021-05-17
 tag:

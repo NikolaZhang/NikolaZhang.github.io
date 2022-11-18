@@ -1,5 +1,5 @@
 ---
-original: true
+isOriginal: true
 title: decorator pattern
 date: 2018-12-09
 

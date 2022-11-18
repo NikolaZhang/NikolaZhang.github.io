@@ -1,5 +1,5 @@
 ---
-original: true
+isOriginal: true
 title: brigth pattern
 date: 2018-12-05
 

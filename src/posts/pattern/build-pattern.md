@@ -1,5 +1,5 @@
 ---
-original: true
+isOriginal: true
 title: build pattern
 date: 2018-12-05
 

@@ -1,5 +1,5 @@
 ---
-original: true
+isOriginal: true
 title: responsibility chain pattern
 date: 2018-11-30
 

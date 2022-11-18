@@ -1,5 +1,5 @@
 ---
-original: true
+isOriginal: true
 title: ElasticSearch[8]操作篇-springboot连接es
 tags:
   - ElasticSearch

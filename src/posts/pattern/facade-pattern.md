@@ -1,5 +1,5 @@
 ---
-original: true
+isOriginal: true
 title: facade pattern
 date: 2018-11-30
 

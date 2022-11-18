@@ -1,5 +1,5 @@
 ---
-original: false
+isOriginal: false
 title: selectors
 date: 2021-05-12
 tag:

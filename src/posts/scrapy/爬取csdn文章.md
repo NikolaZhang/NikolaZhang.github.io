@@ -1,5 +1,5 @@
 ---
-original: true
+isOriginal: true
 title: 爬取csdn文章
 date: 2021-06-03
 tag:

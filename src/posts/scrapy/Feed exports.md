@@ -1,5 +1,5 @@
 ---
-original: false
+isOriginal: false
 title: Feed exports
 date: 2021-05-21
 tag:

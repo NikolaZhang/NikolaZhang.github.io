@@ -1,5 +1,5 @@
 ---
-original: true
+isOriginal: true
 title: 源码分析[2] HashMap的扩容
 mathjax: true
 tags:

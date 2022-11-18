@@ -1,5 +1,5 @@
 ---
-original: true
+isOriginal: true
 title: 工厂模式③
 date: 2018-11-30
 

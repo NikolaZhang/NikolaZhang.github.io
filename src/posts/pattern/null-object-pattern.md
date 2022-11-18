@@ -1,5 +1,5 @@
 ---
-original: true
+isOriginal: true
 title: null object pattern
 date: 2018-12-15
 

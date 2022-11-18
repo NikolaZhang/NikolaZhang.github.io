@@ -1,5 +1,5 @@
 ---
-original: true
+isOriginal: true
 title: 基于zookeeper的SpringBootAdmin
 date: 2020-04-03
 tag:

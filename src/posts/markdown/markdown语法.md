@@ -1,5 +1,5 @@
 ---
-original: true
+isOriginal: true
 title: markdown初尝试
 date: 2018-11-17
 tag:

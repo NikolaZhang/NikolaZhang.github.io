@@ -1,5 +1,5 @@
 ---
-original: true
+isOriginal: true
 title: sql server 数据库
 date: 2018-11-13
 tag:

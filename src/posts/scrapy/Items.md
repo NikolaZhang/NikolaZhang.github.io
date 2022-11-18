@@ -1,5 +1,5 @@
 ---
-original: false
+isOriginal: false
 title: Item
 date: 2021-05-14
 tag:

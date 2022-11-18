@@ -1,5 +1,5 @@
 ---
-original: true
+isOriginal: true
 title: ElasticSearch[4]操作篇-更新和删除
 tags:
   - es更新

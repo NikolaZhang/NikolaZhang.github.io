@@ -1,6 +1,6 @@
 ---
 title: linux top命令
-original: false
+isOriginal: false
 tags:
   - linux
   - 命令

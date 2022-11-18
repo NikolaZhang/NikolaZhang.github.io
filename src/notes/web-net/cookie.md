@@ -1,5 +1,5 @@
 ---
-original: false
+isOriginal: false
 title: cookie
 tags:
   - cookie

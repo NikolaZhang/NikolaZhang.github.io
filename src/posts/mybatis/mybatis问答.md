@@ -1,5 +1,5 @@
 ---
-original: true
+isOriginal: true
 title: mybatis问答
 date: 2021-06-22
 tag:

@@ -1,5 +1,5 @@
 ---
-original: true
+isOriginal: true
 title: ElasticSearch[1]部署
 tags:
   - ElasticSearch

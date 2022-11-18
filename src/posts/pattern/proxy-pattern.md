@@ -1,5 +1,5 @@
 ---
-original: true
+isOriginal: true
 title: proxy pattern
 date: 2018-11-29
 

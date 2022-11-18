@@ -1,5 +1,5 @@
 ---
-original: true
+isOriginal: true
 title: prototype pattern
 date: 2018-12-14
 

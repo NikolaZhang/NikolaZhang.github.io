@@ -1,5 +1,5 @@
 ---
-original: true
+isOriginal: true
 title: SqlSession与sql执行
 date: 2021-05-29
 tag:

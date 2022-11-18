@@ -1,5 +1,5 @@
 ---
-original: true
+isOriginal: true
 title: 服务容错保护 Spring Cloud Hystrix [1]
 date: 2018-12-16
 

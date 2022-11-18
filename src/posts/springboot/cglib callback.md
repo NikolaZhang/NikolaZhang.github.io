@@ -1,5 +1,5 @@
 ---
-original: true
+isOriginal: true
 title: cglib回调器
 tags:
   - proxy

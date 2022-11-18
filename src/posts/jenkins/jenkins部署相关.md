@@ -1,5 +1,5 @@
 ---
-original: true
+isOriginal: true
 title: jenkins部署相关
 date: 2020-04-02
 tag:

@@ -1,5 +1,5 @@
 ---
-original: false
+isOriginal: false
 title: spiders
 date: 2021-05-10
 tag:

@@ -1,5 +1,5 @@
 ---
-original: false
+isOriginal: false
 title: ssl
 date: 2020-04-03
 tag:

@@ -1,5 +1,5 @@
 ---
-original: false
+isOriginal: false
 title: websocket
 date: 2020-04-03
 tag:

@@ -1,5 +1,5 @@
 ---
-original: true
+isOriginal: true
 title: ElasticSearch[2]入门篇-简介
 tags:
   - ElasticSearch

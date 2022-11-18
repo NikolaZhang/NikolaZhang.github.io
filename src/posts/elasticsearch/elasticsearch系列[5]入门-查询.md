@@ -1,5 +1,5 @@
 ---
-original: true
+isOriginal: true
 title: ElasticSearch[5]操作篇-简单的查询
 tags:
   - ElasticSearch

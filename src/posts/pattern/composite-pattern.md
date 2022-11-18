@@ -1,5 +1,5 @@
 ---
-original: true
+isOriginal: true
 title: composite pattern
 date: 2018-12-11
 

@@ -1,5 +1,5 @@
 ---
-original: false
+isOriginal: false
 title: 使用hexo搭建博客
 tag:
   - hexo

@@ -1,5 +1,5 @@
 ---
-original: false
+isOriginal: false
 title: http长连接
 tags:
   - http

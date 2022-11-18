@@ -1,5 +1,5 @@
 ---
-original: true
+isOriginal: true
 title: 安装一个新的ubuntu系统后应该要做的事
 tags:
   - ubuntu

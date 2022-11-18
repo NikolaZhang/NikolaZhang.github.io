@@ -1,5 +1,5 @@
 ---
-original: true
+isOriginal: true
 title: ThreadLocal源码分析
 tags:
   - thread

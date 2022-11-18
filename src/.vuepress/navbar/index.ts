@@ -94,13 +94,17 @@ export const zhNavbar = navbar([
         ]
     },
     {
-        text: "收藏",
-        icon: "book",
-        prefix: "/views/",
+        text: "分享",
+        icon: "share",
+        prefix: "/shares/",
         children: [
             {
+                text: "工具",
+                link: "tools/"
+            },
+            {
                 text: "番剧",
-                link: "bangumi/"
+                link: "bangumis/"
             },
         ]
     },

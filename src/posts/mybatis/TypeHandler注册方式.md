@@ -1,5 +1,5 @@
 ---
-original: true
+isOriginal: true
 title: TypeHandler注册方式
 date: 2021-03-03
 tag:

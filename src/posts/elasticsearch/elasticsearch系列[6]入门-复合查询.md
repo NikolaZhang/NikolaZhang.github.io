@@ -1,5 +1,5 @@
 ---
-original: true
+isOriginal: true
 title: ElasticSearch[6]操作篇-复合查询
 tags:
   - ElasticSearch

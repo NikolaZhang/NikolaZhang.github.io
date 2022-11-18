@@ -1,5 +1,5 @@
 ---
-original: true
+isOriginal: true
 title: 日志框架-logback条件配置
 date: 2022-10-17
 tag:
