@@ -30,6 +30,5 @@ jobs:
         with:
           folder: src/.vuepress/dist
           token: ${{ secrets.ACCESS_TOKEN }}
-          ssh-key: ${{ secrets.PUB_ACCESS_TOKEN }}
           clean: true
           branch: gh-pages
