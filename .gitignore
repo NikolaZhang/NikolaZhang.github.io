@@ -1,0 +1,12 @@
+.vscode/**
+.idea/**
+.history/**
+node_modules/**
+.git/**
+dist
+.dist
+node_modules/
+src/.vuepress/.cache/
+src/.vuepress/.temp/
+src/.vuepress/dist/
+

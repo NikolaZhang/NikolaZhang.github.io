@@ -1,0 +1,35 @@
+name: Build and Deploy
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+
+      - name: Setup node 🙌
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16.14.0'
+
+      - name: Depend install and build 🤣
+        run: npm install -g yarn
+
+      - name: yarn install, build, and test 🔧
+        run: |
+          yarn install
+          yarn build
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@releases/v4
+        with:
+          folder: src/.vuepress/dist
+          token: ${{ secrets.ACCESS_TOKEN }}
+          ssh-key: ${{ secrets.PUB_ACCESS_TOKEN }}
+          clean: true
+          branch: gh-pages
