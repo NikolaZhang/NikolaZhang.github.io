@@ -3,7 +3,7 @@ title: springcloud
 index: false
 icon: discover
 category:
-  - Guide
+  - guide
 ---
 
 

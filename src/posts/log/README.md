@@ -3,7 +3,7 @@ title: logback
 index: false
 icon: discover
 category:
-  - Guide
+  - guide
 ---
 
 - [logback配置](logback.md)

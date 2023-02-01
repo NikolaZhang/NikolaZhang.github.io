@@ -3,7 +3,7 @@ title: elasticsearch
 index: false
 icon: discover
 category:
-  - Guide
+  - guide
 ---
 
 - [elasticsearch系列\[1\]部署](elasticsearch系列[1]部署.md)

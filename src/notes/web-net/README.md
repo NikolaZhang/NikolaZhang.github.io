@@ -3,7 +3,7 @@ title: 网络相关知识
 index: false
 icon: discover
 category:
-  - Guide
+  - guide
 ---
 
 - [cookie](cookie.md)

@@ -3,7 +3,7 @@ title: 线程
 index: false
 icon: discover
 category:
-  - Guide
+  - guide
 ---
 
 - [等待与唤醒与锁](等待与唤醒与锁.md)

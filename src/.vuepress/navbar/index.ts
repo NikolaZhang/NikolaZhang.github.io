@@ -90,14 +90,6 @@ export const zhNavbar = navbar([
             {
                 text: "网络",
                 link: "web-net/"
-            },
-            {
-                text: "logback",
-                link: "https://nikolazhang.notion.site/logback-95b7935eb41a47e891b28b8720e31558"
-            },
-            {
-                text: "scrapy",
-                link: "https://nikolazhang.notion.site/Scrapy-7ca6f2a22eb448b7bea641befdedc4ee",
             }
         ]
     },

@@ -3,7 +3,7 @@ title: 番剧
 index: false
 icon: discover
 category:
-  - Guide
+  - guide
 ---
 
 - [番剧推荐](番剧推荐.md)

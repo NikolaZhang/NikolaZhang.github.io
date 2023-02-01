@@ -3,7 +3,7 @@ title: jenkins使用
 index: false
 icon: discover
 category:
-  - Guide
+  - guide
 ---
 
 

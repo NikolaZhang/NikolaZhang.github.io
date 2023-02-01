@@ -3,7 +3,7 @@ title: 博客搭建
 index: false
 icon: discover
 category:
-  - Guide
+  - guide
 ---
 
 

@@ -3,7 +3,7 @@ title: springboot
 index: false
 icon: discover
 category:
-  - Guide
+  - guide
 ---
 
 - [如何优雅的使用枚举](如何优雅的使用枚举.md)

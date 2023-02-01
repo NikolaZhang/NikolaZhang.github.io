@@ -3,7 +3,7 @@ title: 设计模式
 index: false
 icon: discover
 category:
-  - Guide
+  - guide
 ---
 
 - [AbstractFactory](AbstractFactory.md)

@@ -3,7 +3,7 @@ title: linux
 index: false
 icon: discover
 category:
-  - Guide
+  - guide
 ---
 
 

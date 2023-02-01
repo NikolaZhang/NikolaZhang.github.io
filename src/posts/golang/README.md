@@ -3,7 +3,7 @@ title: golang语言学习
 index: false
 icon: discover
 category:
-  - Guide
+  - guide
 ---
 
 - [go web编程](web编程.md)

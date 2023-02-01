@@ -3,7 +3,7 @@ title: leetcode问题分析
 index: false
 icon: discover
 category:
-  - Guide
+  - guide
 ---
 
 

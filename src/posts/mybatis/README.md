@@ -3,7 +3,7 @@ title: markdown
 index: false
 icon: discover
 category:
-  - Guide
+  - guide
 ---
 
 - [SqlSession与sql执行](SqlSession与sql执行.md)

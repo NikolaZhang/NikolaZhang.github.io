@@ -3,7 +3,7 @@ title: markdown
 index: false
 icon: discover
 category:
-  - Guide
+  - guide
 ---
 
 - [markdown语法](markdown语法.md)

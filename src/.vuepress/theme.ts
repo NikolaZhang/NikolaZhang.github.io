@@ -10,7 +10,7 @@ export default hopeTheme({
     },
     iconAssets: "iconfont",
     logo: "/head.svg",
-    repo: "https://github.com/NikolaZhang/blog-nikola",
+    repo: "https://github.com/NikolaZhang/nikolazhang.github.io",
     docsDir: "docs",
     pageInfo: ["Date", "Original", "Category", "Tag", "Word", "ReadingTime"],
     blog: {
