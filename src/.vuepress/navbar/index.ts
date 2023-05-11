@@ -102,6 +102,10 @@ export const zhNavbar = navbar([
                 text: "mybatis-tools",
                 link: "mybatis-tools/"
             },
+            {
+                text: "look_look",
+                link: "look_look/"
+            },
         ]
     },
     {
