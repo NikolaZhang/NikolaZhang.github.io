@@ -94,7 +94,7 @@ export default hopeTheme({
             echarts: true,
             flowchart: true,
             gfm: true,
-            imageSize: true,
+            imgSize: true,
             include: true,
             katex: true,
             lazyLoad: true,
@@ -122,7 +122,7 @@ export default hopeTheme({
             sub: true,
             sup: true,
             tabs: true,
-            vpre: true,
+            vPre: true,
             vuePlayground: true,
         },
         pwa: {

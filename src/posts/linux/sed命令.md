@@ -1,7 +1,7 @@
 ---
 isOriginal: false
 title: sed命令使用
-date: 2023/06/06
+date: 2023-06-06
 tag:
   - linux
   - 命令

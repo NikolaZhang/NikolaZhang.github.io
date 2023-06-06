@@ -1,7 +1,7 @@
 ---
 date: 2022-11-18
 title: mybatis-tools介绍
-shortTitle: 
+shortTitle: vscode中支持mybatis的插件
 description: 这是一个vscode插件，用于支持mybatis-plus框架的使用。支持java实体、接口、xml的生成；日志的格式化；引用跳转等功能。
 tag:
   - mybatis
