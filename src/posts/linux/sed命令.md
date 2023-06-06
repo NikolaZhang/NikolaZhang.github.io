@@ -1,7 +1,7 @@
 ---
-isOriginal: true
+isOriginal: false
 title: sed命令使用
-date: 2022/11/30
+date: 2023/06/06
 tag:
   - linux
   - 命令
@@ -127,7 +127,35 @@ dewy:year:text
 
 8. `n;`是next的缩写，
 
-8. 退出`q`
+    ```bash
+    sed '/old/{n;s/old1/new1/}' file.txt
+    ```
+
+    上面的命令会在匹配到old的文本之后，将下一行的old1替换为new1
+
+9. y的作用是进行字符集替换，不过替换字符和被替换字符长度要一样
+
+    ```bash
+    sed 'y/old/new/' file.txt
+    ```
+
+    该命令会将所有的o替换为n，l替换为e，d替换为w。这个命令与s是不同的，需要注意。
+
+10. h的作用是将找到的行，放到一个缓存区，G的作用是将缓存区中的内容放到最后一行
+
+    ```bash
+    sed '/old1/h;$G' file.txt
+    ```
+
+    该命令会见匹配到old1所在的行放到缓存区，$G会将该内容放到最后一行。
+
+    行替换，用匹配old1的行，来替换匹配old2的行
+
+    ```bash
+    sed '/old1/h;/old2/g' file.txt
+    ```
+
+11. 退出`q`
 
     ```bash
     sed 's/old/new/g;3q' file.txt
@@ -135,7 +163,7 @@ dewy:year:text
 
     3q的意思为匹配到第3行退出
 
-9. 特殊匹配，以下文本表示符合某种规则
+12. 特殊匹配，以下文本表示符合某种规则
 
   ```shell
   匹配数字别忘了中括号外面还有一个中括号。
@@ -163,27 +191,51 @@ dewy:year:text
 
 ### 删除
 
-
-
-
-
-8. 删除行：
+1. 删除行：
 
    ```bash
-   sed '/pattern/d' file.txt
+   sed '/old/d' file.txt
    ```
 
-   删除文件 `file.txt` 中包含 `pattern` 的所有行。
+   删除文件 `file.txt` 中包含 `old` 的所有行。
 
-9.  插入行：
+2. 删除1到3行
+
+    ```bash
+    sed '1,3d' file.txt
+    ```
+
+3. 删除3行之后的所有
+
+    ```bash
+    sed '3,$d' file.txt
+    ```
+
+4. 删除包括old1的行，或者包括old2的行，别忘了加\
+
+    ```bash
+    sed '/\(old1\|old2\)/d' file.txt
+    ```
+
+5. 字符匹配范围删除
+
+    ```bash
+    sed -e '/old1/,/^graph/d' test
+    ```
+
+    从old1开始到graph开头的数据
+
+## 插入
+
+1. 插入行：
 
    ```bash
-   sed '3iput_string' file.txt
+   sed '3idewy yr' file.txt
    ```
 
-   在文件 `file.txt` 的第 3 行之前插入 `put_string`。
+   在文件 `file.txt` 的第 3 行之前插入 `dewy yr`。
 
-10. 把文本中的tab字符替换为空格：
+7. 把文本中的tab字符替换为空格：
 
    ```bash
    sed 's/\t/ /g' file.txt
@@ -191,7 +243,7 @@ dewy:year:text
 
    将文件 `file.txt` 中的所有 tab 字符替换成空格。
 
-11. 在匹配行后添加一行：
+8. 在匹配行后添加一行：
 
    ```bash
    sed '/pattern/a new_line' file.txt
@@ -199,7 +251,7 @@ dewy:year:text
 
    在文件 `file.txt` 中包含 `pattern` 的所有行后添加一行 `new_line`。
 
-12. 仅显示符合匹配模式的行:
+9.  仅显示符合匹配模式的行:
 
    ```bash
    sed -n '/pattern/p' file.txt
