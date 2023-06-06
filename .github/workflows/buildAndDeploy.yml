@@ -15,7 +15,7 @@ jobs:
       - name: Setup node 🙌
         uses: actions/setup-node@v3
         with:
-          node-version: '16.14.0'
+          node-version: '16.19.0'
 
       - name: Depend install and build 🤣
         run: npm install -g yarn
