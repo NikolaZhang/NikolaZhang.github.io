@@ -1,7 +1,7 @@
 ---
 isOriginal: true
 title: ElasticSearch[3]操作篇-插入
-tags:
+tag:
   - ElasticSearch
   - es数据插入
   - es映射

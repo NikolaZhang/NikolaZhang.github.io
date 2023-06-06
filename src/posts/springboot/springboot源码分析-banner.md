@@ -1,7 +1,7 @@
 ---
 isOriginal: true
 title: springboot源码分析[4]banner打印
-tags:
+tag:
   - springboot
   - banner
 category: 源码

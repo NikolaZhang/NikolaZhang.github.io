@@ -1,7 +1,7 @@
 ---
 isOriginal: false
 title: cookie
-tags:
+tag:
   - cookie
   - 原理
 category: 网络

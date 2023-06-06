@@ -1,7 +1,7 @@
 ---
 isOriginal: false
 title: http长连接
-tags:
+tag:
   - http
   - 长连接
   - 原理

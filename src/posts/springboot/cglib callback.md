@@ -1,7 +1,7 @@
 ---
 isOriginal: true
 title: cglib回调器
-tags:
+tag:
   - proxy
   - cglib
   - 回调

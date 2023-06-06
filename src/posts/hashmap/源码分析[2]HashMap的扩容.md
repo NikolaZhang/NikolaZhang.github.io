@@ -2,7 +2,7 @@
 isOriginal: true
 title: 源码分析[2] HashMap的扩容
 mathjax: true
-tags:
+tag:
   - hashmap
   - 数据结构
   - 扩容

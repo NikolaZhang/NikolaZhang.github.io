@@ -1,7 +1,7 @@
 ---
 isOriginal: true
 title: 安装一个新的ubuntu系统后应该要做的事
-tags:
+tag:
   - ubuntu
   - 部署
 category: linux

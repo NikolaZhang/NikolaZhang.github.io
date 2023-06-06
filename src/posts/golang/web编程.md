@@ -2,7 +2,7 @@
 isOriginal: true
 title: web编程-gin框架[1]
 mathjax: true
-tags:
+tag:
   - golang
   - web编程
   - gin

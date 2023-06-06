@@ -2,7 +2,7 @@
 isOriginal: true
 title: 源码分析[3] HashMap的存取
 mathjax: true
-tags:
+tag:
   - hashmap
   - put方法
 category: 源码

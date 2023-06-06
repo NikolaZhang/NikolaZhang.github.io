@@ -1,7 +1,7 @@
 ---
 title: linux top命令
 isOriginal: false
-tags:
+tag:
   - linux
   - 命令
   - top

@@ -1,7 +1,7 @@
 ---
 isOriginal: true
 title: springboot源码分析[3]环境配置加载
-tags:
+tag:
   - springboot
   - Environment
 category: 源码

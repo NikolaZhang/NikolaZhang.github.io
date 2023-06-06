@@ -1,7 +1,7 @@
 ---
 isOriginal: true
 title: ElasticSearch[1]部署
-tags:
+tag:
   - ElasticSearch
   - 部署
 category: ElasticSearch

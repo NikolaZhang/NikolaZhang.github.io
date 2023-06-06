@@ -1,7 +1,7 @@
 ---
 isOriginal: true
 title: ElasticSearch[4]操作篇-更新和删除
-tags:
+tag:
   - es更新
   - es删除
 category: ElasticSearch

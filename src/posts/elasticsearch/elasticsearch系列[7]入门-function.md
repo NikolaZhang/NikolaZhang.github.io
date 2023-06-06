@@ -1,7 +1,7 @@
 ---
 isOriginal: true
 title: ElasticSearch[7]操作篇-Function score query
-tags:
+tag:
   - ElasticSearch
   - es查询
 category: ElasticSearch

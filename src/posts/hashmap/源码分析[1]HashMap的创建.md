@@ -2,7 +2,7 @@
 isOriginal: true
 title: 源码分析[1] HashMap的创建
 mathjax: true
-tags:
+tag:
   - hashmap
   - 初始化
   - 原理

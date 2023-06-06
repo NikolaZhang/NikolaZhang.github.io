@@ -1,7 +1,7 @@
 ---
 isOriginal: true
 title: ElasticSearch[8]操作篇-springboot连接es
-tags:
+tag:
   - ElasticSearch
   - springboot
 category: ElasticSearch

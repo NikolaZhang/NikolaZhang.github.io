@@ -1,7 +1,7 @@
 ---
 isOriginal: true
 title: cglib动态代理
-tags:
+tag:
   - cglib
   - 动态代理
 category: cglib

@@ -1,7 +1,7 @@
 ---
 isOriginal: true
 title: ThreadLocal源码分析
-tags:
+tag:
   - thread
 category: 源码
 date: 2020-04-13

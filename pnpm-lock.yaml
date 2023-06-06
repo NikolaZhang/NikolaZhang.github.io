@@ -7616,7 +7616,7 @@ packages:
       fflate: registry.npmmirror.com/fflate@0.8.0
       gray-matter: registry.npmmirror.com/gray-matter@4.0.3
       semver: registry.npmmirror.com/semver@7.5.1
-      striptags: registry.npmmirror.com/striptags@3.2.0
+      striptag: registry.npmmirror.com/striptags@3.2.0
       vue: registry.npmmirror.com/vue@3.3.4
       vue-router: registry.npmmirror.com/vue-router@4.2.2(vue@3.3.4)
       vuepress: registry.npmmirror.com/vuepress@2.0.0-beta.62(@vuepress/client@2.0.0-beta.62)(vue@3.3.4)
@@ -7859,7 +7859,7 @@ packages:
       '@rollup/plugin-replace': registry.npmmirror.com/@rollup/plugin-replace@2.4.2(rollup@2.79.1)
       '@surma/rollup-plugin-off-main-thread': registry.npmmirror.com/@surma/rollup-plugin-off-main-thread@2.2.3
       ajv: registry.npmmirror.com/ajv@8.12.0
-      common-tags: registry.npmmirror.com/common-tags@1.8.2
+      common-tag: registry.npmmirror.com/common-tags@1.8.2
       fast-json-stable-stringify: registry.npmmirror.com/fast-json-stable-stringify@2.1.0
       fs-extra: registry.npmmirror.com/fs-extra@9.1.0
       glob: registry.npmmirror.com/glob@7.2.3

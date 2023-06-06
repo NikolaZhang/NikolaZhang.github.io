@@ -1,7 +1,7 @@
 ---
 isOriginal: true
 title: springboot 源码分析[1] new SpringApplication
-tags:
+tag:
   - springboot
   - SpringApplication
 category: 源码

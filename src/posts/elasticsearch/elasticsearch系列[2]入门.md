@@ -1,7 +1,7 @@
 ---
 isOriginal: true
 title: ElasticSearch[2]入门篇-简介
-tags:
+tag:
   - ElasticSearch
   - 原理
 category: ElasticSearch
