@@ -220,10 +220,10 @@ dewy:year:text
 5. 字符匹配范围删除
 
     ```bash
-    sed -e '/old1/,/^graph/d' test
+    sed '/old1/,/^old3/d' file.txt
     ```
 
-    从old1开始到graph开头的数据
+    从old1开始到old3开头的数据
 
 ## 插入
 
@@ -235,28 +235,26 @@ dewy:year:text
 
    在文件 `file.txt` 的第 3 行之前插入 `dewy yr`。
 
-7. 把文本中的tab字符替换为空格：
+2. 在匹配行后添加一行：
 
    ```bash
-   sed 's/\t/ /g' file.txt
+   sed '/old/a new_line' file.txt
    ```
 
-   将文件 `file.txt` 中的所有 tab 字符替换成空格。
+   在文件 `file.txt` 中包含 `old` 的所有行后添加一行 `new_line`。
 
-8. 在匹配行后添加一行：
+3. 读取test2的内容，并将其写入到匹配行的下面
 
-   ```bash
-   sed '/pattern/a new_line' file.txt
-   ```
+    ```bash
+    sed '/^old/r test2' file.txt
+    ```
 
-   在文件 `file.txt` 中包含 `pattern` 的所有行后添加一行 `new_line`。
+4. 将匹配的内容写入test2中
 
-9.  仅显示符合匹配模式的行:
+    ```bash
+    sed '/old/w test2' file.txt
+    ```
 
-   ```bash
-   sed -n '/pattern/p' file.txt
-   ```
+## 参考
 
-   在文件 `file.txt` 中仅显示包含 `pattern` 的行。
-
-以上仅是一部分 `sed` 命令的使用示例，还有很多其他的命令和使用方法。
+1. [51yip](http://linux.51yip.com/search/sed)
