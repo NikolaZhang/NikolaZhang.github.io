@@ -136,15 +136,15 @@ conda install --yes --file requirements.txt
 
 ### 文章链接
 
-![文章链接](imgs/url.png)
+![文章链接](https://raw.githubusercontent.com/NikolaZhang/image-blog/main/look_look/url.png)
 
 ### 文章信息
 
-![文章信息](imgs/article.png)
+![文章信息](https://raw.githubusercontent.com/NikolaZhang/image-blog/main/look_look/article.png)
 
 ### 文章内容
 
-![文章内容](imgs/article_content.png)
+![文章内容](https://raw.githubusercontent.com/NikolaZhang/image-blog/main/look_look/article_content.png)
 
 ### 如何创建一个新的网站spider?
 
@@ -190,11 +190,11 @@ item一般放在items.py中，当然也可以创建新的文件存放。该项�
 
 #### 效果
 mongodb中存储信息  
-![art1](imgs/art_work1.png)
+![art1](https://raw.githubusercontent.com/NikolaZhang/image-blog/main/look_look/art_work1.png)
 导出到excel中的信息  
-![art1](imgs/art_work2.png)
+![art1](https://raw.githubusercontent.com/NikolaZhang/image-blog/main/look_look/art_work2.png)
 保存的图片  
-![art1](imgs/art_work3.png)
+![art1](https://raw.githubusercontent.com/NikolaZhang/image-blog/main/look_look/art_work3.png)
 
 
 ## Q&A

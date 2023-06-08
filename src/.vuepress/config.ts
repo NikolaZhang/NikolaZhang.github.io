@@ -1,6 +1,5 @@
 import theme from "./theme.js";
 import {defineUserConfig} from "vuepress";
-import {searchPlugin} from "@vuepress/plugin-search";
 
 
 export default defineUserConfig({
@@ -8,8 +7,5 @@ export default defineUserConfig({
     theme,
     shouldPrefetch: false,
     plugins: [
-        searchPlugin({
-            maxSuggestions: 10,
-        }),
     ],
 });
