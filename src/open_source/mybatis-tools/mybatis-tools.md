@@ -37,7 +37,7 @@ a. 当光标位于`接口方法`或者`statement id`上，使用快捷键或命�
 b. mapper接口和xml有跳转提示（`go to Mapper XML`, `go to Mapper java`），点击即可跳转。（感谢`shunf4`同学的pr. ^_^）  
 c. 不存在对应的java方法, 或者动态sql, 允许自动创建.  
     此时会提示三种选项:  
-    
+
 - 直接跳转到文件
 - 不跳转
 - 创建方法或者动态sql（创建位置为末尾）
