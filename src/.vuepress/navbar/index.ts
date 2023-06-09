@@ -94,7 +94,7 @@ export const zhNavbar = navbar([
         ]
     },
     {
-        text: "开源工作",
+        text: "开源项目",
         icon: "ability",
         prefix: "/open_source/",
         children: [

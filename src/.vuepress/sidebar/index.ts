@@ -15,7 +15,7 @@ export const zhSidebar = sidebar({
             children: "structure",
         },
         {
-            text: "开源工作",
+            text: "开源项目",
             icon: "ability",
             prefix: "open_source/",
             children: "structure",

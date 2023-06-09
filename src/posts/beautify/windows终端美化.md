@@ -19,8 +19,6 @@ article: true
 star: false
 ---
 
-# windows terminal美化
-
 ## powershell 版本更新
 
 默认版本为5.x，以下基于7.x版本，安装方式如下。
@@ -140,4 +138,3 @@ Set-PSReadLineKeyHandler -Chord 'Ctrl+d' -Function DeleteChar
 ### oh my posh
 
 [Introduction | Oh My Posh](https://ohmyposh.dev/docs/)
-
