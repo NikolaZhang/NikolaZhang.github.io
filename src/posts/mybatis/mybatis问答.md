@@ -83,4 +83,3 @@ star: false
 2. 基于xml方式的sql执行可以通过指定语句命名空间，以及参数的方式执行。比如：`update`、`delete`、`selectXXX`方法。当然前者也可以通过这种方式实现。
 
 这部分内容详见 **SqlSession与sql执行**
-

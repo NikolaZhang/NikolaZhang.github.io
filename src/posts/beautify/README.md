@@ -1,5 +1,5 @@
 ---
-title: 博客搭建 
+title: windows
 index: false
 icon: discover
 category:
@@ -7,6 +7,4 @@ category:
 ---
 
 
-- [使用hexo搭建博客](使用hexo搭建博客.md)
-- [博客搭建及部署](博客搭建及部署.md)
-- [搭建博客进阶](搭建博客进阶.md)
+- [windows终端美化](windows终端美化.md)
