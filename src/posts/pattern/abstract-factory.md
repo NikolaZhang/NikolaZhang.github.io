@@ -29,7 +29,7 @@ star: false
 
 ### 创建车与人的接口，及其实现
 
-```
+```java
 package factory.abstractfactory;
 
 /************************************************
@@ -234,3 +234,6 @@ public class Test {
 
 生成的UML如下：
 ![UML](/images/article/27/uml.png)
+
+
+![Alt text](images/abstract-factory/image.png)
