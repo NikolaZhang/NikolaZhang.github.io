@@ -6,7 +6,8 @@ category:
   - guide
 ---
 
-- [AbstractFactory](AbstractFactory.md)
+- [设计模式简介](设计模式简介.md)
+- [抽象工厂模式](抽象工厂模式.md)
 - [adapter-pattern](adapter-pattern.md)
 - [brigth-pattern](brigth-pattern.md)
 - [build-pattern](build-pattern.md)
@@ -15,7 +16,7 @@ category:
 - [decorator-pattern](decorator-pattern.md)
 - [facade-pattern](facade-pattern.md)
 - [Factory Pattern](Factory Pattern.md)
-- [factorypatternmethod](factorypatternmethod.md)
+- [factorypatternmetho(factorypatternmethod.md)
 - [filter-pattern](filter-pattern.md)
 - [flyweight-pattern](flyweight-pattern.md)
 - [interpretor-pattern](interpretor-pattern.md)
