@@ -1,10 +1,11 @@
 ---
-title: 工厂模式②
+title: 抽象工厂模式
 tag:
   - 设计模式
-  - 工厂模式
+  - 抽象工厂模式
+  - Abstract Factory
 category: 设计模式
-description: 工厂模式
+description: 抽象工厂模式
 image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 date: 2023-12-28
@@ -47,7 +48,7 @@ star: false
 
 ### 代码结构
 
-![Alt text](image.png)
+![Alt text](images/abstract-factory/image.png)
 
 ### 抽象工厂
 

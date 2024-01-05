@@ -7,7 +7,7 @@ category:
 ---
 
 - [设计模式简介](设计模式简介.md)
-- [抽象工厂模式](抽象工厂模式.md)
+- [抽象工厂模式](abstract-factory.md)
 - [adapter-pattern](adapter-pattern.md)
 - [brigth-pattern](brigth-pattern.md)
 - [build-pattern](build-pattern.md)
