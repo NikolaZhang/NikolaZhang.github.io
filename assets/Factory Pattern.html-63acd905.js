@@ -1,0 +1,1 @@
+import{_ as t}from"./plugin-vue_export-helper-c27b6911.js";import{o as e,c as r}from"./app-907d9a31.js";const c={};function o(_,a){return e(),r("div")}const f=t(c,[["render",o],["__file","Factory Pattern.html.vue"]]);export{f as default};
