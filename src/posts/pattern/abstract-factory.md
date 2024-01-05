@@ -1,7 +1,6 @@
 ---
 title: 抽象工厂模式
 tag:
-  - 设计模式
   - 抽象工厂模式
   - Abstract Factory
 category: 设计模式

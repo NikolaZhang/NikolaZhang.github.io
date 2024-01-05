@@ -1,17 +1,24 @@
 ---
-isOriginal: true
-title: 工厂模式①
-date: 2018-11-26
-
-
+title: 抽象工厂模式
 tag:
-  - factory pattern
-category: 技术
-description: 简单工厂模式的介绍和实现
+  - 静态工厂模式
+  - 简单工厂模式
+  - Static Factory
+category: 设计模式
+description: 静态工厂模式，简单工厂模式
 image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
----
+banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
+date: 2024-01-05
 
-## 简单工厂模式
+author: nikola
+icon: book
+
+isOriginal: true
+sticky: false
+timeline: true
+article: true
+star: false
+---
 
 > 又称为静态工厂模式，提供一个公有的静态工厂方法，返回一个类的实例。
 通过工厂我们不必具体去实例化某一个实例对象。只需要传递某些约定的参数，工厂会自动找到该类并将其实例化。
