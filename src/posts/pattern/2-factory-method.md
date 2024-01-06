@@ -20,6 +20,8 @@ star: false
 
 > 工厂方法模式(Factory Method Pattern)去掉了简单工厂模式中工厂方法的静态属性，使得它可以被子类继承。这样在简单工厂模式里集中在工厂方法上的压力可以由工厂方法模式里不同的工厂子类来分担。
 
+![Alt text](images/2-factory-method/image.png)
+
 主要角色包括:
 
 - 抽象工厂(AbstractFactory)：提供了创建产品的接口，调用者通过这个接口来创建产品。
