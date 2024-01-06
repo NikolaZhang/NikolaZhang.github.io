@@ -1,14 +1,21 @@
 ---
-isOriginal: true
-title: build pattern
-date: 2018-12-05
-
-
+title: 建造者模式
 tag:
-  - build pattern
-category: 技术
-description: 建造者模式的介绍和实现
+  - 建造者模式
+category: 设计模式
+description: 建造者模式
 image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
+banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
+date: 2024-01-05
+
+author: nikola
+icon: book
+
+isOriginal: true
+sticky: false
+timeline: true
+article: true
+star: false
 ---
 
 > 建造者模式，以某种形式组合出对象。它和工厂模式的区别在于是否有组合的概念。建造者模式中有产品对象，建造者对象，监工对象。产品对象是各种各样的POJO，建造者以某种方式组合产品，监工就比较像工厂，获取产品组合后的对象。这两天看了菜鸟上的讲解和设技模式之禅。这两者讲的有些不同。菜鸟上是产品对象的组合，而设计模式之禅上则偏向对象内部属性的组合。
