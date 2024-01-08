@@ -1,17 +1,27 @@
 ---
-isOriginal: true
-title: adapter pattern
-date: 2018-12-02
-
-
+title: 适配器模式
 tag:
-  - adapter pattern
-category: 技术
+  - 适配器模式
+category: 设计模式
 description: 适配器模式
 image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
+banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
+date: 2024-01-08
+
+author: nikola
+icon: book
+
+isOriginal: true
+sticky: false
+timeline: true
+article: true
+star: false
 ---
 
-> 适配器模式，你有我需要的信息但是我俩信息封装的类型不同，你无法直接给我。就像我又一个三脚插头，你是两孔的插座。需要一个转换器，让我用上你的电。P.S.:很危险，不要干这种事。。。
+> `Adapter`，可以充当两个类之间的媒介，它可以转换一个类的接口，这样就可以被另外一个类使用，这使得具有不兼容接口的类能够协同使用。  
+> `Adapter`模式实现为客户端所知的接口，并且为客户端提供对不为其所知的类实例的访问。`Adapter`对象可以在不知道实现该接口的类的情况下，提供该接口的功能。
+
+![Alt text](images/7-adapter/image.png)
 
 <!--more-->
 
