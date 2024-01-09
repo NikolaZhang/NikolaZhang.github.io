@@ -26,7 +26,7 @@ star: false
 
 ### 安装包获取
 
-可以通过![github](https://github.com/termux/termux-app/releases)获取最新的发布版本。
+可以通过[github](https://github.com/termux/termux-app/releases)获取最新的发布版本。
 
 ### 软件包镜像源切换
 
