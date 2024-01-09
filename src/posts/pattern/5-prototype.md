@@ -6,7 +6,7 @@ category: 设计模式
 description: 原型模式
 image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
-date: 2024-01-08
+date: 2024-01-09
 
 author: nikola
 icon: book
@@ -230,10 +230,12 @@ public class PrototypeClient {
 
 我还看过一个使用缓存的例子，[菜鸟教程-原型模式](https://www.runoob.com/design-pattern/prototype-pattern.html)。
 
-实际获取对象的时候也是使用了浅拷贝。
+在这个例子中，实际获取对象的时候也是使用了浅拷贝。
 
 `Cloneable`接口实现。
+
 ![Alt text](images/image-2.png)
 
 从缓存中获取对象并拷贝。
+
 ![Alt text](images/image-3.png)
