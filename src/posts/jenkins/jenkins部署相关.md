@@ -9,7 +9,7 @@ tag:
   - 构建
 category: jenkins
 description: jenkins项目构建的一些步骤和问题处理
-image: https://tech.nikolazhang.top/2020-04-03-00-57-20.png
+image: images/2020-04-03-00-57-20.png
 
 sticky: false
 timeline: true
@@ -26,7 +26,7 @@ star: true
 ### gitee的webhook
 
 在仓库中的setting中我们可以找到webhook选项
-![2020-04-03-00-01-50](https://tech.nikolazhang.top/2020-04-03-00-01-50.png)
+![2020-04-03-00-01-50](images/2020-04-03-00-01-50.png)
 
 点击add.
 url中需要填入jenkins路径
@@ -34,20 +34,20 @@ url中需要填入jenkins路径
 其中username和password为可以登录jenkins的用户账号密码.
 JENKINS_URL为jenkins的访问路径. 当然你可以使用ip+端口的方式
 上面的这个路径可以在jenkins项目配置中找到:
-![2020-04-03-00-05-22](https://tech.nikolazhang.top/2020-04-03-00-05-22.png)
+![2020-04-03-00-05-22](images/2020-04-03-00-05-22.png)
 当你选择通过webhook触发构建的时候就可以找到这个路径.
 之后根据需要选择触发的事件类型:
-![2020-04-03-00-07-49](https://tech.nikolazhang.top/2020-04-03-00-07-49.png)
+![2020-04-03-00-07-49](images/2020-04-03-00-07-49.png)
 
 之后我们可以通过`Test`测试是否连接成功. 成功之后就可以进行jenkins端项目构建条件的配置.
 以syscore模块的编译为例:
 如下图所示我设置了两个变量一个是`repository`一个是`commits`, 这两个变量的值是通过`JSONPath`表达式从webhook请求体中获取构建的仓库以及提交信息中含有`build syscore`的数量. 之后通过`Optional filter`将这两个变量`$repository_$commits`, 进行正则匹配`^communicate_\[[1-9][0-9]*\]$`如果为`communicate`仓库且`build syscore`的数量大于0则触发构建.
-![2020-04-03-00-10-29](https://tech.nikolazhang.top/2020-04-03-00-10-29.png)
-![2020-04-03-00-10-49](https://tech.nikolazhang.top/2020-04-03-00-10-49.png)
+![2020-04-03-00-10-29](images/2020-04-03-00-10-29.png)
+![2020-04-03-00-10-49](images/2020-04-03-00-10-49.png)
 
 所以针对不同类型的提交请求体可能是不同的, 因此需要根据实际情况进行配置.
 之前我们在gitee仓库中对jenkins连接进行了测试, 我们可以在测试的请求信息中看到webhook请求体的详细情况.
-![2020-04-03-00-19-04](https://tech.nikolazhang.top/2020-04-03-00-19-04.png)
+![2020-04-03-00-19-04](images/2020-04-03-00-19-04.png)
 
 ## 构建之后
 
@@ -61,9 +61,9 @@ JENKINS_URL为jenkins的访问路径. 当然你可以使用ip+端口的方式
 下面介绍一下这个插件如何使用.
 
 安装插件之后你应该能看到下图中的红框内容:
-![2020-04-03-00-26-45](https://tech.nikolazhang.top/2020-04-03-00-26-45.png)
+![2020-04-03-00-26-45](images/2020-04-03-00-26-45.png)
 
-![2020-04-03-00-28-46](https://tech.nikolazhang.top/2020-04-03-00-28-46.png)
+![2020-04-03-00-28-46](images/2020-04-03-00-28-46.png)
 首要你要选中一个你提前配置好的ssh server. 这个配置是在`Manage Jenkins`的`Config SYSTEM`中.
 之后我们要配置传输的文件的路径, 注意这个路径是相对于当前构建模块来说的.
 我使用的syscore模块的路径为`/var/lib/jenkins/workspace/commuicate/syscore/`, 注意这个路径末尾的syscore就是指的是这个构建模块的名字. 因此配置路径直接从这个路径下开始配置即可.
@@ -75,7 +75,7 @@ JENKINS_URL为jenkins的访问路径. 当然你可以使用ip+端口的方式
 ### 配置ssh server
 
 找到`Publish over SSH`模块, 仿照下图进行配置:
-![2020-04-03-00-32-27](https://tech.nikolazhang.top/2020-04-03-00-32-27.png)
+![2020-04-03-00-32-27](images/2020-04-03-00-32-27.png)
 
 `Passphrase`及ssh的密码, `Path to key`是你的私钥的路径. `Key`中的内容直接复制私钥中的信息粘贴即可.
 
@@ -86,19 +86,19 @@ JENKINS_URL为jenkins的访问路径. 当然你可以使用ip+端口的方式
 前端构建和后端构建是不同的.
 
 后端的构建我们创建item的时候使用的是`maven project`因此借助maven插件我们可以通过配置如下信息构建maven项目.
-![2020-04-03-00-47-57](https://tech.nikolazhang.top/2020-04-03-00-47-57.png)
+![2020-04-03-00-47-57](images/2020-04-03-00-47-57.png)
 前端的构建也很简单, 可以直接添加一个构建脚本即可.
-![2020-04-03-00-49-15](https://tech.nikolazhang.top/2020-04-03-00-49-15.png)
+![2020-04-03-00-49-15](images/2020-04-03-00-49-15.png)
 
 ## 构建工作流
 
 在一些情况下我们的构建是有先后顺序的, 比如我们修改了一个公共模块, 因此要优先构建该模块, 之后再构建其他模块. 这个可以通过设置构建触发器进行控制(webhook也是构建触发器的一种)
 
-![2020-04-03-00-53-52](https://tech.nikolazhang.top/2020-04-03-00-53-52.png)
+![2020-04-03-00-53-52](images/2020-04-03-00-53-52.png)
 
 `Build after other projects are built` 中的`Projects to watch`中配置的就是优先构建的模块, 当这个`common`模块构建成功之后会触发当前模块的构建.
 
 配置之后, 你可以在`common`模块的页面中看到`Downstream Projects`信息
-![2020-04-03-00-55-39](https://tech.nikolazhang.top/2020-04-03-00-55-39.png)
+![2020-04-03-00-55-39](images/2020-04-03-00-55-39.png)
 
 ## end
