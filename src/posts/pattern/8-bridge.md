@@ -1,14 +1,21 @@
 ---
-isOriginal: true
-title: brigth pattern
-date: 2018-12-05
-
-
+title: 桥接模式
 tag:
-  - brigth pattern
-category: 技术
-description: 桥梁模式的介绍和实现
+  - 桥接模式
+category: 设计模式
+description: 桥接模式
 image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
+banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
+date: 2023-01-08
+
+author: nikola
+icon: book
+
+isOriginal: true
+sticky: false
+timeline: true
+article: true
+star: false
 ---
 
 > 桥梁模式提供了一种弱类间关系，关联关系。P.S.:在设计模式中类与类之间的关系主要有6种：依赖、关联、聚合、组合、继承、实现，它们之间的耦合度依次增加。在设计模式之禅的案例中，子类必须实现抽象父类中的所有方法，父类抽象方法的变更，必然导致子类的变更。这是一种强关联关系。强关联有必然使我们的系统不易扩展。所以桥梁模式为化解强关联提供了一种解决方案。

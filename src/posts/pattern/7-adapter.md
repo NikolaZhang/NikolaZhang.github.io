@@ -6,7 +6,7 @@ category: 设计模式
 description: 适配器模式
 image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
-date: 2024-01-08
+date: 2024-01-10
 
 author: nikola
 icon: book
@@ -23,195 +23,71 @@ star: false
 
 ![Alt text](images/7-adapter/image.png)
 
-<!--more-->
+适配器模式允许两个或多个不兼容的对象进行交互通信，提高已有功能的重复使用性。
 
-(⊙o⊙)…，我从现在开始以讲故事的形式来说模式，虽然也是看着设计模式之禅那本书学习的，但还是照猫画虎，做做笔记，说说我的理解。
+以下几种情况应该使用适配器模式。
 
-## 不同的客户信息封装
-现在我们的汽车公司已经足够强大，要兼并其他公司。其他公司要把他们的客户信息给我们，但是他们的客户信息和我们的客户信息类封装有所不同。
-如下：
-+ 我们的公司：
+1. 要使用已有类，而该类接口与所需的接口并不匹配。
+2. 要创建可重用的类，该类可以与不相关的未知类进行协作，也就是说，类之间并不需要兼容接口。
+3. 要在一个不同于已知对象接口的接口环境中使用对象。
+4. 必须要进行多个源之间的接口转换的时候。
 
-  ```
-  package adapter;
+## 代码实现
 
-  /************************************************
-   *@ClassName : CompanyHereI
-   *@Description : TODO
-   *@Author : NikolaZhang
-   *@Date : 【2018/12/2 21:09】
-   *@Version : 1.0.0
-   *************************************************/
-  public interface CompanyHereI {
-      String getCustomerName();
-      String getCustomerPhone();
-      String getCustomerAddress();
-      String getCustomerTel();
-  }
+### 已有类的实现
 
-  ```
-+ 他们的公司：
-  ```
-  package adapter;
+假设系统中已经存在了`Adaptee`类，并且该类实现了某种功能，或者具有某些我们需要的属性。
 
-  import java.util.Map;
+```java
+public class Adaptee {
 
-  /************************************************
-   *@ClassName : CompanyRemoteI
-   *@Description : TODO
-   *@Author : NikolaZhang
-   *@Date : 【2018/12/2 21:10】
-   *@Version : 1.0.0
-   *************************************************/
-
-  public interface CompanyRemoteI {
-      Map<String, String> getCustomerBaseInfo();
-      Map<String, String> getCustomerHomeInfo();
-  }
-
-  ```
-+ 他们公司的客户信息实现：
-  ```
-  package adapter;
-
-  import java.util.HashMap;
-  import java.util.Map;
-
-  /************************************************
-   *@ClassName : CompanyRemote
-   *@Description : TODO
-   *@Author : NikolaZhang
-   *@Date : 【2018/12/1 11:40】
-   *@Version : 1.0.0
-   *************************************************/
-
-  public class CompanyRemoteImpl implements CompanyRemoteI{
-      @Override
-      public Map<String, String> getCustomerBaseInfo() {
-          Map<String, String> map = new HashMap();
-          map.put("name", "张旭");
-          map.put("phone", "17812345678");
-          return map;
-      }
-
-      @Override
-      public Map<String, String> getCustomerHomeInfo() {
-          Map<String, String> map = new HashMap();
-          map.put("name", "张旭");
-          map.put("tel", "123456");
-          map.put("address", "上海市静安区");
-          return map;
-      }
-  }
-
-  ```
-
-## 我能怎么办，当然转换了~
-我们要想从他们公司把客户信息提取出来，肯定需要定义一个类，这个类既能从他们公司取值，又能把取到的值赋值给我们公司的客户类。
-这个类的写法就见仁见智了，设计模式上将这个类就是适配器。又分为类适配器和对象适配器。
-类适配器如下：
-```
-package adapter;
-
-/************************************************
- *@ClassName : CustomerInfoConvertAdapter
- *@Description : 使用类适配器
- *@Author : NikolaZhang
- *@Date : 【2018/12/2 21:20】
- *@Version : 1.0.0
- *************************************************/
-
-public class CustomerInfoClassAdapter  extends CompanyRemoteImpl implements CompanyHereI{
-    @Override
-    public String getCustomerName() {
-        return super.getCustomerBaseInfo().get("name");
+    public void specificRequest() {
+        System.out.println("Specific request");
     }
 
-    @Override
-    public String getCustomerPhone() {
-        return super.getCustomerBaseInfo().get("phone");
-    }
-
-    @Override
-    public String getCustomerAddress() {
-        return super.getCustomerHomeInfo().get("address");
-    }
-
-    @Override
-    public String getCustomerTel() {
-        return super.getCustomerHomeInfo().get("tel");
-    }
 }
-
 ```
-对象适配器和类适配器有一点不同，信息目标的获取方式是继承还是依赖。
-```
-package adapter;
 
-/************************************************
- *@ClassName : CustomerInfoObjectAdapter
- *@Description : 使用对象适配器
- *@Author : NikolaZhang
- *@Date : 【2018/12/2 21:24】
- *@Version : 1.0.0
- *************************************************/
+### 目标类的接口
 
-public class CustomerInfoObjectAdapter implements CompanyHereI {
-    private CompanyRemoteI companyRemoteI;
+现在需要新增一个接口以及该接口对应的功能，如下。
 
-    @Override
-    public String getCustomerName() {
-        return this.companyRemoteI.getCustomerBaseInfo().get("name");
-    }
+```java
+public abstract class Target {
+    
+    public abstract void request();
 
-    @Override
-    public String getCustomerPhone() {
-        return this.companyRemoteI.getCustomerBaseInfo().get("phone");
-    }
-
-    @Override
-    public String getCustomerAddress() {
-        return this.companyRemoteI.getCustomerBaseInfo().get("address");
-    }
-
-    @Override
-    public String getCustomerTel() {
-        return this.companyRemoteI.getCustomerBaseInfo().get("tel");
-    }
-
-    public CustomerInfoObjectAdapter(CompanyRemoteI companyRemoteI){
-        this.companyRemoteI = companyRemoteI;
-    }
 }
 
 ```
 
-## 测试
+### 适配器
+
+我们需要一个适配器类，该类实现了目标类的接口，并且将`Adaptee`类中的方法进行适配，如下。
+
+```java
+public class Adapter extends Target {
+    
+    private Adaptee adaptee;
+    
+    @Override
+    public void request() {
+        adaptee = new Adaptee();
+        adaptee.specificRequest();
+    }
+
+}
 ```
-package adapter;
 
-/************************************************
- *@ClassName : Test
- *@Description : TODO
- *@Author : NikolaZhang
- *@Date : 【2018/12/2 21:28】
- *@Version : 1.0.0
- *************************************************/
+### 使用
 
-public class Test {
+```java
+public class AdapterClient {
+    
     public static void main(String[] args) {
-        CompanyHereI companyHereICls = new CustomerInfoClassAdapter();
-        System.out.println(companyHereICls.getCustomerName());
-
-        CompanyHereI companyHereIObj = new CustomerInfoObjectAdapter(new CompanyRemoteImpl());
-        System.out.println(companyHereIObj.getCustomerPhone());
+        Target target = new Adapter();
+        target.request();
+        
     }
 }
-
 ```
-
-## 结果
-![结果](/images/article/181202/adapterresult.png)
-
-## uml
-![uml](/images/article/181202/adapteruml.png)
