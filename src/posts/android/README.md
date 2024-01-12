@@ -4,7 +4,7 @@ index: false
 icon: discover
 category:
   - guide
-date: 2024-01-12
+date: 2023-01-12
 ---
 
 这个系列主要讲如何搞机。弄一些莫名其妙的东西。。。
