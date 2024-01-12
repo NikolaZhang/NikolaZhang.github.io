@@ -4,6 +4,7 @@ index: false
 icon: discover
 category:
   - guide
+date: 2024-01-12
 ---
 
 - [logback配置](logback.md)

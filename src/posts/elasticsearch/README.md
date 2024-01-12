@@ -4,6 +4,7 @@ index: false
 icon: discover
 category:
   - guide
+date: 2024-01-12
 ---
 
 - [elasticsearch系列\[1\]部署](elasticsearch系列[1]部署.md)
