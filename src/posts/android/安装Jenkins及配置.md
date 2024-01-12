@@ -1,5 +1,5 @@
 ---
-title: 【安卓服务器】安装Jenkins及项目构建
+title: 【安卓服务器】安装Jenkins及配置
 tag:
   - 安卓
   - termux
@@ -122,7 +122,7 @@ tar -zxvf apache-maven-3.9.6-bin.tar.gz
 
 ```
 
-我们的项目通常是maven架构的。Jenkins如果需要支持maven，需要安装插件``。
+我们的项目通常是maven架构的。Jenkins如果需要支持maven，需要安装插件`Maven Integration plugin`。
 
 并在`系统管理-全局工具配置`中进行如下配置：
 
