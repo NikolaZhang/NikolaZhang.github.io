@@ -141,3 +141,6 @@ cat pre-push | bash
 ![Alt text](images/image-10.png)
 
 这样以后我们向远程push代码时，本地git就会触发hook，给内网的Jenkins发送构建请求。
+
+## Q&A
+

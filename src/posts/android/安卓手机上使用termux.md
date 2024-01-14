@@ -83,3 +83,26 @@ ssh username@ip -p 8022
 输入密码后就可以访问了。
 
 ![Alt text](images/image-1.png)
+
+最后，ssh的配置文件位置为：/data/data/com.termux/files/usr/etc/ssh
+
+## 安装ubuntu
+
+首先通过termix安装`proot-distro`。`proot-distro`为一个包管理器，可以安装多个linux发行版。
+
+```bash
+pkg install proot-distro
+```
+
+安装完成后，输入命令：
+
+```bash
+proot-distro install ubuntu
+```
+
+等待安装完成。输入下面的命令就可以进入ubuntu系统了。
+
+```bash
+proot-distro login ubuntu
+```
+
