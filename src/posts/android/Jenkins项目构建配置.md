@@ -61,3 +61,23 @@ star: false
 多模块的maven项目配置之后不能立即看到项目中的所有模块，需要构建之后才可以看到。
 
 ![Alt text](images/image-18.png)
+
+## 构建后操作
+
+项目构建后，我们需要将包移动到，应用对应的目录下，并且重启应用。
+
+```bash
+cd ${WORKSPACE}
+modules=('config', 'admin', 'common-api', 'gateway', 'security')
+mv config/target/config*.jar /root/apps/communicate/jars/config.jar
+mv admin/target/admin*.jar /root/apps/communicate/jars/admin.jar
+mv common-api/target/common-api*.jar /root/apps/communicate/jars/common-api.jar
+
+```
+
+POM_ARTIFACTID=communicate
+POM_DISPLAYNAME=communicate
+WORKSPACE=/root/apps/jenkins/workspace/communicate
+JOB_BASE_NAME=communicate
+JOB_NAME=communicate
+PWD=/root/apps/jenkins/workspace/communicate
