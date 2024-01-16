@@ -1,5 +1,5 @@
 ---
-title: mybatis-tools
+title: python工具
 index: false
 icon: discover
 category:
@@ -7,4 +7,4 @@ category:
 date: 2023-01-12
 ---
 
-- [mybatis-tools介绍](mybatis-tools.md)
+- [java相关学习demo](be-kami.md)

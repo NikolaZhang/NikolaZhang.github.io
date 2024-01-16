@@ -1,5 +1,6 @@
 ---
 icon: info
+index: false
 ---
 
 # Intro Page

@@ -16,14 +16,12 @@ author: nikola
 icon: book
 
 isOriginal: true
-sticky: true
+sticky: false
 timeline: true
 article: true
 star: true
 
 ---
-
-# look_look
 
 > 基于scrapy框架的爬虫项目，用于爬取常见网站的信息。  
 > 不要遮遮掩掩的，让我康康！
@@ -40,7 +38,7 @@ conda install --yes --file requirements.txt
 
 ## 目录结构
 
-### python包：
+### python包
 
 1. config  
    自定义的系统配置，比如驱动，文件路径，redis key。  
@@ -52,6 +50,7 @@ conda install --yes --file requirements.txt
     from config.web_config import *
     from config.path_config import *
    ```
+
 2. look_look/enhance  
    通常用于定义一些接口，或者爬虫通用的实现方法。
 3. look_look/spider  
@@ -83,7 +82,6 @@ conda install --yes --file requirements.txt
 | RandomUserAgentMiddleware  | 生成随机user-agent                             |
 | CustomHeadersMiddleware    | 添加自定义的header，同时还具有缓存header的功能，不过似乎没什么用e_e。 |
 
-
 ### enhance
 
 1. base_item
@@ -97,7 +95,7 @@ conda install --yes --file requirements.txt
    | ImageItemSaveAction    | 配合ImageSavePipeline使用                                |
 
 2. base_spider
-   
+
    | class               | method             | description                     |
    |:--------------------|:-------------------|:--------------------------------|
    | BaseSpider          | get_run_config     | 加载运行配置:spider_config.RUN_SPIDER |
@@ -110,7 +108,7 @@ conda install --yes --file requirements.txt
    | PixivLoginSpider    | login              | pixiv的登录实现                      |
 
 3. item_loaders
-   
+
    | class           | description                  |
    |:----------------|:-----------------------------|
    | CleanItemLoader | 自定义的itemloader，用于清理item字段的空格 |
@@ -155,7 +153,6 @@ conda install --yes --file requirements.txt
 5. 如果我们希望添加一些pipeline的能力，需要设置spider的custom_settings属性
 6. spider的parse方法中需要进行字段的提取，建议使用CleanItemLoader，它可以将字段首位的空格换行符号去除。
 
-
 **关于item的创建：**  
 在第3步中，我们爬取链接并放到redis中，此时我们需要item具有提供url值的能力。只需要实现RedisItemSaveAction的get_category_field方法即可，
 该方法需要返回字段名称，而不是字段值。
@@ -188,14 +185,14 @@ item一般放在items.py中，当然也可以创建新的文件存放。该项�
 - [x] 作品及详情信息获取
 - [x] 图片下载
 
-#### 效果
+#### 效果展示
+
 mongodb中存储信息  
 ![art1](https://raw.githubusercontent.com/NikolaZhang/image-blog/main/look_look/art_work1.png)
 导出到excel中的信息  
 ![art1](https://raw.githubusercontent.com/NikolaZhang/image-blog/main/look_look/art_work2.png)
 保存的图片  
 ![art1](https://raw.githubusercontent.com/NikolaZhang/image-blog/main/look_look/art_work3.png)
-
 
 ## Q&A
 
@@ -212,7 +209,6 @@ mongodb中存储信息
 6. 为什么浏览器一直白屏，后台不报错，似乎爬虫停住了?  
    检查下redis中是否有数据，否则爬虫会等待redis中有值后才会继续。
 
-
 ## 获取
 
-项目源码地址：https://gitee.com/NikolaZhang/look_look
+项目源码地址：<https://gitee.com/NikolaZhang/look_look>

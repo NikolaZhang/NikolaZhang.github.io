@@ -64,20 +64,93 @@ star: false
 
 ## 构建后操作
 
-项目构建后，我们需要将包移动到，应用对应的目录下，并且重启应用。
+项目构建后，我们需要将包移动到应用对应的目录下，并且重启应用。
+
+下面的脚本还增加了自动生成启动脚本的功能。
 
 ```bash
-cd ${WORKSPACE}
-modules=('config', 'admin', 'common-api', 'gateway', 'security')
-mv config/target/config*.jar /root/apps/communicate/jars/config.jar
-mv admin/target/admin*.jar /root/apps/communicate/jars/admin.jar
-mv common-api/target/common-api*.jar /root/apps/communicate/jars/common-api.jar
+#!/bin/bash
+# ============================
+# 配置
+modules=('config' 'admin' 'common-api' 'gateway' 'security' 'syscore')
+declare -A jvm_params_map
+
+jvm_params='-Xmx512m -XX:+HeapDumpOnOutOfMemoryError\n'
+jvm_params_map=(
+    ["config"]="$jvm_params"
+    ["admin"]="$jvm_params"
+    ["common-api"]="$jvm_params"
+    ["gateway"]="$jvm_params"
+    ["security"]="$jvm_params"
+    ["syscore"]="$jvm_params"
+)
+
+# ============================
+# 配置
+target_project_path=/root/apps/${POM_DISPLAYNAME}
+echo "开始创建目录及移动包"
+
+change_modules=()
+for module in "${modules[@]}"
+do
+    new_jar_path=`ls $WORKSPACE/$module/target/${module}*.jar`
+    mkdir -p $target_project_path/$module
+    # 移动jar文件到指定目录，并重命名jar包名称
+    jar_name="$module.jar"
+    old_jar_path=$target_project_path/$module/$jar_name
+    
+    check_new=$(md5sum "$new_jar_path" | awk '{print $1}')
+    check_old=$(md5sum "$old_jar_path" | awk '{print $1}')
+
+    if [ -f "$old_jar_path" ] && [ "$sum1" = "$sum2" ]; then
+        echo "文件未发生变化，不需移动"
+    else
+        cp $new_jar_path $old_jar_path
+        echo "复制文件：$new_jar_path 完成"
+        change_modules[${#change_modules[*]}]=$module
+    fi
+done
+
+echo "以下模块发生变更：${change_modules[*]}"
+
+# 环境变量,默认为dev
+env=${1:-phone}
+for change_module in "${change_modules[@]}"
+do
+    # 判断目录下是否存在脚本文件，不存在则提示
+    start_shell_file="$target_project_path/$change_module/$change_module-start.sh"
+    if [ ! -f "$start_shell_file" ]; then
+        # 生成启动脚本
+        echo "
+#!/bin/bash
+
+if pgrep -f "$module" > /dev/null
+then
+    echo "$module 正在运行，退出。。。"
+    kill -9 $(pgrep -f "$module")
+fi
+
+# JVM参数
+jvm_params=${jvm_params_map[$change_module]}
+
+# 构建启动命令
+nohup java -jar $module.jar \\
+    --spring.profiles.active=$env \\
+    $jvm_params \\
+    > /dev/null 2>&1 &
+
+" > $start_shell_file
+        echo "启动脚本生成 $start_shell_file"
+        chmod 777 $start_shell_file
+    fi
+    
+    sh $start_shell_file
+    echo "重启: $change_module"
+
+done
 
 ```
 
-POM_ARTIFACTID=communicate
-POM_DISPLAYNAME=communicate
-WORKSPACE=/root/apps/jenkins/workspace/communicate
-JOB_BASE_NAME=communicate
-JOB_NAME=communicate
-PWD=/root/apps/jenkins/workspace/communicate
+选择`Post Steps`将脚本放到下图这个位置，点击保存。之后就可以构建了。
+
+![Alt text](images/image-19.png)

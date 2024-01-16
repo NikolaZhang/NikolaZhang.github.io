@@ -99,13 +99,21 @@ export const zhNavbar = navbar([
         prefix: "/open_source/",
         children: [
             {
-                text: "mybatis-tools",
-                link: "mybatis-tools/"
+                text: "我的vscode插件",
+                link: "vscode-plugin/"
             },
             {
-                text: "look_look",
-                link: "look_look/"
+                text: "容器环境配置",
+                link: "docker-env/"
             },
+            {
+                text: "java学习",
+                link: "java-learn/"
+            },
+            {
+                text: "python工具",
+                link: "python-tools/"
+            }
         ]
     },
     {
