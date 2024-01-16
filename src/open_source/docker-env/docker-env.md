@@ -15,7 +15,7 @@ author: nikola
 icon: book
 
 isOriginal: true
-sticky: true
+sticky: false
 timeline: true
 article: true
 star: true
