@@ -69,6 +69,7 @@ star: false
 下面的脚本还增加了自动生成启动脚本的功能。
 
 ```bash
+
 #!/bin/bash
 # ============================
 # 配置
@@ -96,7 +97,7 @@ do
     new_jar_path=`ls $WORKSPACE/$module/target/${module}*.jar`
     mkdir -p $target_project_path/$module
     # 移动jar文件到指定目录，并重命名jar包名称
-    jar_name="$module-$BUILD_NUMBER.jar"
+    jar_name="$module.jar"
     old_jar_path=$target_project_path/$module/$jar_name
     
     check_new=$(md5sum "$new_jar_path" | awk '{print $1}')
@@ -105,8 +106,8 @@ do
     if [ -f "$old_jar_path" ] && [ "$sum1" = "$sum2" ]; then
         echo "文件未发生变化，不需移动"
     else
-        mv $new_jar_path $old_jar_path
-        echo "移动文件：$new_jar_path 完成"
+        cp $new_jar_path $old_jar_path
+        echo "复制文件：$new_jar_path 完成"
         change_modules[${#change_modules[*]}]=$module
     fi
 done
@@ -118,7 +119,7 @@ env=${1:-phone}
 for change_module in "${change_modules[@]}"
 do
     # 判断目录下是否存在脚本文件，不存在则提示
-    start_shell_file=$target_project_path/$change_module/$change_module-start.sh
+    start_shell_file="$target_project_path/$change_module/$change_module-start.sh"
     if [ ! -f "$start_shell_file" ]; then
         # 生成启动脚本
         echo "
@@ -127,7 +128,7 @@ do
 # JVM参数
 jvm_params=${jvm_params_map[$change_module]}
 
-for module in "${modules[@]}"
+for module in ${modules[@]}
 do 
   # 构建启动命令
   start_cmd=`nohup java -jar $module.jar\n \
@@ -136,8 +137,9 @@ do
     > /dev/null 2>&1 &`
 
 done
-" > start_shell_file
-        chmod +x $start_shell_file
+" > $start_shell_file
+        echo "启动脚本生成 $start_shell_file"
+        chmod 777 $start_shell_file
     fi
     
     if pgrep -f "$module" > /dev/null
