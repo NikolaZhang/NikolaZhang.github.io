@@ -66,7 +66,6 @@ c. 支持引用跳转
 1. 使用`ctrl+m ctrl+g`，打开文件生成器页面。  
 2. 在生成策略页面按需配置即可。注意需要先配置数据库信息。
 
-  
 **注意：**  
 
 1. 项目路径为`/a/b/c`形式, 如果指定磁盘则需在最前面加上`/`, 如`/D:/a/b/c`。
@@ -92,16 +91,14 @@ oracle的连接需要借助jdk才可以运行，因此需要你本地安装客�
 前提：安装[oracle client](https://www.oracle.com/database/technologies/instant-client/linux-x86-64-downloads.html)
 并配置环境变量, 参考[nodejs 使用官方oracledb库连接数据库 教程](https://www.cnblogs.com/rysinal/p/7779055.html)
 
-
 ### 缓存
 
 > 缓存不是用户必须操作的项目。
 
-**关于缓存的使用：** 
+**关于缓存的使用：**
 
 a. 当调整文件位置、变更接口文件名、命名空间后，应该要清理缓存的映射文件位置。（ctrl+m ctrl+c）  
 b. 会加载项目中所有的映射关系，用于跳转时加速查找映射。（ctrl+m ctrl+d）
-
 
 ## 命令
 
@@ -132,7 +129,6 @@ b. 会加载项目中所有的映射关系，用于跳转时加速查找映射�
 **注意：**  
 
 目前支持mysql，oracle。
-
 
 ## 获取
 

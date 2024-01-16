@@ -70,14 +70,12 @@ star: false
 
 ```bash
 #!/bin/bash
-
 # ============================
 # 配置
-
 modules=('config' 'admin' 'common-api' 'gateway' 'security' 'syscore')
 declare -A jvm_params_map
 
-jvm_params='-Xmx512m -XX:+HeapDumpOnOutOfMemoryError \'
+jvm_params='-Xmx512m -XX:+HeapDumpOnOutOfMemoryError\n'
 jvm_params_map=(
     ["config"]="$jvm_params"
     ["admin"]="$jvm_params"
@@ -104,12 +102,12 @@ do
     check_new=$(md5sum "$new_jar_path" | awk '{print $1}')
     check_old=$(md5sum "$old_jar_path" | awk '{print $1}')
 
-    if [ "$sum1" = "$sum2" ]; then
+    if [ -f "$old_jar_path" ] && [ "$sum1" = "$sum2" ]; then
         echo "文件未发生变化，不需移动"
     else
         mv $new_jar_path $old_jar_path
         echo "移动文件：$new_jar_path 完成"
-        change_modules+=$module
+        change_modules[${#change_modules[*]}]=$module
     fi
 done
 
@@ -121,7 +119,7 @@ for change_module in "${change_modules[@]}"
 do
     # 判断目录下是否存在脚本文件，不存在则提示
     start_shell_file=$target_project_path/$change_module/$change_module-start.sh
-    if [! -f $start_shell_file ]; then
+    if [ ! -f "$start_shell_file" ]; then
         # 生成启动脚本
         echo "
 #!/bin/bash
@@ -132,13 +130,11 @@ jvm_params=${jvm_params_map[$change_module]}
 for module in "${modules[@]}"
 do 
   # 构建启动命令
-  start_cmd="nohup java -jar $module.jar \
-    --spring.profiles.active=$env \
-    $jvm_params 
-    > /dev/null 2>&1 &"
+  start_cmd=`nohup java -jar $module.jar\n \
+    --spring.profiles.active=$env\n \
+    $jvm_params\n \
+    > /dev/null 2>&1 &`
 
-  # 添加可执行权限
-  
 done
 " > start_shell_file
         chmod +x $start_shell_file
