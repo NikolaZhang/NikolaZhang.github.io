@@ -69,7 +69,6 @@ star: false
 下面的脚本还增加了自动生成启动脚本的功能。
 
 ```bash
-
 #!/bin/bash
 # ============================
 # 配置
@@ -125,29 +124,26 @@ do
         echo "
 #!/bin/bash
 
+if pgrep -f "$module" > /dev/null
+then
+    echo "$module 正在运行，退出。。。"
+    kill -9 $(pgrep -f "$module")
+fi
+
 # JVM参数
 jvm_params=${jvm_params_map[$change_module]}
 
-for module in ${modules[@]}
-do 
-  # 构建启动命令
-  start_cmd=`nohup java -jar $module.jar\n \
-    --spring.profiles.active=$env\n \
-    $jvm_params\n \
-    > /dev/null 2>&1 &`
+# 构建启动命令
+nohup java -jar $module.jar \\
+    --spring.profiles.active=$env \\
+    $jvm_params \\
+    > /dev/null 2>&1 &
 
-done
 " > $start_shell_file
         echo "启动脚本生成 $start_shell_file"
         chmod 777 $start_shell_file
     fi
     
-    if pgrep -f "$module" > /dev/null
-    then
-        echo "$module 正在运行，退出。。。"
-        kill -9 $(pgrep -f "$module")
-    fi
-
     sh $start_shell_file
     echo "重启: $change_module"
 
