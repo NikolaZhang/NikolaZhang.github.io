@@ -105,4 +105,3 @@ proot-distro install ubuntu
 ```bash
 proot-distro login ubuntu
 ```
-
