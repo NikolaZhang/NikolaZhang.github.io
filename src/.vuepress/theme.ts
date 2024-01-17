@@ -8,7 +8,11 @@ export default hopeTheme({
         name: "我小叮当、",
         url: "https://nikolazhang.github.io",
     },
-    iconAssets: "iconfont",
+    iconAssets: [
+        "iconfont",
+        "https://at.alicdn.com/t/c/font_4414155_sifih1wrn2.css",
+    ],
+  
     logo: "/head.svg",
     repo: "https://github.com/NikolaZhang/nikolazhang.github.io",
     docsDir: "docs",

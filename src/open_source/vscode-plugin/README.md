@@ -1,7 +1,7 @@
 ---
 title: 我的vscode插件
 index: false
-icon: discover
+icon: vscode
 category:
   - guide
 date: 2023-01-12

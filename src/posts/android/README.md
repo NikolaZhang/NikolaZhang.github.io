@@ -1,7 +1,7 @@
 ---
 title: android
 index: false
-icon: discover
+icon: android
 category:
   - guide
 date: 2023-01-12

@@ -1,7 +1,7 @@
 ---
 title: golang语言学习 
 index: false
-icon: discover
+icon: golang
 category:
   - guide
 date: 2023-01-12

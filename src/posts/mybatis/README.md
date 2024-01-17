@@ -1,7 +1,7 @@
 ---
-title: markdown
+title: mybatis
 index: false
-icon: discover
+icon: MYBATIS
 category:
   - guide
 date: 2023-01-12

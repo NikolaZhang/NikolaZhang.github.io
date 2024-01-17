@@ -1,7 +1,7 @@
 ---
 title: leetcode问题分析
 index: false
-icon: discover
+icon: exercise
 category:
   - guide
 date: 2023-01-12

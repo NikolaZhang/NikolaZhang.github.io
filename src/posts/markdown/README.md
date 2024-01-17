@@ -1,7 +1,7 @@
 ---
 title: markdown
 index: false
-icon: discover
+icon: markdown
 category:
   - guide
 date: 2023-01-12

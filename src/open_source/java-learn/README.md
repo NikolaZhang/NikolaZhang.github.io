@@ -1,7 +1,7 @@
 ---
-title: python工具
+title: java学习
 index: false
-icon: discover
+icon: java
 category:
   - guide
 date: 2023-01-12

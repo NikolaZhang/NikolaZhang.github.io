@@ -1,7 +1,7 @@
 ---
 title: 博客搭建 
 index: false
-icon: discover
+icon: blog
 category:
   - guide
 date: 2023-01-12

@@ -1,7 +1,7 @@
 ---
 title: 爬虫框架-Spiders
 index: false
-icon: discover
+icon: debug
 category:
   - guide
 date: 2023-01-12

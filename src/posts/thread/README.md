@@ -1,7 +1,7 @@
 ---
 title: 线程
 index: false
-icon: discover
+icon: storage
 category:
   - guide
 date: 2023-01-12

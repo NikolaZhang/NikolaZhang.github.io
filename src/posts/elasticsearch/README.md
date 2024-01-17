@@ -1,7 +1,7 @@
 ---
 title: elasticsearch 
 index: false
-icon: discover
+icon: search
 category:
   - guide
 date: 2023-01-12

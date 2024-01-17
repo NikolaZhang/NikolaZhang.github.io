@@ -1,7 +1,7 @@
 ---
 title: git命令 
 index: false
-icon: discover
+icon: git
 category:
   - guide
 date: 2023-01-12

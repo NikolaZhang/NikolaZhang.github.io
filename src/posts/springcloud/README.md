@@ -1,7 +1,7 @@
 ---
 title: springcloud
 index: false
-icon: discover
+icon: module
 category:
   - guide
 date: 2023-01-12

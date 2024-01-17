@@ -1,7 +1,7 @@
 ---
 title: 容器配置
 index: false
-icon: discover
+icon: view
 category:
   - guide
 date: 2023-01-12

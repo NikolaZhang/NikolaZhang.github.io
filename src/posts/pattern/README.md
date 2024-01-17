@@ -1,7 +1,7 @@
 ---
 title: 设计模式
 index: false
-icon: discover
+icon: map
 category:
   - guide
 date: 2023-01-12

@@ -1,7 +1,7 @@
 ---
 title: logback
 index: false
-icon: discover
+icon: editor
 category:
   - guide
 date: 2023-01-12

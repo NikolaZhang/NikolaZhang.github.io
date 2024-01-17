@@ -1,7 +1,7 @@
 ---
 title: springboot
 index: false
-icon: discover
+icon: customize
 category:
   - guide
 date: 2023-01-12

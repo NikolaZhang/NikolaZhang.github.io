@@ -1,7 +1,7 @@
 ---
 title: 虚拟机
 index: false
-icon: discover
+icon: layout
 category:
   - guide
 date: 2023-01-12

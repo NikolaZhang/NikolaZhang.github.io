@@ -1,7 +1,7 @@
 ---
 title: windows
 index: false
-icon: discover
+icon: windows
 category:
   - guide
 date: 2023-01-12

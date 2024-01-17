@@ -1,7 +1,7 @@
 ---
 title: 工具
 index: false
-icon: discover
+icon: setting
 category:
   - guide
 date: 2023-01-12

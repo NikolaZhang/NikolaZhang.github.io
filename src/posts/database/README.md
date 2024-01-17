@@ -1,7 +1,7 @@
 ---
 title: 数据库 
 index: false
-icon: discover
+icon: mysql
 category:
   - guide
 date: 2023-01-12
