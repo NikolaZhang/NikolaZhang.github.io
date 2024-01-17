@@ -18,12 +18,10 @@ jobs:
           node-version: '18.16.0'
 
       - name: Depend install and build 🤣
-        run: npm install -g yarn
-
-      - name: yarn install, build, and test 🔧
         run: |
-          yarn install
-          yarn build
+          npm install
+          npm build
+
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@releases/v4
