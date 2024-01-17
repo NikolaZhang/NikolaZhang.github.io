@@ -1,7 +1,7 @@
 ---
 title: 网络相关知识
 index: false
-icon: discover
+icon: read
 category:
   - guide
 date: 2023-01-12

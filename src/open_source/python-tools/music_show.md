@@ -13,7 +13,7 @@ image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 
 author: nikola
-icon: book
+icon: article
 
 isOriginal: true
 sticky: false

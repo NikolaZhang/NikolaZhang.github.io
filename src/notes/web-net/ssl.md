@@ -1,13 +1,24 @@
 ---
-isOriginal: false
-title: ssl
 date: 2020-04-03
+title: ssl
+shortTitle: ssl相关的说明
+description: ssl相关的说明
 tag:
   - ssl
   - 原理
 category: 网络
-description: ssl相关的说明
-image: https://tech.nikolazhang.top/2020-04-03-23-34-49.png
+image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
+banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
+
+author: nikola
+icon: note
+
+isOriginal: false
+sticky: false
+timeline: true
+article: true
+star: false
+
 ---
 
 > ssl/tls是一个介于应用层(http协议)和传输层(tcp协议)之间的一个可选协议. 当http通信不使用该协议时, 所有的信息均以明文形式传播. 因此会产生窃听(第三方获取通信内容), 篡改(第三方修改通信内容), 冒充(第三方冒充他人身份参与通信)的风险.

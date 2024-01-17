@@ -1,14 +1,25 @@
 ---
-isOriginal: false
+date: 2020-04-01
 title: http长连接
+shortTitle: 关于http长连接
+description: 关于http长连接
 tag:
   - http
   - 长连接
   - 原理
 category: 网络
-description: 关于http长连接
-image: https://tech.nikolazhang.top/2020-04-04-17-57-22.png
-date: 2020-04-04
+image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
+banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
+
+author: nikola
+icon: note
+
+isOriginal: false
+sticky: false
+timeline: true
+article: true
+star: false
+
 ---
 
 > 关于http长连接

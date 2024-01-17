@@ -1,13 +1,24 @@
 ---
-isOriginal: false
-title: websocket
 date: 2020-04-03
+title: websocket
+shortTitle: websocket相关的说明
+description: websocket相关的说明
 tag:
   - websocket
   - 原理
 category: 网络
-description: websocket相关的说明
-image: https://tech.nikolazhang.top/2020-04-04-11-14-37.png
+image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
+banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
+
+author: nikola
+icon: note
+
+isOriginal: false
+sticky: false
+timeline: true
+article: true
+star: false
+
 ---
 
 > web通信过程通常是浏览器发出请求, 服务器对此进行响应. 但对于实时要求高、海量并发的应用来说显得捉襟见肘. 基于web的实时通信一般采用轮询方案. 但会产生很多无效请求, 浪费带宽, 且效率低下.

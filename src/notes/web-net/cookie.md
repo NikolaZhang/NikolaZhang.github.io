@@ -1,14 +1,27 @@
 ---
-isOriginal: false
-title: cookie
+date: 2020-04-01
+title: cookie的相关机制
+shortTitle: cookie的相关机制
+description: cookie的相关机制
 tag:
+  - http
   - cookie
   - 原理
 category: 网络
-date: 2020-04-04
-description: cookie的相关机制
-image: https://tech.nikolazhang.top/2020-04-04-19-54-27.png
+image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
+banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
+
+author: nikola
+icon: note
+
+isOriginal: false
+sticky: false
+timeline: true
+article: true
+star: false
+
 ---
+
 
 > http协议是无状态的, 不同请求之前无法建立联系. 即服务器无法判断请求是否来自同一客户端. 要建立联系就需要增加状态标识, 如果请求标识相同则表明两个请求来自同一客户端. Cookie 就是这样一个用来标识每一次请求的状态位。
 
