@@ -92,7 +92,7 @@ export default hopeTheme({
             attrs: true,
             chart: true,
             codetabs: true,
-            container: true,
+            hint: true,
             demo: true,
             echarts: true,
             flowchart: true,
@@ -100,14 +100,10 @@ export default hopeTheme({
             imgSize: true,
             include: true,
             katex: true,
-            lazyLoad: true,
             mark: true,
             mermaid: true,
             playground: {
                 presets: ["ts", "vue"],
-            },
-            presentation: {
-                plugins: ["highlight", "math", "search", "notes", "zoom"],
             },
             stylize: [
                 {

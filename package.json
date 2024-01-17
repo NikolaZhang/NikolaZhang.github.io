@@ -11,11 +11,21 @@
     "dev": "vuepress dev src"
   },
   "devDependencies": {
+    "@vue/repl": "^3.3.0",
     "@vuepress/client": "2.0.0-rc.0",
     "@vuepress/plugin-register-components": "^2.0.0-rc.0",
+    "@waline/client": "3.0.0-alpha.10",
+    "chart.js": "^4.4.1",
+    "echarts": "^5.4.3",
+    "flowchart.ts": "^3.0.0",
+    "katex": "^0.16.9",
+    "mermaid": "^10.7.0",
+    "presentation": "^0.0.2",
+    "reveal.js": "^5.0.4",
     "vue": "^3.3.4",
     "vuepress": "2.0.0-rc.0",
     "vuepress-plugin-md-enhance": "2.0.0-rc.11",
+    "vuepress-plugin-pwa2": "2.0.0-rc.11",
     "vuepress-theme-hope": "2.0.0-rc.11"
   }
 }
