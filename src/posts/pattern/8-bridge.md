@@ -33,7 +33,9 @@ star: false
 ::: info
 在设计模式中类与类之间的关系主要有6种：依赖、关联、聚合、组合、继承、实现，它们之间的耦合度依次增加。子类必须实现抽象父类中的所有方法，父类抽象方法的变更，必然导致子类的变更。这是一种强关联关系。强关联有必然使我们的系统不易扩展。所以桥梁模式为化解强关联提供了一种解决方案。
 
-桥接模式，抽象和实现的分离，可以理解为功能性的抽象和内部实现的分离。对客户端隐藏了内部实现的具体细节。
+桥接模式，抽象和实现的分离，可以理解为功能性的抽象和内部实现的分离。
+
+当组件比较复杂，比如：属性存在复杂的依赖关系时，可以通过桥接模式进行拆分成多个组件。使得每个组件可以单独扩展，以此来简化组件，实现解耦。
 :::
 
 ## 代码实现
@@ -42,7 +44,7 @@ star: false
 
 ```java
 interface Implementor {
-    public void operation();
+    public void operationImpl();
 
 }
 ```
@@ -53,7 +55,7 @@ interface Implementor {
 public class ConcreteImplementorA implements Implementor {
 
     @Override
-    public void operation() {
+    public void operationImpl() {
         System.out.println("ConcreteImplementorA operation");
     }
 }
@@ -82,9 +84,11 @@ public abstract class Abstraction {
 public class RefinedAbstraction extends Abstraction {
 
     public void operation() {
-        impl.operation();
+        // do something
+        impl.operationImpl();
     }
 }
+
 
 ```
 
@@ -104,5 +108,8 @@ public class Client {
 }
 ```
 
+`Abstraction`和`Implementor`是`Bridge模式`中定义的两个抽象/接口,用于解耦抽象部分和实现部分。
 
+为了保证原有组件的功能，在`Abstraction`中聚合`Implementor`，除了实现`Abstraction`自身的功能，通过调用`Implementor`的方法来完成其他功能。
 
+这样`Abstraction`和`Implementor`可以独立变化，提高了系统的灵活性。
