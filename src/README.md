@@ -7,7 +7,8 @@ heroImage: /head.svg
 heroText: 全人类的幻想乡
 tagline: ( •̀ ω •́ )✧
 heroFullScreen: true
-bgImage: /wallhaven-vgw355.jpg
+bgImage: /wallhaven-1ky72w.jpg
+bgImageDark: /wallhaven-zxg9lw.png
 projects:
   - icon: project
     name: be-kami
