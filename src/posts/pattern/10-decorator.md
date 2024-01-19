@@ -1,128 +1,41 @@
 ---
-isOriginal: true
-title: decorator pattern
-date: 2018-12-09
-
-
+title: 装饰器模式
 tag:
-  - decorator pattern
-category: 技术
-description: 装饰器模式的介绍和实现
+  - 装饰器模式
+category: 设计模式
+description: 装饰器模式
 image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
+banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
+date: 2024-01-19
+
+author: nikola
+icon: article
+
+isOriginal: true
+sticky: false
+timeline: true
+article: true
+star: false
 ---
 
-> 装饰器模式，顾名思义就是装。人靠衣装，马靠鞍。天生一副臭皮囊，穿金戴银之后，就显得与众不同于。装饰器模式在不改变原来类结构的基础上，对原来的类进行了扩展。并且这是一种弱耦合形式。
+> 装饰器模式，可以在不修改对象外观和功能的情况下添加或者删除对象功能。它可以使用一种对客户端来说是透明的方法来修改对象的功能，也就是使用初始类的子类实例对初始对象进行授权。
+> 装饰器模式来为对象动态地添加了额外的责任，这样就在不使用静态继承的情况下，为修改对象功能提供了灵活的选择。
 
-<!--more-->
+![20240119150457](https://raw.githubusercontent.com/NikolaZhang/image-blog/main/10-decorator/20240119150457.png)
 
-当我们生产一辆车的时候一开始，所有的车都是一副架子。但是加上不同的零件就是不同的车。
-## 天生一副臭皮囊
-```
-package decorator;
+## 主要角色
 
-/************************************************
- *@ClassName : CarModel
- *@Description : TODO
- *@Author : NikolaZhang
- *@Date : 【2018/12/9 0009 21:15】
- *@Version : 1.0.0
- *************************************************/
+1. 抽象构件（Component）：
+这是一个接口或抽象类，它定义了被装饰对象的接口，即所有具体组件和装饰器共有的方法。客户端通常通过这个接口与具体的实现类交互。
+2. 具体构件（ConcreteComponent）：
+实现了抽象构件接口的具体对象，它是原始对象，具有核心业务功能。装饰器可以用于增强或修改具体构件的行为。
+3. 抽象装饰（Decorator）：
+继承自抽象构件，实现了抽象构件的所有方法，并且包含一个指向抽象构件类型的引用，这样就可以在内部持有一个具体构件实例。
+抽象装饰为具体装饰器提供了一个统一的接口扩展点，允许在运行时动态地向具体构件添加新的职责或行为。
+4. 具体装饰（ConcreteDecorator）：
+是抽象装饰类的子类，除了重写并实现抽象装饰中的方法外，还可以在其基础上增加额外的功能。
+具体装饰器可以在调用其持有的具体构件的方法时，先执行自己的附加操作，然后将控制权传递给被装饰的对象，从而达到在不修改原有类的基础上动态扩展功能的目的。
 
-public abstract class CarModel {
-    public abstract void look();
-}
-```
+## 代码实现
 
-```
-package decorator;
-
-/************************************************
- *@ClassName : CarModel
- *@Description : TODO
- *@Author : NikolaZhang
- *@Date : 【2018/12/9 0009 21:15】
- *@Version : 1.0.0
- *************************************************/
-
-public class BWMCarModel extends CarModel {
-    @Override
-    public void look() {
-        System.out.println("铁架子");
-    }
-}
-
-```
-
-## 人靠衣装，车靠涂装
-```
-package decorator;
-
-/************************************************
- *@ClassName : ModelDecoorator
- *@Description : TODO
- *@Author : NikolaZhang
- *@Date : 【2018/12/9 0009 21:17】
- *@Version : 1.0.0
- *************************************************/
-
-public abstract class ModelDecoorator {
-    protected CarModel carModel;
-    public abstract void look();
-
-    public ModelDecoorator(CarModel carModel) {
-        this.carModel = carModel;
-    }
-}
-
-```
-
-```
-package decorator;
-
-/************************************************
- *@ClassName : BWMDecorator
- *@Description : TODO
- *@Author : NikolaZhang
- *@Date : 【2018/12/9 0009 21:19】
- *@Version : 1.0.0
- *************************************************/
-
-public class BWMDecorator extends ModelDecoorator {
-
-    public BWMDecorator(CarModel carModel) {
-        super(carModel);
-    }
-
-    @Override
-    public void look() {
-        System.out.println("把原来的车拿出来。。。。");
-        carModel.look();
-        System.out.println("涂上炫酷喷漆");
-    }
-
-}
-```
-
-## 亮个相
-```
-package decorator;
-
-/************************************************
- *@ClassName : Test
- *@Description : TODO
- *@Author : NikolaZhang
- *@Date : 【2018/12/9 0009 21:25】
- *@Version : 1.0.0
- *************************************************/
-
-public class Test {
-    public static void main(String[] args) {
-        ModelDecoorator modelDecoorator = new BWMDecorator(new BWMCarModel());
-        modelDecoorator.look();
-    }
-}
-
-```
-
-## 你看到了啥
-![结果](/images/article/181209/res2.png)
+### 
