@@ -9,6 +9,10 @@ export const zhNavbar = navbar([
         prefix: "/posts/",
         children: [
             {
+                text: "安卓搞机",
+                link: "android/"
+            },
+            {
                 text: "博客搭建相关",
                 link: "blog/"
             },

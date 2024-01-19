@@ -8,11 +8,16 @@ export default hopeTheme({
         name: "我小叮当、",
         url: "https://nikolazhang.github.io",
     },
-    iconAssets: "iconfont",
+    // iconAssets: "iconfont",
+    iconAssets: [
+        "https://at.alicdn.com/t/c/font_4414155_jke57xnocdp.css",
+        "iconfont",
+    ],
+    iconPrefix: "iconfont icon-",
     logo: "/head.svg",
     repo: "https://github.com/NikolaZhang/nikolazhang.github.io",
     docsDir: "docs",
-    pageInfo: ["Date", "Original", "Category", "Tag", "Word", "ReadingTime"],
+    pageInfo: ["Date", "Category", "Tag", "ReadingTime"],
     blog: {
         name: "我小叮当、",
         avatar: "/head.svg",
@@ -21,7 +26,7 @@ export default hopeTheme({
         sidebarDisplay: "none",
         timeline: "朝花夕拾",
         articlePerPage: 10,
-        articleInfo: ["Date", "Original", "Category", "Tag", "Word", "ReadingTime"],
+        articleInfo: ["Date", "Category", "Tag", "ReadingTime"],
         intro: "/",
         medias: {
             Email: "mailto:nikolazhang@163.com",
