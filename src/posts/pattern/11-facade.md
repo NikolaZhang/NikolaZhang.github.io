@@ -1,135 +1,66 @@
 ---
-isOriginal: true
-title: facade pattern
-date: 2018-11-30
-
-
+title: 门面模式
 tag:
-  - facade pattern
-category: 技术
-description: 门面模式的介绍和实现
+  - 门面模式
+category: 设计模式
+description: 门面模式
 image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
+banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
+date: 2024-01-20
+
+author: nikola
+icon: article
+
+isOriginal: true
+sticky: false
+timeline: true
+article: true
+star: false
 ---
 
-> 门面模式，上级不用知道下级在干什么。下级按照流程处理，反馈给上级结果就好了。
+> 门面(Facade)模式是一种结构型设计模式，提供了一个统一的接口，用来访问子系统中的一群接口。门面模式定义了一个高层接口，这个接口使得子系统更容易使用。
 
-<!--more-->
+![20240120122205](https://raw.githubusercontent.com/NikolaZhang/image-blog/main/11-facade/20240120122205.png)
 
-## 流程方法接口
-```
-package facade;
+::: info 使用场景
 
-/************************************************
- *@ClassName : MakeCarI
- *@Description : TODO
- *@Author : NikolaZhang
- *@Date : 【2018/11/30 21:42】
- *@Version : 1.0.0
- *************************************************/
+1. 对复杂子系统提供一个简单接口。
+2. 客户端需要和多个子系统进行交互,门面模式提供一个统一接口减少客户端的复杂性。
+3. 在层次化结构中,提供系统各层之间的入口点。
+:::
 
-public interface MakeCarI {
-    void findMetal();
-    void designCar();
-    void createCar();
-}
+## 代码实现
 
-```
-## 流程实现
-```
-package facade;
+### 子系统的接口
 
-/************************************************
- *@ClassName : MakeCarImpl
- *@Description : TODO
- *@Author : NikolaZhang
- *@Date : 【2018/11/30 21:43】
- *@Version : 1.0.0
- *************************************************/
+假设我们的子系统中提供上图的接口。
 
-public class MakeCarImpl implements MakeCarI {
-
-    @Override
-    public void findMetal() {
-        System.out.println("找点金属");
-    }
-
-    @Override
-    public void designCar() {
-        System.out.println("画个图纸");
-    }
-
-    @Override
-    public void createCar() {
-        System.out.println("开始生产");
-    }
-}
-
-```
-## 调用流程中的步骤
-```
-package facade;
-
-/************************************************
- *@ClassName : MakeMethod
- *@Description : TODO
- *@Author : NikolaZhang
- *@Date : 【2018/11/30 21:44】
- *@Version : 1.0.0
- *************************************************/
-
-public class MakeMethod {
-    private MakeCarI makeCarI = new MakeCarImpl();
-    private CheckCar checkCar = new CheckCar();
-    public void startMakeCar(){
-        makeCarI.findMetal();
-        makeCarI.designCar();
-        makeCarI.createCar();
-        checkCar.check();
-    }
-}
-
-```
-这里我们增加了一个检测产品的类，并在流程中调用了`check()`
-该类如下：
-```
-package facade;
-
-/************************************************
- *@ClassName : CheckCar
- *@Description : TODO
- *@Author : NikolaZhang
- *@Date : 【2018/11/30 21:48】
- *@Version : 1.0.0
- *************************************************/
-
-public class CheckCar {
-    public void check(){
-        System.out.println("质量检测");
-    }
+```java
+public class Class2 {
+    
 }
 
 ```
 
-## 测试
-```
-package facade;
+其他类的创建类似。
 
-/************************************************
- *@ClassName : Test
- *@Description : TODO
- *@Author : NikolaZhang
- *@Date : 【2018/11/30 21:46】
- *@Version : 1.0.0
- *************************************************/
+### 门面
 
-public class Test {
-    public static void main(String[] args) {
-        MakeMethod makeMethod = new MakeMethod();
-        makeMethod.startMakeCar();
+门面类实际上将逻辑上的复杂关系，封装到它的方法中，并且提供接口给客户端访问。
+
+```java
+public class Facade {
+    
+    public void operation() {
+        Class2 class2 = new Class2();
+        Class3 class3 = new Class3();
+        Class4 class4 = new Class4();
+        Class5 class5 = new Class5();
+
+        System.out.println(class2);
+        System.out.println(class3);
+        System.out.println(class4);
+        System.out.println(class5);
     }
 }
-
 ```
-
-## 结果
-![结果](/images/article/30/result3.png)
