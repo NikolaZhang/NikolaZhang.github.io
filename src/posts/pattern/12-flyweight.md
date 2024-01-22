@@ -3,7 +3,7 @@ title: 享元模式
 tag:
   - 享元模式
 category: 设计模式
-description: 享元模式
+description: 相同的对象过多，减少创建对象的数量。
 image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 date: 2024-01-20
@@ -28,14 +28,14 @@ star: false
 这通常是一个接口或抽象类，定义了具体享元类公共的方法和内部状态（Intrinsic State）的访问方式。
 内部状态是存储在享元对象内部，并且在整个系统中可以被多个享元对象共享的状态。
 抽象享元角色也可能提供一个方法来接收外部状态（Extrinsic State），外部状态是不能被共享的，它依赖于具体的使用场景。
-2. 具体享元（Concrete Flyweight）角色：  
+1. 具体享元（Concrete Flyweight）角色：  
 实现抽象享元角色所定义的接口，为内部状态提供了存储空间，并实现了相应的操作。
 具体享元对象是可共享的，系统中对于具有相同内部状态的对象只创建一个实例。
 通常结合单例模式或其他机制来确保同一内部状态对应的具体享元只有一个实例。
-3. 享元工厂（Flyweight Factory）角色：  
+1. 享元工厂（Flyweight Factory）角色：  
 负责创建和管理享元对象，客户端不直接创建具体享元对象，而是通过享元工厂获取。
 工厂会根据需要重用已有的享元对象，或者在没有可用享元对象时才创建新的实例。
-4. 客户端（Flyweight Client）角色：  
+1. 客户端（Flyweight Client）角色：  
 客户端并不直接操作具体享元对象，而是通过抽象享元接口与享元对象交互，并向享元对象传入外部状态。
 
 ::: info 信息

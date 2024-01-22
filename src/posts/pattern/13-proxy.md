@@ -1,131 +1,108 @@
 ---
-isOriginal: true
-title: proxy pattern
-date: 2018-11-29
-
-
+title: 代理模式
 tag:
-  - proxy pattern
-category: 技术
-description: 代理模式的实现方法
+  - 代理模式
+category: 设计模式
+description: 代理模式
 image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
+banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
+date: 2024-01-21
+
+author: nikola
+icon: article
+
+isOriginal: true
+sticky: false
+timeline: true
+article: true
+star: false
 ---
 
+> 代理模式（Proxy Pattern）是一种结构型设计模式，它为另一个对象提供一个代理以控制对这个对象的访问。这种模式通过引入代理类来间接操作真实对象，从而在不修改原始对象的情况下为其增加额外功能或进行访问控制。
 
-> 代理模式: 本身不干活，干活的时候找别人去干。
+![20240122172943](https://raw.githubusercontent.com/NikolaZhang/image-blog/main/13-proxy/20240122172943.png)
 
-<!--more-->
+在代理模式中，通常存在以下几个关键角色：
 
-## 接口
+1. 抽象主题（Subject）接口：
+定义了真实主题和代理主题共同的方法，这样客户端就可以一致地对待它们两者。
+1. 真实主题（RealSubject）：
+实现了抽象主题接口的具体类，代表了实际需要被代理的对象。
+1. 代理主题（ProxySubject）：
+也实现了抽象主题接口，内部持有一个对真实主题对象的引用，并在接收到客户端请求时转发给真实主题对象处理。
+在转发请求前后，代理可以添加额外的业务逻辑，如权限检查、日志记录、缓存机制、延迟加载、计算耗时等。
+
+## 分类
+
+代理模式根据实现方式的不同，主要分为以下两种类型：
+
+1. 静态代理：
+在编译期间就已经确定了代理类，代理类与真实主题类之间存在着静态的关联关系，代理类通常是手动创建的，且需要针对每个具体的真实主题类编写对应的代理类。
+
+2. 动态代理：
+在运行时动态生成代理类，例如Java中的JDK动态代理或者CGLIB库提供的代理机制，可以根据接口或者类动态创建代理对象，无需预先知道真实主题的具体类型。
+
+## 代码实现
+
+### 静态代理
+
+#### 抽象主题
+
+抽象主题中只有一个方法，这个方法是真实主题和代理主题都需要实现的。
 
 ```java
-package proxy;
+public interface Subject {
 
-/************************************************
- *@ClassName : CompanyWorkI
- *@Description : TODO
- *@Author : NikolaZhang
- *@Date : 【2018/11/29 20:27】
- *@Version : 1.0.0
- *************************************************/
+    void request();
 
-public interface CompanyWorkI {
-    void buyMetal();
-    void designCar();
 }
-
 ```
 
-## 实现
-```
-package proxy;
+#### 真实主题
 
-/************************************************
- *@ClassName : CompanyA
- *@Description : TODO
- *@Author : NikolaZhang
- *@Date : 【2018/11/29 20:27】
- *@Version : 1.0.0
- *************************************************/
+真实主题实现了接口的抽象行为。
 
-public class CompanyA implements CompanyWorkI {
+```java
+public class RealSubject implements Subject {
 
     @Override
-    public void buyMetal() {
-        System.out.println("A公司买材料");
-    }
-
-    @Override
-    public void designCar() {
-        System.out.println("A公司设计车");
-    }
-}
-
-```
-
-下面的这个虽然也实现了 `CompanyWorkI` 但他实际是不干接口中的工作的的。
-
-```
-package proxy;
-
-/************************************************
- *@ClassName : CompanyB
- *@Description : TODO
- *@Author : NikolaZhang
- *@Date : 【2018/11/29 20:29】
- *@Version : 1.0.0
- *************************************************/
-
-public class CompanyDad implements CompanyWorkI {
-    private CompanyWorkI companyWorkI;
-
-    public CompanyDad(CompanyWorkI companyWorkI){
-        this.companyWorkI = companyWorkI;
-    }
-    public CompanyDad(){
-        this.companyWorkI = new CompanyA();
-    }
-
-    @Override
-    public void buyMetal() {
-        companyWorkI.buyMetal();
-    }
-
-    @Override
-    public void designCar() {
-        companyWorkI.designCar();
-    }
-
-    public void makeCar(){
-        System.out.println("dad公司生产车");
-    }
-}
-
-```
-
-## 测试
-```
-package proxy;
-
-/************************************************
- *@ClassName : Test
- *@Description : TODO
- *@Author : NikolaZhang
- *@Date : 【2018/11/29 20:37】
- *@Version : 1.0.0
- *************************************************/
-
-public class Test {
-    public static void main(String[] args) {
-        CompanyDad companyDad = new CompanyDad();
-        companyDad.buyMetal();
-        companyDad.designCar();
-        companyDad.makeCar();
+    public void request() {
+        System.out.println("RealSubject request");
     }
 }
 ```
-## 结果
-![运行结果](/images/article/29/result.png)
 
-## UML
-![UML](/images/article/29/UML.png)
+#### 代理主题
+
+代理主题实现了接口的抽象行为，并且持有真实主题的引用。代理主题在接收到客户端请求后，可以选择在真实主题之前或之后添加额外的业务逻辑。
+
+```java
+public class ProxySubject implements Subject{
+
+    private RealSubject realSubject;
+
+    public ProxySubject(RealSubject realSubject) {
+        this.realSubject = realSubject;
+    }
+
+    @Override
+    public void request() {
+        beforeRequest();
+
+        // 调用真实主题的方法
+        this.realSubject.request();
+
+        afterRequest();
+    }
+
+    private void beforeRequest() {
+        System.out.println("Proxy: Before the request.");
+    }
+
+    private void afterRequest() {
+        System.out.println("Proxy: After the request.");
+    }
+}
+```
+
+### 动态代理
