@@ -5,7 +5,7 @@ tag:
   - 简单工厂模式
   - Static Factory
 category: 设计模式
-description: 静态工厂模式，简单工厂模式
+description: 封装了系列对象的创建过程，隔离变化。
 image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 date: 2024-01-05

@@ -3,7 +3,7 @@ title: 装饰器模式
 tag:
   - 装饰器模式
 category: 设计模式
-description: 装饰器模式
+description: 动态地给对象添加额外的责任（功能），同时保持类的单一职责原则。
 image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 date: 2024-01-19

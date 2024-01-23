@@ -3,7 +3,7 @@ title: 桥接模式
 tag:
   - 桥接模式
 category: 设计模式
-description: 桥接模式
+description: 动态地给对象添加额外的责任（功能），在运行时增强对象的行为。
 image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 date: 2024-01-17

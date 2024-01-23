@@ -3,7 +3,7 @@ title: 适配器模式
 tag:
   - 适配器模式
 category: 设计模式
-description: 适配器模式
+description: 将一个类的接口转换成另一个客户希望的接口，使原本不兼容的对象能够一起工作。
 image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 date: 2024-01-10

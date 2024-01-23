@@ -3,7 +3,7 @@ title: 享元模式
 tag:
   - 享元模式
 category: 设计模式
-description: 相同的对象过多，减少创建对象的数量。
+description: 运用共享技术有效地支持大量细粒度的对象，减少系统中的对象数量，从而节省资源。
 image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 date: 2024-01-20
