@@ -105,4 +105,88 @@ public class ProxySubject implements Subject{
 }
 ```
 
+输出结果中可以看到，通过代理类我们在执行`request`方法前后，加上了日志。
+
+![20240123083940](https://raw.githubusercontent.com/NikolaZhang/image-blog/main/13-proxy/20240123083940.png)
+
 ### 动态代理
+
+动态代理的实现过程如下：
+
+1. 定义一个接口，这个接口需要被代理的类实现。
+2. 使用JDK的动态代理类`Proxy`生成一个代理对象，这个代理对象实现了接口。
+3. 通过代理对象调用真实对象的方法。
+
+这里使用jdk中的`InvocationHandler`接口，重写`invoke`方法，在invoke方法中添加额外的业务逻辑。
+
+![20240123131037](https://raw.githubusercontent.com/NikolaZhang/image-blog/main/13-proxy/20240123131037.png)
+
+```java
+public class ProxyInvocationHandler implements InvocationHandler {
+
+    private final Subject subject;
+
+    public ProxyInvocationHandler(Subject subject) {
+        this.subject = subject;
+    }
+
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+        beforeRequest();
+        Object result = method.invoke(this.subject, args);
+        afterRequest();
+        return result;
+    }
+
+    private void beforeRequest() {
+        System.out.println("Dynamic Proxy: Before the request.");
+    }
+
+    private void afterRequest() {
+        System.out.println("Dynamic Proxy: After the request.");
+    }
+
+}
+```
+
+::: info InvocationHandler
+`java.lang.reflect.InvocationHandler`是一个接口，它是Java动态代理机制中的核心组件之一。Java的动态代理允许开发者在运行时创建和修改类的行为，而无需硬编码这些行为到实际的类中。
+
+当使用`Proxy.newProxyInstance()`方法创建一个动态代理对象时，需要提供一个实现了`InvocationHandler`接口的类实例作为调用处理器。这个调用处理器将在代理对象的方法被调用时起到关键作用。
+
+`InvocationHandler`接口定义了一个方法：
+
+```java
+Object invoke(Object proxy, Method method, Object[] args) throws Throwable;
+```
+
+- proxy: 这是当前正在处理方法调用的代理对象引用。
+- method: 代表了将要被调用的、位于代理接口上的具体方法。
+- args: 包含了调用该方法时传递的实际参数值数组。
+
+当客户端通过代理对象调用方法时，实际上是调用了此`invoke`方法。在此方法内部，开发者可以实现对原始方法调用前后的各种拦截操作，如权限检查、日志记录、数据预处理或后处理等，并最终决定是否以及如何执行原始方法。
+
+:::
+
+在Client中使用动态代理：
+
+```java
+public class Client {
+
+    public static void main(String[] args) throws Throwable {
+        RealSubject realSubject = new RealSubject();
+        ProxyInvocationHandler handler = new ProxyInvocationHandler(realSubject);
+
+        Subject subject = (Subject) Proxy.newProxyInstance(realSubject.getClass().getClassLoader(), 
+                                realSubject.getClass().getInterfaces(), handler);
+
+        subject.request();
+
+    }
+}
+
+```
+
+执行结果为：
+
+![20240123091600](https://raw.githubusercontent.com/NikolaZhang/image-blog/main/13-proxy/20240123091600.png)
