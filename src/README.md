@@ -3,7 +3,6 @@ home: true
 layout: BlogHome
 icon: home
 title: 我小叮当、
-heroImage: /head.svg
 heroText: 全人类的幻想乡
 tagline: ( •̀ ω •́ )✧
 heroFullScreen: true

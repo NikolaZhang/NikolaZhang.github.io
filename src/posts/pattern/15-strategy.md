@@ -1,14 +1,21 @@
 ---
-isOriginal: true
-title: strategy pattern
-date: 2018-11-28
-
-
+title: 策略模式
 tag:
-  - strategy pattern
-category: 技术
-description: 策略模式的实现和介绍
+  - 策略模式
+category: 设计模式
+description: 其他对象提供一种代理以控制对这个对象的访问。
 image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
+banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
+date: 2024-01-21
+
+author: nikola
+icon: article
+
+isOriginal: true
+sticky: false
+timeline: true
+article: true
+star: false
 ---
 
 >In computer programming, the strategy pattern (also known as the policy pattern) is a behavioral software design pattern that enables selecting an algorithm at runtime. [wiki]
