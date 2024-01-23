@@ -1,6 +1,6 @@
 ---
 title: 设计模式
-index: false
+index: true
 icon: map
 category:
   - guide

@@ -1,6 +1,6 @@
 ---
 title: 容器配置
-index: false
+index: true
 icon: view
 category:
   - guide

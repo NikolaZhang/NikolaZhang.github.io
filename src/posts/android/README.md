@@ -1,6 +1,6 @@
 ---
 title: android
-index: false
+index: true
 icon: android
 category:
   - guide

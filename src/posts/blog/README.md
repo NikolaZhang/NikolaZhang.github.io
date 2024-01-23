@@ -1,6 +1,6 @@
 ---
 title: 博客搭建 
-index: false
+index: true
 icon: blog
 category:
   - guide

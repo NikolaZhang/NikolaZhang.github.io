@@ -1,6 +1,6 @@
 ---
 title: 番剧
-index: false
+index: true
 icon: like
 category:
   - guide

@@ -88,7 +88,7 @@ export const zhNavbar = navbar([
     },
     {
         text: "笔记",
-        icon: "footnote",
+        icon: "page",
         prefix: "/notes/",
         children: [
             {

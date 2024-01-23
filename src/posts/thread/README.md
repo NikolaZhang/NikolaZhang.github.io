@@ -1,6 +1,6 @@
 ---
 title: 线程
-index: false
+index: true
 icon: storage
 category:
   - guide

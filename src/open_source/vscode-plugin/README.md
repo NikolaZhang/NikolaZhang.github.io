@@ -1,6 +1,6 @@
 ---
 title: 我的vscode插件
-index: false
+index: true
 icon: vscode
 category:
   - guide

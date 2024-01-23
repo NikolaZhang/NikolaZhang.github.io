@@ -1,6 +1,6 @@
 ---
 title: 数据库 
-index: false
+index: true
 icon: mysql
 category:
   - guide

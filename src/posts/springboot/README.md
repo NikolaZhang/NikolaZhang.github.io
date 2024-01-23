@@ -1,6 +1,6 @@
 ---
 title: springboot
-index: false
+index: true
 icon: customize
 category:
   - guide

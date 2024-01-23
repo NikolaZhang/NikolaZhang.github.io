@@ -1,6 +1,6 @@
 ---
 title: leetcode问题分析
-index: false
+index: true
 icon: exercise
 category:
   - guide

@@ -1,6 +1,6 @@
 ---
 title: mybatis
-index: false
+index: true
 icon: mybatisplus
 category:
   - guide

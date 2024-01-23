@@ -1,6 +1,6 @@
 ---
 title: elasticsearch 
-index: false
+index: true
 icon: search
 category:
   - guide

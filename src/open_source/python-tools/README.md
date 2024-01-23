@@ -1,6 +1,6 @@
 ---
 title: python工具
-index: false
+index: true
 icon: python
 category:
   - guide

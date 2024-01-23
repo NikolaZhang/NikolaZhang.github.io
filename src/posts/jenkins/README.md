@@ -1,6 +1,6 @@
 ---
 title: jenkins使用 
-index: false
+index: true
 icon: overflow
 category:
   - guide

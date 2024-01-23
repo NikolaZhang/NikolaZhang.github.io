@@ -1,6 +1,6 @@
 ---
 title: 工具
-index: false
+index: true
 icon: setting
 category:
   - guide

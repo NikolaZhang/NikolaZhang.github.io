@@ -1,6 +1,6 @@
 ---
 title: markdown
-index: false
+index: true
 icon: markdown
 category:
   - guide

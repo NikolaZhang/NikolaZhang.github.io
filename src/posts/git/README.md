@@ -1,6 +1,6 @@
 ---
 title: git命令 
-index: false
+index: true
 icon: git
 category:
   - guide

@@ -1,6 +1,6 @@
 ---
 title: springcloud
-index: false
+index: true
 icon: module
 category:
   - guide

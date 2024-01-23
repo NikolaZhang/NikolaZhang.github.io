@@ -1,6 +1,6 @@
 ---
 title: 虚拟机
-index: false
+index: true
 icon: layout
 category:
   - guide

@@ -1,6 +1,6 @@
 ---
 title: logback
-index: false
+index: true
 icon: editor
 category:
   - guide

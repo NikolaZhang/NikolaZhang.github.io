@@ -1,6 +1,6 @@
 ---
 title: golang语言学习 
-index: false
+index: true
 icon: golang
 category:
   - guide

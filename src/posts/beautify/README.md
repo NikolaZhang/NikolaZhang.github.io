@@ -1,6 +1,6 @@
 ---
 title: windows
-index: false
+index: true
 icon: windows
 category:
   - guide

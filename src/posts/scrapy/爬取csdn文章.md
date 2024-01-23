@@ -1,14 +1,18 @@
 ---
-isOriginal: true
 title: 爬取csdn文章
-date: 2021-06-03
 tag:
   - 爬虫
-  - scrapy
   - csdn
 category: scrapy
-description: 一个爬取csdn文章的案例
+description: 使用scrapy框架爬取csdn上的文章
 image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
+banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
+date: 2024-01-23
+
+author: nikola
+icon: article
+
+isOriginal: true
 sticky: false
 timeline: true
 article: true
@@ -16,7 +20,6 @@ star: false
 ---
 
 > 前几篇文章介绍了scrapy相关的知识. 这篇文章来介绍一个我自己写的爬虫demo. 通过关键词查询爬取相关的csdn文章.
-
 
 ## 项目介绍
 
@@ -264,7 +267,7 @@ class CsdnArticleItemExporter(CsvItemExporter):
 
 - scrapy.cfg 这个是scrapy框架的配置文件, 这里我们指定了settings文件名. 因此settings.py文件中的属性都会加载到settings属性中去.
 
-  ```
+  ```shell
     [settings]
     default = article.csdn_article_settings
     ;default = src.csdn_query_settings
@@ -297,10 +300,13 @@ class CsdnArticleItemExporter(CsvItemExporter):
 直接运行`main.py`, 注意需要添加`--config=D:\XXXXX\config.json`该文件即你的json配置文件路径.
 
 csv中的爬取记录:
-![csv中的爬取记录](https://tech-nikola.oss-cn-shanghai.aliyuncs.com/result/spider/%E7%88%AC%E5%8F%96%E8%AE%B0%E5%BD%95.png)
+
+![20240123133338](https://raw.githubusercontent.com/NikolaZhang/image-blog/main/爬取csdn文章/20240123133338.png)
 
 爬取的文件:
-![爬取的文件](https://tech-nikola.oss-cn-shanghai.aliyuncs.com/result/spider/%E7%88%AC%E5%8F%96%E7%9A%84%E6%96%87%E4%BB%B6.png)
+
+![20240123133405](https://raw.githubusercontent.com/NikolaZhang/image-blog/main/爬取csdn文章/20240123133405.png)
 
 爬取文件路径:
-![爬取文件路径](https://tech-nikola.oss-cn-shanghai.aliyuncs.com/result/spider/%E7%88%AC%E5%8F%96%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84.png)
+
+![20240123133416](https://raw.githubusercontent.com/NikolaZhang/image-blog/main/爬取csdn文章/20240123133416.png)

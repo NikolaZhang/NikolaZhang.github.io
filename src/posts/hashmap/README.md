@@ -1,6 +1,6 @@
 ---
 title: hashmap源码分析 
-index: false
+index: true
 icon: code
 category:
   - guide

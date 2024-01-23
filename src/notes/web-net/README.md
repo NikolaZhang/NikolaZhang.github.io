@@ -1,6 +1,6 @@
 ---
 title: 网络相关知识
-index: false
+index: true
 icon: read
 category:
   - guide

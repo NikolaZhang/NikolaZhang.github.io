@@ -1,6 +1,6 @@
 ---
 title: linux
-index: false
+index: true
 icon: linux
 category:
   - guide

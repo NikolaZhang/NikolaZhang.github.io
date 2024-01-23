@@ -1,6 +1,6 @@
 ---
 title: java学习
-index: false
+index: true
 icon: java
 category:
   - guide
