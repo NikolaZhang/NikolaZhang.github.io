@@ -3,10 +3,10 @@ title: 策略模式
 tag:
   - 策略模式
 category: 设计模式
-description: 其他对象提供一种代理以控制对这个对象的访问。
+description: 定义了一系列算法，并将每一个算法封装起来，使它们可以相互替换，让算法的变化独立于使用该算法的客户。
 image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
-date: 2024-01-21
+date: 2024-01-22
 
 author: nikola
 icon: article
@@ -18,106 +18,85 @@ article: true
 star: false
 ---
 
->In computer programming, the strategy pattern (also known as the policy pattern) is a behavioral software design pattern that enables selecting an algorithm at runtime. [wiki]
+> 策略模式定义了一组能够用来表示可能行为集合的类。这些行为可以在应用程序中使用，来修改应用程序功能。
 
+![20240124084241](https://raw.githubusercontent.com/NikolaZhang/image-blog/main/15-strategy/20240124084241.png)
 
-<!--more-->
+策略模式（Strategy pattern）包含以下三个主要角色：
 
-## 接口
+1. 抽象策略角色（Strategy）：定义所有支持的算法的公共接口。在面向对象设计中，通常是一个接口或抽象类，它声明了具体策略角色需要实现的方法。
 
-```
-package strategy;
+2. 具体策略角色（ConcreteStrategy）：实现了抽象策略角色所定义的接口，提供了具体的算法实现。根据情况的不同，可以有多个具体策略角色，每个都提供不同的行为实现。
 
-/************************************************
- *@ClassName : CreateCar
- *@Description : TODO
- *@Author : NikolaZhang
- *@Date : 【2018/11/28 21:05】
- *@Version : 1.0.0
- *************************************************/
+3. 环境角色（StrategyContext）：持有一个策略类的引用，并且使用该策略来执行相关的操作。环境角色可以根据运行时条件改变其使用的具体策略。通过与抽象策略角色交互，环境角色独立于具体的策略实现细节。
 
-public interface CreateCarI {
-    void doingSomething();
+## 代码实现
+
+### 抽象策略
+
+抽象策略定义了一个抽象的行为。
+
+```java
+public abstract class Strategy {
+    public abstract void algorithmInterface();
 }
 
 ```
 
-## 实现类（举一个例子）
-```
-package strategy;
+### 具体策略
 
-/************************************************
- *@ClassName : BuyMetal
- *@Description : TODO
- *@Author : NikolaZhang
- *@Date : 【2018/11/28 21:09】
- *@Version : 1.0.0
- *************************************************/
+具体角色用于实现这个抽象行为，且支持多种实现方式。
 
-public class BuyMetalImpl implements CreateCarI {
+```java
+public class ConcreteStrategyA extends Strategy{
 
     @Override
-    public void doingSomething() {
-        System.out.println("购买金属材料。");
+    public void algorithmInterface() {
+        System.out.println("ConcreteStrategyA.algorithmInterface()");
     }
+    
 }
-
 ```
-## 入口类
-```
-package strategy;
 
-import com.sun.org.omg.SendingContext.CodeBaseHelper;
+你可以继续创建`ConcreteStrategyB`、 `ConcreteStrategyC`。
 
-/************************************************
- *@ClassName : StartWork
- *@Description : TODO
- *@Author : NikolaZhang
- *@Date : 【2018/11/28 21:14】
- *@Version : 1.0.0
- *************************************************/
+### 环境角色
 
-public class StartWork {
-    private CreateCarI createCarI;
+环境角色使用具体的策略角色来执行操作。它包含了一个策略对象的引用。
 
-    public StartWork(CreateCarI createCarI){
-        this.createCarI = createCarI;
+```java
+public class StrategyContext {
+
+    private Strategy strategy;
+
+    public StrategyContext(Strategy strategy) {
+        this.strategy = strategy;
     }
 
-    public void start(){
-        createCarI.doingSomething();
+    public void contextInterface() {
+        strategy.algorithmInterface();
     }
+    
 }
 
 ```
 
-## 测试
-```
-package strategy;
+### 使用
 
-/************************************************
- *@ClassName : Test
- *@Description : TODO
- *@Author : NikolaZhang
- *@Date : 【2018/11/28 21:58】
- *@Version : 1.0.0
- *************************************************/
+在Client类中我们指定不同的策略进行调用。
 
-public class Test {
+```java
+public class Client {
     public static void main(String[] args) {
-        StartWork startWork1 = new StartWork(new BuyMetalImpl());
-        startWork1.start();
-        StartWork startWork2 = new StartWork(new DesignCarModelImpl());
-        startWork2.start();
-        StartWork startWork3 = new StartWork(new MakeCarImpl());
-        startWork3.start();
+        StrategyContext contextA = new StrategyContext(new ConcreteStrategyA());
+        contextA.contextInterface();
+
+        StrategyContext contextB = new StrategyContext(new ConcreteStrategyB());
+        contextB.contextInterface();
+
+        StrategyContext contextC = new StrategyContext(new ConcreteStrategyC());
+        contextC.contextInterface();
+    
     }
 }
-
 ```
-
-## 结果
-![结果图片](/images/article/28/result.png)
-
-## UML
-![结果图片](/images/article/28/UML.png)

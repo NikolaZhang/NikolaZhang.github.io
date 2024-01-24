@@ -1,106 +1,126 @@
 ---
-isOriginal: true
-title: responsibility chain pattern
-date: 2018-11-30
-
-
+title: 责任链模式
 tag:
-  - responsibility chain pattern
-category: 技术
-description: 责任链模式的实现方法
+  - 责任链模式
+category: 设计模式
+description: 多个对象都有机会处理请求，避免请求的发送者和接收者之间的耦合关系。
 image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
+banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
+date: 2024-01-23
+
+author: nikola
+icon: article
+
+isOriginal: true
+sticky: false
+timeline: true
+article: true
+star: false
 ---
 
-> 责任链模式，将请求和处理对象分离，将请求发送给一个请求处理入口后，谁具有请求的处理权限，谁就处理请求。
 
-<!--more-->
+> 责任链模式可以在系统中建立一个链，这样消息可以在首先接收到它的级别被处理，或者可以定位到可以处理它的对象。
 
-每年这个时候大概都是公司的聚餐季。但是我们的汽车厂，领导们饭后还有特别活动，比如讨论个“来年计划”啥的。我不清楚，我没当过领导。
+![20240124085824](https://raw.githubusercontent.com/NikolaZhang/image-blog/main/22-chain-of-responsibility/20240124085824.png)
 
-## 请求入口Position
-这里我们将请求的处理者分级，使用Position类型的nextPostion属性。接着创建该类的构造器、set方法等等。这都没什么好说的。关键的是giveNotice方法。方法的第一个参数是我们的请求级别，第二个参数就是请求的内容。通过不断判断nextPosition中的level是否符合条件决定是否将请求交给对象处理。
-```
-package responsibilitychain;
+责任链模式（Chain of Responsibility Pattern）包含以下主要角色：
 
-public abstract class Position {
-	private int level;
-	private Position nextPosition;
-	private String name;
+1. 抽象处理者(CommandHandler)  
+   定义了一个处理请求的接口，通常会包含一个处理请求的方法（如 handleRequest()），以及持有下一个处理者的引用。抽象处理者一般被设计为抽象类或接口。
 
-	public void giveNotice(int level, String notice) {
-		if(level>=this.level) {
-			System.out.println(this.name+"获取："+notice);
-		}
-		if(this.nextPosition == null){
-			return;
-		}
-		this.nextPosition.giveNotice(level, notice);
-	}
+2. 具体处理者(ConcreteHandler)  
+   继承自抽象处理者，实现了处理请求的方法。在实现时，具体处理者可以根据请求内容决定是自己处理还是将请求传递给下一个处理者。如果有能力处理请求，则进行处理；否则，调用其持有的下一个处理者的处理方法。
 
-	public void setNextPosition(Position position){
-		this.nextPosition = position;
-	}
+3. 请求(Request)  
+   表示需要被处理的实体对象，它包含了所有必要的信息以供处理者做出是否处理该请求的决策。
 
-	public Position(int level, String name) {
-		super();
-		this.level = level;
-		this.name = name;
-	}
+4. 客户端(Client)  
+   负责构造责任链，并向链头的处理者提交请求。客户端并不关心请求如何在链中被传递和处理，它只需要发起请求即可。
 
-}
-```
+## 代码实现
 
-## 继承Position
-通过继承我们实现几个不同级别的请求处理者。
-```
-package responsibilitychain;
+### 抽象处理器
 
-/************************************************
- *@ClassName : Woker
- *@Description : TODO
- *@Author : NikolaZhang
- *@Date : 【2018/12/12 0012 21:44】
- *@Version : 1.0.0
- *************************************************/
+抽象处理器中包含了一个处理请求的方法，以及持有下一个处理者的引用。前者用于子类进行实现，链条中的每一个节点都应该有自己的处理逻辑，后者用于连接各个环节，我们可以通过该引用依次调用链条上的每个节点。
 
-public class Master extends  Position {
-    public Master(int level, String name) {
-        super(level,  name);
+下面代码中的`successor`是处理请求的入口。这里可以根据自己的需要进行节点的选择。注意
+
+```java
+public abstract class CommandHandler {
+
+    private CommandHandler next;
+
+    public CommandHandler(CommandHandler next) {
+        this.next = next;
     }
+
+    public void successor(StringBuilder stringBuilder) {
+        handleRequest(stringBuilder);
+        if (this.next != null) {
+            this.next.successor(stringBuilder);
+        }
+    }
+
+    public abstract void handleRequest(StringBuilder stringBuilder);
 }
+
 ```
-可以看到每个请求处理者只是重写了构造器。以后我们实例化一个处理者对象的时候就设置其对应级别level。
 
-## 最近聚餐，周知周知
+### 具体处理者
+
+具体处理器实现`handleRequest`方法实现处理请求的逻辑。
+
+```java
+public class Concretehandler1 extends CommandHandler {
+
+    public Concretehandler1(CommandHandler next) {
+        super(next);
+    }
+
+    @Override
+    public void handleRequest(StringBuilder stringBuilder) {
+        stringBuilder.append(" (handled by ConcreteHandler1)");
+    }
+    
+}
+
+
 ```
-package responsibilitychain;
 
-/************************************************
- *@ClassName : Test
- *@Description : TODO
- *@Author : NikolaZhang
- *@Date : 【2018/12/12 0012 21:45】
- *@Version : 1.0.0
- *************************************************/
+### 客户端
 
-public class Test {
+```java
+public class Client {
+
     public static void main(String[] args) {
-        Position master = new Master(1,  "大BOSS");
-        Position leader = new Leader(2,  "组长");
-        Position worker = new Worker(3,  "劳动者");
-        master.setNextPosition(leader);
-        leader.setNextPosition(worker);
-        master.giveNotice(3,  "今晚吃个饭");
-        master.giveNotice(2,  "饭后唱个K");
+        StringBuilder stringBuilder = new StringBuilder("request info");
+        
+        // 创建链条，commandHandler1-->commandHandler2-->null
+        CommandHandler commandHandler2 = new Concretehandler2(null);
+        CommandHandler commandHandler1 = new Concretehandler1(commandHandler2);
 
+        commandHandler1.successor(stringBuilder);
+
+        System.out.println(stringBuilder);
     }
+    
 }
+
 ```
 
-聚餐通知是最低级别的，所有人都会看到。但是唱k通知只有领导们才会看到。
+结果：
 
-## 结果
-![结果](/images/article/181212/res2.png)
+![20240124092812](https://raw.githubusercontent.com/NikolaZhang/image-blog/main/22-chain-of-responsibility/20240124092812.png)
 
+注意：需要防止循环调用，否则会出现死循环。
 
-最近开始忙了~~~不能快快乐乐的写博客了。。。。悲伤。。
+```java
+CommandHandler commandHandler2 = new Concretehandler2(null);
+CommandHandler commandHandler1 = new Concretehandler1(commandHandler2);
+commandHandler2.setNext(commandHandler1);
+```
+
+上面的代码产生了`commandHandler1-->commandHandler2-->commandHandler1`的循环。会导致`StackOverflowError`或者`OOM`。
+
+因此抽象层中最好做循环校验，防止循环调用。比如我们将所有链接节点对象做下对比，看下地址是否相等。
+比如：在设置下一个节点的时候，判断节点是否在当前节点的链接列表中，如果在，则不允许再次添加。
