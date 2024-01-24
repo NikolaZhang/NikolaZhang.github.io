@@ -61,7 +61,7 @@ export default hopeTheme({
         // To avoid disturbing the theme developer and consuming his resources, please DO NOT use the following config directly in your production environment!!!!!
         comment: {
             provider: "Waline",
-            serverURL: "https://blog-comment-app-git-main-nikolazhang.vercel.app/",
+            serverURL: "https://vercel-blog-comment.nikolazh.eu.org/",
             meta: ['nick', 'mail', 'link'],
             requiredMeta: ['nick'],
             reaction: true,
