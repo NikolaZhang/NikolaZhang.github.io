@@ -1,168 +1,111 @@
 ---
-isOriginal: true
-title: command pattern
-date: 2018-12-09
-
-
+title: 命令模式
 tag:
-  - command pattern
-category: 技术
-description: 命令模式的介绍和实现
+  - 命令模式
+category: 设计模式
+description: 提供一种顺序访问聚合对象元素的方法，而又不需要暴露其底层表示。
 image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
+banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
+date: 2024-01-25
+
+author: nikola
+icon: article
+
+isOriginal: true
+sticky: false
+timeline: true
+article: true
+star: false
 ---
 
-> 命令模式主要解决行为请求者与行为执行者的强耦合而出现的一种行为模式。通常模式有三种角色，命令执行者，命令，命令入口。
+> 请求以命令的形式包裹在对象中，并传给调用对象。调用对象寻找可以处理该命令的合适的对象，并把该命令传给相应的对象，该对象执行命令。
 
-<!--more-->
-## 命令的执行者
-为了易于扩展，我们将执行者的行为抽象为接口
-```
-package command;
+![20240125191628](https://raw.githubusercontent.com/NikolaZhang/image-blog/main/19-command/20240125191628.png)
 
-/************************************************
- *@ClassName : Invoker
- *@Description : TODO
- *@Author : NikolaZhang
- *@Date : 【2018/12/9 0009 19:52】
- *@Version : 1.0.0
- *************************************************/
+命令模式的主要角色包括:
 
-public interface GroupI {
-    void add();
-    void delete();
+1. 命令接口 Command: 声明执行操作的接口
+2. 具体命令 ConcreteCommand: 实现执行操作的具体命令类。包含了对接收者的引用，通过调用接收者的方法来完成请求的处理。
+3. 请求者 Invoker: 要求命令对象执行请求
+4. 接受者 Receiver: 知道如何执行与执行请求相关的操作
+
+:::info 特点
+
+1. 将请求者与接收者分离
+2. 容易扩展新的命令，不用修改已有类
+3. 命令对象可以进行功能扩展，如撤销、记录、排队等
+:::
+
+## 代码实现
+
+### 命令接口
+
+```java
+public interface Command {
+  public void execute();
 }
-
 ```
-创建几个执行这类
-```
-package command;
 
-/************************************************
- *@ClassName : Invoker
- *@Description : TODO
- *@Author : NikolaZhang
- *@Date : 【2018/12/9 0009 19:52】
- *@Version : 1.0.0
- *************************************************/
+### 具体命令
 
-public class WorkGroup implements GroupI{
-    @Override
-    public void add() {
-        System.out.println("工作组根据命令添加零件");
+具体命令类中包含了接收者的引用，通过接收者来处理具体命令。
+
+```java
+public class ConcreteCommand implements Command {
+    private Receiver receiver;
+
+    public ConcreteCommand(Receiver receiver) {
+        this.receiver = receiver;
     }
-
+    
     @Override
-    public void delete() {
-        System.out.println("工作组根据命令删除零件");
-    }
-}
-
-
-```
-## 命令模块
-命令模块更具输入的命令，调用对应的模块执行命令
-同样为了易于扩展我们将其做成一个抽象类。
-```
-package command;
-
-/************************************************
- *@ClassName : Invoker
- *@Description : TODO
- *@Author : NikolaZhang
- *@Date : 【2018/12/9 0009 19:52】
- *@Version : 1.0.0
- *************************************************/
-
-public abstract class CommandA {
-    protected WorkGroup workGroup = new WorkGroup();
-    protected DesignGroup designGroup = new DesignGroup();
-
-    public abstract void execute(String str) ;
-
-
-}
-```
-子类：
-```
-package command;
-
-/************************************************
- *@ClassName : DesignCommand
- *@Description : TODO
- *@Author : NikolaZhang
- *@Date : 【2018/12/9 0009 20:08】
- *@Version : 1.0.0
- *************************************************/
-
-public class WorkCommand extends CommandA{
-
-    @Override
-    public void execute(String str) {
-        if("add".equals(str)){
-            super.workGroup.add();
-        } else if("delete".equals(str)){
-            super.workGroup.delete();
-        }else {
-            System.out.println("工作组拒绝该命令");
-        }
-
+    public void execute() {
+        receiver.action();
     }
 }
-
 ```
 
-## 命令入口
+### 接收者
+
+```java
+public class Receiver {
+    public void action() {
+        System.out.println("Called Receiver.action()");
+    }
+
+}
 ```
-package command;
 
-/************************************************
- *@ClassName : Invoker
- *@Description : TODO
- *@Author : NikolaZhang
- *@Date : 【2018/12/9 0009 19:52】
- *@Version : 1.0.0
- *************************************************/
+### 调用者
 
+调用者用于发送命令，通过将请求传递给命令对象来实现。
+
+```java
 public class Invoker {
-    private CommandA commandA;
+    private Command command;
 
-    public void setCommandA(CommandA commandA) {
-        this.commandA = commandA;
+    public void setCommand(Command command) {
+        this.command = command;
     }
 
-    public void action(String str){
-        commandA.execute(str);
+    public void executeCommand() {
+        command.execute();
     }
 }
-
 ```
 
-## 测试
-```
-package command;
+### 测试
 
-/************************************************
- *@ClassName : Test
- *@Description : TODO
- *@Author : NikolaZhang
- *@Date : 【2018/12/9 0009 20:11】
- *@Version : 1.0.0
- *************************************************/
+```java
+public class Client {
 
-public class Test {
     public static void main(String[] args) {
+        Receiver receiver = new Receiver();
+        Command command = new ConcreteCommand(receiver);
         Invoker invoker = new Invoker();
-
-        CommandA commandWork = new WorkCommand();
-        invoker.setCommandA(commandWork);
-        invoker.action("add");
-        invoker.action("delete");
-        invoker.action("update");
-
+        invoker.setCommand(command);
+        invoker.executeCommand();
     }
 }
 
 ```
-
-## 结果
-![结果](/images/article/181209/res.png)
