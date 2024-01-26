@@ -8,7 +8,6 @@ export default hopeTheme({
         name: "我小叮当、",
         url: "https://nikolazhang.github.io",
     },
-    // iconAssets: "iconfont",
     iconAssets: [
         "https://at.alicdn.com/t/c/font_4414155_jke57xnocdp.css",
         "iconfont",
@@ -40,6 +39,7 @@ export default hopeTheme({
     navbar: zhNavbar,
     // sidebar
     sidebar: zhSidebar,
+    sidebarSorter: ["readme", "date", "order"],
     footer: "nikola | 鲁ICP备20000559号-1",
     displayFooter: true,
     // page meta
@@ -67,24 +67,12 @@ export default hopeTheme({
             reaction: true,
             emoji: [
                 '//unpkg.com/@waline/emojis@1.1.0/bilibili',
-                '//unpkg.com/@waline/emojis@1.1.0/bmoji',
                 '//unpkg.com/@waline/emojis@1.1.0/alus',
                 '//unpkg.com/@waline/emojis@1.1.0/qq',
                 '//unpkg.com/@waline/emojis@1.1.0/tieba',
                 '//unpkg.com/@waline/emojis@1.1.0/tw-emoji',
                 '//unpkg.com/@waline/emojis@1.1.0/weibo',
             ],
-            // emojiCDN: 'https://img.t.sinajs.cn/t4/appstyle/expression/ext/normal/',
-            // // 表情title和图片映射
-            // emojiMaps: Object.assign(
-            //     require('./emoji/bilibili_2333'),
-            //     require('./emoji/bilibili_face'),
-            //     require('./emoji/bilibili_hotKey'),
-            //     require('./emoji/bilibili_littleTv'),
-            //     require('./emoji/bilibili_tv_gif'),
-            //     // require('./emoji/huomiao'),
-            //     // require('./emoji/qq')
-            // )
 
         },
 

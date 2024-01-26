@@ -1,137 +1,154 @@
 ---
-isOriginal: true
-title: visitor pattern
-date: 2018-12-13
-
-
+title: 访问者模式
 tag:
-  - visitor pattern
-category: 技术
-description: 访问者模式的实现和介绍
+  - 访问者模式
+category: 设计模式
+description: 表示一个作用于某对象结构中的各元素的操作，它可以在不改变各元素类的前提下定义作用于这些元素的新操作。
 image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
+banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
+date: 2024-01-26
+
+author: nikola
+icon: article
+
+isOriginal: true
+sticky: false
+timeline: true
+article: true
+star: false
 ---
 
-> 访问者模式：定义对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都得到通知并被自动更新。一个对象状态改变给其他对象通知的问题，而且要考虑到易用和低耦合，保证高度的协作。[菜鸟]
+> 访问者模式提供了一种方便的、可维护的方法来表示在对象结构元素上要进行的操作。该模式允许不改变操作元素的类的前提下定义一个新操作。
 
-<!--more-->
-怎么说呢，访问者模式和观察者模式还是有点像的。但是，访问者模式是你想访问就访问。观察者则是我变了就告诉你。访问者是主动的，观察者是被动的。
+![20240125152240](https://raw.githubusercontent.com/NikolaZhang/image-blog/main/17-visitor/20240125152240.png)
 
-通常我们在被访问者类中定义一个accept方法，这个方法的参数是访问者对象。访问者类中定义visit方法，方法的参数是当前被访问对象。visit中调用被访问对象中的方法。为了易于扩展，例子中我们的访问对象和被访问对象都抽象出了一个接口。接口中分别定义公共方法visit，accept。
-## 访问者接口
-```
-package visitor;
+访问者模式的主要角色：
 
-/************************************************
- *@ClassName : Visitor
- *@Description : TODO
- *@Author : NikolaZhang
- *@Date : 【2018/12/13 0013 7:35】
- *@Version : 1.0.0
- *************************************************/
+- 抽象访问者（Visitor）：它声明了一个访问操作的接口，该接口的实现可以访问一个由元素对象结构中的元素所组成的对象结构。
+- 具体访问者（ConcreteVisitor）：它实现了抽象访问者接口中声明的访问操作，以便为一个对象结构中的元素执行操作。
+- 抽象元素（Element）：它声明了一个接受操作的接口，该接口的实现可以为一个对象结构中的元素接受访问。
+- 具体元素（ConcreteElement）：它实现了接受操作接口，以便为一个对象结构中的元素接受访问。
+- 对象结构（ObjectStructure）：它可以是元素的集合，也可以是单个元素。
+- 客户端（VisitorClient）：它可以访问元素结构中的所有元素，并调用这些元素的操作。
 
-public interface VisitorI {
-    void visit(BWMFactory bwmFactory);
-    void visit(BenzFactory benzFactory);
-}
+## 代码实现
 
-```
-## 实现一个访问者
-```
-package visitor;
+### 抽象访问者
 
-/************************************************
- *@ClassName : Visitor
- *@Description : TODO
- *@Author : NikolaZhang
- *@Date : 【2018/12/13 0013 7:39】
- *@Version : 1.0.0
- *************************************************/
+这里我们定义了访问不同元素的方法。
 
-public class Visitor implements VisitorI {
-    @Override
-    public void visit(BWMFactory bwmFactory) {
-        System.out.println("调查宝马工厂");
-        bwmFactory.info();
-    }
+```java
+public abstract class Visitor {
 
-    @Override
-    public void visit(BenzFactory benzFactory) {
-        System.out.println("调查奔驰工厂");
-        benzFactory.info();
-    }
+    public abstract void visitConcreteElementA(ConcreteElementA concreteElementA);
+    public abstract void visitConcreteElementB(ConcreteElementB concreteElementB);
 }
 ```
 
+### 具体访问者
 
-## 被访问的接口
-```
-package visitor;
+具体访问者中可以获取到所访问元素的对象，并执行相应的操作。
 
-/************************************************
- *@ClassName : CarFacorires
- *@Description : TODO
- *@Author : NikolaZhang
- *@Date : 【2018/12/13 0013 7:34】
- *@Version : 1.0.0
- *************************************************/
-
-public interface CarFacoriresI {
-    void info();
-    void accept(VisitorI visitorI);
-}
-
-```
-
-## 被访问接口的实现
-```
-package visitor;
-
-/************************************************
- *@ClassName : BWMFactory
- *@Description : TODO
- *@Author : NikolaZhang
- *@Date : 【2018/12/13 0013 7:36】
- *@Version : 1.0.0
- *************************************************/
-
-public class BWMFactory implements CarFacoriresI {
+```java
+public class ConcreteVisitor1 extends Visitor {
     @Override
-    public void info(){
-        System.out.println("宝马工厂最近亏损");
+    public void visitConcreteElementA(ConcreteElementA concreteElementA) {
+        System.out.println("ConcreteVisitor1: ConcreteElementA visited.");
     }
 
     @Override
-    public void accept(VisitorI visitorI) {
-        visitorI.visit(this);
+    public void visitConcreteElementB(ConcreteElementB concreteElementB) {
+        System.out.println("ConcreteVisitor1: ConcreteElementB visited.");
+
     }
 }
 
 ```
 
-## 测试
+你可以仿照这段代码创建`ConcreteVisitor2`。
+
+### 抽象元素
+
+元素类中提供accept方法用于接收对应的访问者，即允许谁访问这个元素。
+
+```java
+public abstract class Element {
+
+    public abstract void accept(Visitor visitor);
+
+}
+
 ```
-package visitor;
 
-import iterator.Car;
+### 具体元素
 
-/************************************************
- *@ClassName : Test
- *@Description : TODO
- *@Author : NikolaZhang
- *@Date : 【2018/12/13 0013 7:44】
- *@Version : 1.0.0
- *************************************************/
+具体元素类中实现了`accept`方法，并将自身作为参数传递给访问者。
 
-public class Test {
+```java
+public class ConcreteElementA extends Element {
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visitConcreteElementA(this);
+    }
+}
+
+```
+
+你可以仿照这段代码创建`ConcreteElementB`。
+
+### 对象结构
+
+```java
+public class ObjectStructure {
+
+    private List<Element> elements = new ArrayList<>();
+
+    public void add(Element element) {
+        this.elements.add(element);
+    }
+
+    public void remove(Element element) {
+        this.elements.remove(element);
+    }
+
+    public void accept(Visitor visitor) {
+        for (Element element : elements) {
+            element.accept(visitor);
+        }
+    }
+
+}
+
+```
+
+### 测试
+
+```java
+public class VisitorClient {
+
     public static void main(String[] args) {
-        VisitorI visitorI = new Visitor();
-        CarFacoriresI carFacoriresI1 = new BWMFactory();
-        carFacoriresI1.accept(visitorI);
-        CarFacoriresI carFacoriresI2 = new BenzFactory();
-        carFacoriresI2.accept(visitorI);
+        Visitor visitor1 = new ConcreteVisitor1();
+        Visitor visitor2 = new ConcreteVisitor2();
+
+        Element elementA = new ConcreteElementA();
+        Element elementB = new ConcreteElementB();
+
+        ObjectStructure objectStructure = new ObjectStructure();
+        objectStructure.add(elementA);
+        objectStructure.add(elementB);
+        
+        objectStructure.accept(visitor1);
+        objectStructure.accept(visitor2);
+
+        System.out.println("===== remove elementB");
+        objectStructure.remove(elementB);
+        
+        objectStructure.accept(visitor1);
+        objectStructure.accept(visitor2);
     }
 }
 ```
 
-## 结果
-![结果](/images/article/181213/visitor.png)
+结果：
+
+![20240126161905](https://raw.githubusercontent.com/NikolaZhang/image-blog/main/17-visitor/20240126161905.png)
