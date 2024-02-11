@@ -32,3 +32,4 @@ date: 2023-01-12
 - [职责链模式](22-chain-of-responsibility.md)
 - [中介者模式](23-mediator.md)
 - [观察者模式](24-observer.md)
+- [过滤器模式](25-filter.md)
