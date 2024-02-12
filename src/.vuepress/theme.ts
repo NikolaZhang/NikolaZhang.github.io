@@ -39,7 +39,7 @@ export default hopeTheme({
     navbar: zhNavbar,
     // sidebar
     sidebar: zhSidebar,
-    sidebarSorter: ["readme", "date", "order"],
+    sidebarSorter: ["readme", "date", "filename"],
     footer: "nikola | 鲁ICP备20000559号-1",
     displayFooter: true,
     // page meta
