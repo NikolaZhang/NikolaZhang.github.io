@@ -5,7 +5,7 @@ devDependencies:
     specifier: ^3.3.0
     version: registry.npmmirror.com/@vue/repl@3.3.0
   '@vuepress/client':
-    specifier: 2.0.0-rc.0
+    specifier: ^2.0.0-rc.0
     version: registry.npmmirror.com/@vuepress/client@2.0.0-rc.0
   '@vuepress/plugin-register-components':
     specifier: ^2.0.0-rc.0
