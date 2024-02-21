@@ -18,7 +18,7 @@
     "vuepress-plugin-pwa2": "2.0.0-rc.11",
     "vuepress-theme-hope": "2.0.0-rc.11",
     "@vuepress/client": "^2.0.0-rc.0",
-    "@vuepress/plugin-register-components": "^2.0.0-rc.0",
+    "@vuepress/plugin-register-components": "2.0.0-rc.0",
     "@waline/client": "3.0.0-alpha.10",
     "chart.js": "^4.4.1",
     "echarts": "^5.4.3",
