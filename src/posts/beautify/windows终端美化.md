@@ -19,6 +19,8 @@ article: true
 star: false
 ---
 
+![20240213101528](https://raw.githubusercontent.com/NikolaZhang/image-blog/main/windows终端美化/20240213101528.png)
+
 ## powershell 版本更新
 
 默认版本为5.x，以下基于7.x版本，安装方式如下。
