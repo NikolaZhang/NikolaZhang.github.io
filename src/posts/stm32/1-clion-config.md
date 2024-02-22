@@ -80,7 +80,6 @@ Call Stack (most recent call first):
 3. 之后，重新load项目就正常了。  
 
 ![20240222213641](https://raw.githubusercontent.com/NikolaZhang/image-blog/main/1-clion-config/20240222213641.png)
-
 4. 运行项目，也可以输出了。
 
 ![20240222214220](https://raw.githubusercontent.com/NikolaZhang/image-blog/main/1-clion-config/20240222214220.png)
