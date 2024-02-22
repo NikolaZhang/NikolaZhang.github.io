@@ -3,17 +3,7 @@ import {navbar} from "vuepress-theme-hope";
 
 export const zhNavbar = navbar([
     "/",
-    {
-        text: "文章",
-        icon: "edit",
-        prefix: "/posts/",
-        children: [
-            {
-                text: "文章目录",
-                link: ""
-            }
-        ],
-    },
+    "/posts/",
     {
         text: "笔记",
         icon: "page",
@@ -74,6 +64,20 @@ export const zhNavbar = navbar([
             {
                 text: "efak",
                 link: "http://efak.nikolazhang.top"
+            },
+        ]
+    },
+    {
+        text: "网站",
+        icon: "network",
+        children: [
+            {
+                text: "nga",
+                link: "https://nga.cn/"
+            },
+            {
+                text: "提瓦特大陆",
+                link: "https://webstatic.mihoyo.com/ys/app/interactive-map/index.html"
             },
         ]
     }
