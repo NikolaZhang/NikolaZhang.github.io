@@ -9,4 +9,5 @@ date: 2023-01-12
 
 ## 线程
 
-1. [Semaphore的使用](1-semaphore-use.md)
+1. [AQS讲解](1-aqs.md)
+2. [Semaphore的使用](2-semaphore-use.md)
