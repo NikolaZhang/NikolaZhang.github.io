@@ -1,0 +1,37 @@
+<shape name="node" h="50" w="150" aspect="variable" strokewidth="inherit">
+  <connections>
+    <constraint x="0" y="0" perimeter="1" />
+    <constraint x="0.5" y="0" perimeter="1" />
+    <constraint x="1" y="0" perimeter="1" />
+    <constraint x="0" y="0.5" perimeter="1" />
+    <constraint x="1" y="0.5" perimeter="1" />
+    <constraint x="0" y="1" perimeter="1" />
+    <constraint x="0.5" y="1" perimeter="1" />
+    <constraint x="1" y="1" perimeter="1" />
+  </connections>
+  <background>
+    <rect x="0" y="0" w="150" h="150" />
+    <stroke/>
+  </background>
+  <foreground>
+    <fillstroke/>
+    <rect x="0" y="0" w="150" h="50" />
+    <stroke/>
+    <path>
+      <move x="50" y="0"/>
+      <line x="50" y="50"/>
+      <close/>
+    </path>
+    <stroke/>
+    <path>
+      <move x="100" y="0"/>
+      <line x="100" y="50"/>
+      <close/>
+    </path>
+    <stroke/>
+    <text str="prev" x="10" y="25" align="left" valign="middle" />
+    <text str="data" x="60" y="25" align="left" valign="middle" />
+    <text str="next" x="110" y="25" align="left" valign="middle" />
+    <fontcolor color="#000000" /> 
+  </foreground>
+</shape>
