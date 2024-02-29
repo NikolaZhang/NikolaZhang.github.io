@@ -10,13 +10,11 @@
     <constraint x="1" y="1" perimeter="1" />
   </connections>
   <background>
-    <rect x="0" y="0" w="150" h="150" />
+    <rect x="0" y="0" w="150" h="50" />    
     <stroke/>
   </background>
   <foreground>
     <fillstroke/>
-    <rect x="0" y="0" w="150" h="50" />
-    <stroke/>
     <path>
       <move x="50" y="0"/>
       <line x="50" y="50"/>
