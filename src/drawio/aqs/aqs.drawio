@@ -1,6 +1,6 @@
-<mxfile host="Electron" modified="2024-03-12T00:50:07.248Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.6.8 Chrome/114.0.5735.289 Electron/25.5.0 Safari/537.36" etag="lhJXLtooS6C36WT_MZXA" version="21.6.8" type="device" pages="13">
+<mxfile host="Electron" modified="2024-03-12T14:50:52.897Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/23.1.5 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="QANb07mumBza-FHA4xEh" version="23.1.5" type="device" pages="13">
   <diagram id="f9ofhvscqAVapVEzPAAC" name="acquire">
-    <mxGraphModel dx="2176" dy="735" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="2924" dy="1196" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -748,7 +748,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="JcYdo30kkA64ysfrS00E" name="acquireShared">
-    <mxGraphModel dx="2153" dy="735" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2901" dy="1196" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -1065,11 +1065,11 @@
         <mxCell id="7fS0ai_fAEFg_xiQmF1N-15" value="当前节点的前向节点为头节点，则重新获取资源" style="whiteSpace=wrap;html=1;shape=rhombus;perimeter=rhombusPerimeter;fontSize=16;fillColor=#ffe6cc;strokeColor=#d79b00;" parent="1" vertex="1">
           <mxGeometry x="1040" y="550" width="140" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="7fS0ai_fAEFg_xiQmF1N-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=16;" parent="1" source="cQbfnNI_K2-R61uK3m5p-5" target="7fS0ai_fAEFg_xiQmF1N-8" edge="1">
+        <mxCell id="7fS0ai_fAEFg_xiQmF1N-16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=16;" parent="1" source="TQ-rTeyz-5cobA5n4uEZ-4" target="7fS0ai_fAEFg_xiQmF1N-8" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="1110" y="920" />
-              <mxPoint x="930" y="920" />
+              <mxPoint x="1110" y="1240" />
+              <mxPoint x="930" y="1240" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -1169,27 +1169,42 @@
         <mxCell id="7fS0ai_fAEFg_xiQmF1N-37" value="" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;fillColor=#3F8624;strokeColor=none;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=16;fontStyle=0;aspect=fixed;pointerEvents=1;shape=mxgraph.aws4.backup_recovery_time_objective;" parent="1" vertex="1">
           <mxGeometry x="1330" y="820" width="41.6" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="cQbfnNI_K2-R61uK3m5p-2" value="剩余资源数大于等于0" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="cQbfnNI_K2-R61uK3m5p-2" value="剩余资源数大于等于0" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="840" y="570" width="80" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="cQbfnNI_K2-R61uK3m5p-3" value="剩余资源数大于等于0" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+        <mxCell id="cQbfnNI_K2-R61uK3m5p-3" value="剩余资源数大于等于0" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="1020" y="655" width="80" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="cQbfnNI_K2-R61uK3m5p-4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=16;" edge="1" parent="1" source="7fS0ai_fAEFg_xiQmF1N-17" target="cQbfnNI_K2-R61uK3m5p-5">
+        <mxCell id="cQbfnNI_K2-R61uK3m5p-4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=16;" parent="1" source="7fS0ai_fAEFg_xiQmF1N-17" target="cQbfnNI_K2-R61uK3m5p-5" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points" />
             <mxPoint x="1110" y="790" as="sourcePoint" />
             <mxPoint x="930" y="1040" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="cQbfnNI_K2-R61uK3m5p-5" value="" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="1070" y="820" width="80" height="80" as="geometry" />
+        <mxCell id="cQbfnNI_K2-R61uK3m5p-5" value="剩余资源数大于0，或者头节点不存在，或者头节点状态小于0" style="rhombus;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="1040" y="830" width="140" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="TQ-rTeyz-5cobA5n4uEZ-2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;fontSize=16;" edge="1" parent="1" source="cQbfnNI_K2-R61uK3m5p-5" target="TQ-rTeyz-5cobA5n4uEZ-4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points" />
+            <mxPoint x="1110" y="910" as="sourcePoint" />
+            <mxPoint x="930" y="1610" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TQ-rTeyz-5cobA5n4uEZ-3" value="Y" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="TQ-rTeyz-5cobA5n4uEZ-2">
+          <mxGeometry x="-0.9273" y="-3" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="TQ-rTeyz-5cobA5n4uEZ-4" value="" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1040" y="995" width="140" height="80" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
   <diagram name="releaseShared" id="30OdHV03DWHpRHhp10Ix">
-    <mxGraphModel dx="2153" dy="-434" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2901" dy="27" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="CTihV5kAIb8LJbs-_iQT-0" />
         <mxCell id="CTihV5kAIb8LJbs-_iQT-1" parent="CTihV5kAIb8LJbs-_iQT-0" />
@@ -1262,7 +1277,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="uQnEQa0iBNZGhksUHcdh" name="doReleaseShared">
-    <mxGraphModel dx="1326" dy="735" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2074" dy="1196" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -1794,7 +1809,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="upxsIaHtoWZcF6FUyAXG" name="acquireQueued">
-    <mxGraphModel dx="2485" dy="820" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2901" dy="1196" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -2028,7 +2043,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="0hb9VgAqe9ylSAsx8Vtz" name="setHeadAndPropagate">
-    <mxGraphModel dx="1691" dy="970" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2074" dy="1196" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
