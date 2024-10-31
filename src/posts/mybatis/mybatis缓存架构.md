@@ -65,20 +65,36 @@ try {
   }
 ```
 
-一级缓存存在两个作用域：`SESSION` 和 `STATEMENT`。当`LocalCacheScope` 为 `STATEMENT` 时，缓存数据仅在当前 SQL 语句执行期间有效，当 SQL 语句执行完毕后，缓存数据将被清空。
+在`queryFromDatabase`方法中，先查询数据库，然后将查询结果放入缓存中。
 
 ```java
-if (configuration.getLocalCacheScope() == LocalCacheScope.STATEMENT) {
-  // note zx MyBatis 利用本地缓存机制（Local Cache）防止循环引用和加速重复的嵌套查询。
-  // 默认值为 SESSION，会缓存一个会话中执行的所有查询。
-  // 若设置值为 STATEMENT，本地缓存将仅用于执行语句，对相同 SqlSession 的不同查询将不会进行缓存。
-  // issue #482
-  log.debug("STATEMENT级别 清空一级缓存 ");
-  clearLocalCache();
-}
+    List<E> list;
+    localCache.putObject(key, EXECUTION_PLACEHOLDER);
+    try {
+      list = doQuery(ms, parameter, rowBounds, resultHandler, boundSql);
+    } finally {
+      localCache.removeObject(key);
+    }
+    localCache.putObject(key, list);
+    log.debug("一级缓存保存查询结果" + key.toString());
+    if (ms.getStatementType() == StatementType.CALLABLE) {
+      localOutputParameterCache.putObject(key, parameter);
+    }
+    return list;
 ```
 
-现在我们通过代码进行验证，代码如下。当设置缓存域为SESSION时，日志只打印了一次数据库查询日志。说明，我们的一级缓存生效了。
+上面的`localCache`为`PerpetualCache`，它位于`BaseExecutor`中，它是一个`HashMap`结构，key为`CacheKey`，value为数据库查询结果。
+
+### 一级缓存的作用域
+
+一级缓存存在两个作用域：`SESSION` 和 `STATEMENT`。
+
+1. `SESSION`：缓存数据在当前会话中一直有效，直到会话结束。
+2. `STATEMENT`：缓存数据仅在当前 SQL 语句执行期间有效，当 SQL 语句执行完毕后，缓存数据将被清空。
+
+默认情况下，一级缓存的作用域为 `SESSION`。
+
+现在我们通过代码进行验证，代码如下。当设置缓存域为`SESSION`时，日志只打印了一次数据库查询日志。说明，我们的一级缓存生效了。
 
 ```java
     Author result;
@@ -107,7 +123,7 @@ if (configuration.getLocalCacheScope() == LocalCacheScope.STATEMENT) {
 00:23:55.522 DEBUG [main] o.a.ibatis.executor.BaseExecutor - 一级缓存生效
 ```
 
-下面将缓存域设置为STATEMENT，日志打印了两次数据库查询日志。说明，我们的一级缓存失效了。
+下面将缓存域设置为`STATEMENT`，日志打印了两次数据库查询日志。说明，我们的一级缓存失效了。
 
 ```java
     Author result;
@@ -152,5 +168,271 @@ if (configuration.getLocalCacheScope() == LocalCacheScope.STATEMENT) {
   }
 ```
 
-todo zx 嵌套查询
 然而，`STATEMENT`级别意味着关闭一级缓存吗？显然不是，它只是在当前SQL语句执行期间有效，对嵌套查询起作用。
+
+举个例子：一个博客作者，通常会有多篇文章，当我们通过`authorId`查询文章，并嵌套查询作者信息。第一次需要从数据库中获取作者信息，之后的相同作者就会从缓存中获取。
+
+相关代码如下：
+
+向数据库中插入作者信息及博客信息，其中博客id为1，3的是同一作者，`authorId`为101。
+
+```sql
+    INSERT INTO author (id,username, password, email, bio, favourite_section) VALUES (101,'jim','********','jim@ibatis.apache.org','','NEWS');
+    INSERT INTO author (id,username, password, email, bio, favourite_section) VALUES (102,'sally','********','sally@ibatis.apache.org',null,'VIDEOS');
+
+    INSERT INTO blog (id,author_id,title) VALUES (1,101,'Jim Business');
+    INSERT INTO blog (id,author_id,title) VALUES (2,102,'Bally Slog');
+    -- note zx 嵌套查询缓存测试 1，3为同一作者
+    INSERT INTO blog (id,author_id,title) VALUES (3,101,'Good Food');
+
+```
+
+通过作者id查询博客信息，并嵌套查询作者信息。
+
+```xml
+
+  <select id="selectBlogByAuthorId" parameterType="int" resultMap="blogWithPosts">
+    select * from Blog where author_id = #{authorId}
+  </select>
+
+  <resultMap id="blogWithPosts" type="Blog">
+    <id property="id" column="id"/>
+    <result property="title" column="title"/>
+    <association property="author" column="author_id" select="selectAuthor"/>
+  </resultMap>
+
+  <select id="selectAuthor" resultMap="selectAuthor">
+    select id, username, password, email, bio, favourite_section
+    from author where id = #{id}
+  </select>
+```
+
+最后我们将LocalCacheScope设置为STATEMENT，并关闭二级缓存，并执行查询。
+
+```xml
+    <setting name="cacheEnabled" value="false"/>
+    <setting name="localCacheScope" value="STATEMENT"/>
+```
+
+下面是测试方法，这里我们查询博客信息后，对比两条博客中的作者对象是否相同，如果相同则使用的是缓存数据。
+
+```java
+    SqlSession sqlSession = sqlSessionFactory.openSession()
+    Configuration configuration = sqlSession.getConfiguration();
+    log.debug("useCache? " + configuration.isCacheEnabled());
+    log.debug("localCacheScope? " + configuration.getLocalCacheScope());
+
+    final BlogMapper blogMapper = sqlSession.getMapper(BlogMapper.class);
+    List<Blog> blogs = blogMapper.selectBlogByAuthorId(101);
+    assertNotNull(blogs);
+    Author author1 = blogs.get(0).getAuthor();
+    assertNotNull(author1);
+    Author author2 = blogs.get(1).getAuthor();
+    assertNotNull(author2);
+
+    assertSame(author1, author2);
+```
+
+输出日志：
+
+```plaintext
+10:49:20.667 DEBUG [main] o.a.ibatis.executor.BaseExecutor - 当前执行器类型为：SimpleExecutor
+10:49:20.673 DEBUG [main] o.a.i.s.n.NestedQueryCacheTest - useCache? false
+10:49:20.673 DEBUG [main] o.a.i.s.n.NestedQueryCacheTest - localCacheScope? STATEMENT
+10:49:20.695 DEBUG [main] o.a.ibatis.executor.BaseExecutor - ### queryStack: 1
+10:49:20.719 DEBUG [main] o.a.i.s.n.B.selectBlogByAuthorId - ==>  Preparing: select * from Blog where author_id = ?
+10:49:20.779 DEBUG [main] o.a.i.s.n.B.selectBlogByAuthorId - ==> Parameters: 101(Integer)
+10:49:20.822 DEBUG [main] o.a.ibatis.executor.BaseExecutor - ### queryStack: 2
+10:49:20.822 DEBUG [main] o.a.i.s.n.AuthorMapper.selectAuthor - ====>  Preparing: select id, username, password, email, bio, favourite_section from author where id = ?
+10:49:20.834 DEBUG [main] o.a.i.s.n.AuthorMapper.selectAuthor - ====> Parameters: 101(Integer)
+10:49:20.839 DEBUG [main] o.a.i.s.n.AuthorMapper.selectAuthor - <====      Total: 1
+10:49:20.844 DEBUG [main] o.a.ibatis.executor.BaseExecutor - 一级缓存保存查询结果-1992681480:2459226612:org.apache.ibatis.submitted.nested_query_cache.AuthorMapper.selectAuthor:0:2147483647:select id, username, password, email, bio, favourite_section
+10:49:20.845 DEBUG [main] o.a.i.e.r.DefaultResultSetHandler - 嵌套查询使用缓存数据-1992681480:2459226612:org.apache.ibatis.submitted.nested_query_cache.AuthorMapper.selectAuthor:0:2147483647:select id, username, password, email, bio, favourite_section
+10:49:20.848 DEBUG [main] o.a.ibatis.executor.BaseExecutor - 一级缓存保存查询结果-361605327:70564671:org.apache.ibatis.submitted.nested_query_cache.BlogMapper.selectBlogByAuthorId:0:2147483647:select * from Blog where author_id = ?:101:development
+10:49:20.848 DEBUG [main] o.a.ibatis.executor.BaseExecutor - STATEMENT级别 清空一级缓存 
+
+```
+
+`Preparing: select * from Blog where author_id = ?`此处先查询数据库中的博客信息，紧接着嵌套查询作者信息，之后将作者信息放入本地缓存。
+由于存在多条博客，第二个博客信息嵌套查询作者信息时，本地缓存存在数据，使用缓存数据。最后将博客查询数据缓存在本地，但由于我们的缓存域为`STATEMENT`，所以查询结束后，缓存数据被清空。
+
+```java
+if (configuration.getLocalCacheScope() == LocalCacheScope.STATEMENT) {
+  // note zx MyBatis 利用本地缓存机制（Local Cache）防止循环引用和加速重复的嵌套查询。
+  // 默认值为 SESSION，会缓存一个会话中执行的所有查询。
+  // 若设置值为 STATEMENT，本地缓存将仅用于执行语句，对相同 SqlSession 的不同查询将不会进行缓存。
+  // issue #482
+  log.debug("STATEMENT级别 清空一级缓存 ");
+  clearLocalCache();
+}
+```
+
+::: info
+当存在多个会话，操作同一个数据时，当一个会话将数据更新，其他会话中的缓存，由于不会清空，导致数据不一致问题。因此，我们通常将一级缓存级别设置为 `STATEMENT`。
+:::
+
+### 一级缓存的清理
+
+1. 执行update相关操作，包括insert、update、delete
+2. flushCache设置为true
+3. sqlSession提交、回滚或者关闭
+4. localCacheScope设置为STATEMENT，并且查询结束（queryStack=0，嵌套查询存在缓存）。
+
+### 一级缓存的触发条件
+
+通过上面的介绍，总结下一级缓存的触发条件：
+
+1. 必须是同一个SqlSession
+2. 必须是同一个sql语句
+3. 必须是同一个statementId
+4. 查询参数相同
+5. 分页参数相同
+6. 环境id相同
+7. sqlSession没有提交
+
+## 二级缓存
+
+在介绍二级缓存之前，我们需要了解下，mybatis中缓存的实现方式。
+
+![20241031163717](https://raw.githubusercontent.com/NikolaZhang/image-blog/main/mybatis缓存架构/20241031163717.png)
+
+在mybatis中二级缓存使用装饰器进行实现，最底层的缓存类是`PerpetualCache`，它实现了`Cache`接口，并提供了缓存的基本操作。
+其他的缓存类例如`BlockingCache`，`SynchronizedCache`，`LoggingCache`等，通过装饰器模式，对基础的缓存功能进行扩展。
+
+### 二级缓存源码
+
+在`XmlMapperBuilder`中，通过解析cache标签来创建缓存对象，并添加到configuration中。下面的方法是提取cache标签的参数配置。最后通过`builderAssistant.useNewCache`方法创建缓存对象。
+
+```java
+  private void cacheElement(XNode context) {
+    if (context != null) {
+      String type = context.getStringAttribute("type", "PERPETUAL");
+      Class<? extends Cache> typeClass = typeAliasRegistry.resolveAlias(type);
+      String eviction = context.getStringAttribute("eviction", "LRU");
+      Class<? extends Cache> evictionClass = typeAliasRegistry.resolveAlias(eviction);
+      Long flushInterval = context.getLongAttribute("flushInterval");
+      Integer size = context.getIntAttribute("size");
+      boolean readWrite = !context.getBooleanAttribute("readOnly", false);
+      boolean blocking = context.getBooleanAttribute("blocking", false);
+      Properties props = context.getChildrenAsProperties();
+      builderAssistant.useNewCache(typeClass, evictionClass, flushInterval, size, readWrite, blocking, props);
+    }
+  }
+```
+
+我们主要看下`useNewCache`方法：
+
+```java
+  public Cache useNewCache(Class<? extends Cache> typeClass,
+      Class<? extends Cache> evictionClass,
+      Long flushInterval,
+      Integer size,
+      boolean readWrite,
+      boolean blocking,
+      Properties props) {
+    // note zx 创建缓存Cache实例
+    Cache cache = new CacheBuilder(currentNamespace)
+    .implementation(valueOrDefault(typeClass, PerpetualCache.class))
+    .addDecorator(valueOrDefault(evictionClass, LruCache.class))
+    .clearInterval(flushInterval)
+    .size(size)
+    .readWrite(readWrite)
+    .blocking(blocking)
+    .properties(props)
+    .build();
+    configuration.addCache(cache);
+    currentCache = cache;
+    return cache;
+  }
+```
+
+- `implementation`这个方法是指定了缓存的默认实现类，我们可以自定义自己的缓存实现，需要在cache标签中指定type属性。
+- `addDecorator`这个方法为缓存添加自动清理功能，存在4种清理策略：
+
+  1. LRU – 最近最少使用：移除最长时间不被使用的对象。
+  2. FIFO – 先进先出：按对象进入缓存的顺序来移除它们。
+  3. SOFT – 软引用：基于垃圾回收器状态和软引用规则移除对象。
+  4. WEAK – 弱引用：更积极地基于垃圾收集器状态和弱引用规则移除对象。
+
+- 其他方法都是对缓存属性的设置。并且对应不同的缓存实现类
+
+在build中我们可以看到这些参数的实际作用，`setStandardDecorators`中设置的就是上图中的几个缓存类型。
+
+```java
+  public Cache build() {
+  // note zx 创建缓存Cache实例
+  setDefaultImplementations();
+  Cache cache = newBaseCacheInstance(implementation, id);
+  log.debug("== 默认缓存实例 " + implementation.getSimpleName());
+  setCacheProperties(cache);
+  // issue #352, do not apply decorators to custom caches
+  if (PerpetualCache.class.equals(cache.getClass())) {
+    for (Class<? extends Cache> decorator : decorators) {
+      cache = newCacheDecoratorInstance(decorator, cache);
+      setCacheProperties(cache);
+    }
+    cache = setStandardDecorators(cache);
+  } else if (!LoggingCache.class.isAssignableFrom(cache.getClass())) {
+    cache = new LoggingCache(cache);
+  }
+  return cache;
+}
+
+private Cache setStandardDecorators(Cache cache) {
+  // note zx 根据配置参数 装饰缓存。LoggingCache，和SynchronizedCache是默认装饰器
+  try {
+    MetaObject metaCache = SystemMetaObject.forObject(cache);
+    if (size != null && metaCache.hasSetter("size")) {
+      metaCache.setValue("size", size);
+    }
+    if (clearInterval != null) {
+      cache = new ScheduledCache(cache);
+      ((ScheduledCache) cache).setClearInterval(clearInterval);
+      log.debug("== 添加缓存实例 ScheduledCache");
+    }
+    if (readWrite) {
+      cache = new SerializedCache(cache);
+      log.debug("== 添加缓存实例 SerializedCache");
+    }
+    cache = new LoggingCache(cache);
+    log.debug("== 添加缓存实例 LoggingCache");
+    cache = new SynchronizedCache(cache);
+    log.debug("== 添加缓存实例 SynchronizedCache");
+    if (blocking) {
+      cache = new BlockingCache(cache);
+      log.debug("== 添加缓存实例 BlockingCache");
+    }
+    return cache;
+  } catch (Exception e) {
+    throw new CacheException("Error building standard cache decorators.  Cause: " + e, e);
+  }
+}
+```
+
+在配置xml中如果设置`cacheEnabled`为true，则会在创建执行器时，通过`CachingExecutor`进行装饰实际的执行器。
+
+```java
+
+  public Executor newExecutor(Transaction transaction, ExecutorType executorType) {
+    executorType = executorType == null ? defaultExecutorType : executorType;
+    executorType = executorType == null ? ExecutorType.SIMPLE : executorType;
+    Executor executor;
+    if (ExecutorType.BATCH == executorType) {
+      executor = new BatchExecutor(this, transaction);
+    } else if (ExecutorType.REUSE == executorType) {
+      executor = new ReuseExecutor(this, transaction);
+    } else {
+      executor = new SimpleExecutor(this, transaction);
+    }
+    if (cacheEnabled) {
+      // note zx 如果开启二级缓存，则创建CachingExcutor对象，装饰配置中的执行器
+      executor = new CachingExecutor(executor);
+    }
+    // note zx 插件 拦截 Executor
+    executor = (Executor) interceptorChain.pluginAll(executor);
+    return executor;
+  }
+```
+
+`CachingExecutor`中通过`TransactionalCacheManager`管理事务缓存，`TransactionalCacheManager`中通过`TransactionalCache`管理事务缓存。
+
