@@ -22,7 +22,7 @@ star: false
 
 <!-- more -->
 
-mybatis 缓存架构如下图所示：
+mybatis 缓存分为一级缓存和二级缓存如下图所示，一级缓存在单个会话上生效，二级缓存则可以在会话间共享。
 
 ![20241028145632](https://raw.githubusercontent.com/NikolaZhang/image-blog/main/mybatis缓存架构/20241028145632.png)
 
@@ -34,9 +34,7 @@ mybatis 缓存架构如下图所示：
 
 ### CacheKey
 
-`CacheKey` 是一个类，用于生成缓存的 key。它包含以下信息：
-
-在`BaseExecutor` 中，`CacheKey` 通过方法 `createCacheKey` 创建，它包含以下信息：
+`CacheKey` 是用于生成缓存的 key。在`BaseExecutor` 中，`CacheKey` 通过方法 `createCacheKey` 创建，它包含以下信息：
 
 1. statementId：SQL 语句的唯一标识符。
 2. 分页参数：offset 和 limit。
@@ -172,7 +170,7 @@ try {
 
 举个例子：一个博客作者，通常会有多篇文章，当我们通过`authorId`查询文章，并嵌套查询作者信息。第一次需要从数据库中获取作者信息，之后的相同作者就会从缓存中获取。
 
-相关代码如下：
+下面通过代码进行验证，相关代码如下：
 
 向数据库中插入作者信息及博客信息，其中博客id为1，3的是同一作者，`authorId`为101。
 
@@ -288,7 +286,7 @@ if (configuration.getLocalCacheScope() == LocalCacheScope.STATEMENT) {
 4. 查询参数相同
 5. 分页参数相同
 6. 环境id相同
-7. sqlSession没有提交
+7. 没有提交、回滚或者关闭操作
 
 ## 二级缓存
 
@@ -345,6 +343,8 @@ if (configuration.getLocalCacheScope() == LocalCacheScope.STATEMENT) {
     return cache;
   }
 ```
+
+通过该方法创建cache实例，并添加到configuration中。configuration中维护了一个`Map`对象caches，key为`namespace`，value为Cache。
 
 - `implementation`这个方法是指定了缓存的默认实现类，我们可以自定义自己的缓存实现，需要在cache标签中指定type属性。
 - `addDecorator`这个方法为缓存添加自动清理功能，存在4种清理策略：
@@ -409,6 +409,8 @@ private Cache setStandardDecorators(Cache cache) {
 }
 ```
 
+#### 缓存执行器 CachingExecutor
+
 在配置xml中如果设置`cacheEnabled`为true，则会在创建执行器时，通过`CachingExecutor`进行装饰实际的执行器。
 
 ```java
@@ -434,5 +436,32 @@ private Cache setStandardDecorators(Cache cache) {
   }
 ```
 
-`CachingExecutor`中通过`TransactionalCacheManager`管理事务缓存，`TransactionalCacheManager`中通过`TransactionalCache`管理事务缓存。
+`CachingExecutor`中通过`TransactionalCacheManager tcm`管理事务缓存。当开启二级缓存后，通过`tcm.getObject(cache, key);`获取缓存记录，通过`tcm.putObject(cache, key, list);`记录缓存数据。
 
+```java
+public <E> List<E> query(MappedStatement ms, Object parameterObject, RowBounds rowBounds, ResultHandler resultHandler, CacheKey key, BoundSql boundSql)
+      throws SQLException {
+    Cache cache = ms.getCache();
+    if (cache != null) {
+      // note zx statement 可以配置参数
+      // flushCache	将其设置为 true 后，只要语句被调用，都会导致本地缓存和二级缓存被清空，默认值：false。
+      // useCache	将其设置为 true 后，将会导致本条语句的结果被二级缓存缓存起来，默认值：对 select 元素为 true。
+      //   另外二级缓存的statement查询结果是指定resultHandler处理的，否则也不会开启二级缓存
+      flushCacheIfRequired(ms);
+      if (ms.isUseCache() && resultHandler == null) {
+        ensureNoOutParams(ms, boundSql);
+        log.debug("cache key: " + key.toString());
+        @SuppressWarnings("unchecked")
+        List<E> list = (List<E>) tcm.getObject(cache, key);
+        if (list == null) {
+          list = delegate.query(ms, parameterObject, rowBounds, resultHandler, key, boundSql);
+          tcm.putObject(cache, key, list); // issue #578 and #116
+        } else {
+          log.debug("二级缓存生效");
+        }
+        return list;
+      }
+    }
+    return delegate.query(ms, parameterObject, rowBounds, resultHandler, key, boundSql);
+  }
+```
