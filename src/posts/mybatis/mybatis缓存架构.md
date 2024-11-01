@@ -252,7 +252,7 @@ try {
 ```
 
 `Preparing: select * from Blog where author_id = ?`此处先查询数据库中的博客信息，紧接着嵌套查询作者信息，之后将作者信息放入本地缓存。
-由于存在多条博客，第二个博客信息嵌套查询作者信息时，本地缓存存在数据，使用缓存数据。最后将博客查询数据缓存在本地，但由于我们的缓存域为`STATEMENT`，所以查询结束后，缓存数据被清空。
+由于存在多条博客，第二个博客信息嵌套查询作者信息时，本地缓存存在数据，使用缓存数据。最后将博客查询数据缓存在本地，但由于我们的缓存域为`STATEMENT`，所以整个查询结束后，缓存数据被清空。
 
 ```java
 if (configuration.getLocalCacheScope() == LocalCacheScope.STATEMENT) {
@@ -275,6 +275,11 @@ if (configuration.getLocalCacheScope() == LocalCacheScope.STATEMENT) {
 2. flushCache设置为true
 3. sqlSession提交、回滚或者关闭
 4. localCacheScope设置为STATEMENT，并且查询结束（queryStack=0，嵌套查询存在缓存）。
+
+::: info 关于flushCache
+对于select类型的statement，默认flushCache=false。update、insert、delete类型的statement，默认flushCache=true。
+`boolean flushCache = context.getBooleanAttribute("flushCache", !isSelect);`
+:::
 
 ### 一级缓存的触发条件
 
@@ -444,8 +449,8 @@ public <E> List<E> query(MappedStatement ms, Object parameterObject, RowBounds r
     Cache cache = ms.getCache();
     if (cache != null) {
       // note zx statement 可以配置参数
-      // flushCache	将其设置为 true 后，只要语句被调用，都会导致本地缓存和二级缓存被清空，默认值：false。
-      // useCache	将其设置为 true 后，将会导致本条语句的结果被二级缓存缓存起来，默认值：对 select 元素为 true。
+      // flushCache 将其设置为 true 后，只要语句被调用，都会导致本地缓存和二级缓存被清空，默认值：false。
+      // useCache 将其设置为 true 后，将会导致本条语句的结果被二级缓存缓存起来，默认值：对 select 元素为 true。
       //   另外二级缓存的statement查询结果是指定resultHandler处理的，否则也不会开启二级缓存
       flushCacheIfRequired(ms);
       if (ms.isUseCache() && resultHandler == null) {
@@ -465,3 +470,10 @@ public <E> List<E> query(MappedStatement ms, Object parameterObject, RowBounds r
     return delegate.query(ms, parameterObject, rowBounds, resultHandler, key, boundSql);
   }
 ```
+
+#### 事务缓存 TransactionalCache
+
+`TransactionalCacheManager`用于管理所有的`TransactionalCache`事务缓存。其结构为`Map<Cache, TransactionalCache>`。
+
+通过MapperStatement中的`Cache`，获取`TransactionalCache`，通过`TransactionalCache`进行缓存操作。
+
