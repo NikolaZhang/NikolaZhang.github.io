@@ -471,9 +471,18 @@ public <E> List<E> query(MappedStatement ms, Object parameterObject, RowBounds r
   }
 ```
 
-#### 事务缓存 TransactionalCache
+## 事务缓存 TransactionalCache
 
 `TransactionalCacheManager`用于管理所有的`TransactionalCache`事务缓存。其结构为`Map<Cache, TransactionalCache>`。
 
 通过MapperStatement中的`Cache`，获取`TransactionalCache`，通过`TransactionalCache`进行缓存操作。
 
+`TransactionalCache`中存在一个`Map<Object, Object> entriesToAddOnCommit`用于存储缓存记录；`Set<Object> entriesMissedInCache`用于
+
+事务缓存存在以下操作：
+
+- 添加缓存记录：`putObject(Object key, Object value)`
+- 获取缓存记录：`getObject(Object key)`
+- 清空缓存：`clear() `
+- 提交事务：`commit()`
+- 回滚事务：`rollback()`
