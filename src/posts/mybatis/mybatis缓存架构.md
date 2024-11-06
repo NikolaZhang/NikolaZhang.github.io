@@ -443,6 +443,8 @@ private Cache setStandardDecorators(Cache cache) {
 
 `CachingExecutor`中通过`TransactionalCacheManager tcm`管理事务缓存。当开启二级缓存后，通过`tcm.getObject(cache, key);`获取缓存记录，通过`tcm.putObject(cache, key, list);`记录缓存数据。
 
+当缓存对象不存在时，直接通过委派执行器进行查询；缓存对象存在，首先判断当前sql是否需要清理缓存（如果时insert、update、delete操作，flushCache默认为true需要清理缓存，或者select指定flushCache为true），如果`MapperStatement`使用二级缓存，并且不存在`resultHandler`，则从二级缓存中获取数据，如果不存在缓存数据，则通过委派执行器查询数据，并将数据写入二级缓存中。
+
 ```java
 public <E> List<E> query(MappedStatement ms, Object parameterObject, RowBounds rowBounds, ResultHandler resultHandler, CacheKey key, BoundSql boundSql)
       throws SQLException {
@@ -471,6 +473,52 @@ public <E> List<E> query(MappedStatement ms, Object parameterObject, RowBounds r
   }
 ```
 
+### 二级缓存的命中与清理
+
+二级缓存cacheKey的创建与一级缓存相同，除此之外二级缓存必须在提交之后才会真正写入，因此需要满足：
+
+1. 必须是同一个sql语句
+2. 必须是同一个statementId
+3. 查询参数相同
+4. 分页参数相同
+5. 环境id相同
+6. 执行提交操作后，再次查询
+7. useCache 为 true，cacheEnabled 为 true
+8. flushCache为false
+
+### 关于flushCache
+
+`flushCache`为true时，会清空一级缓存、二级缓存。但是需要注意的是，如果没有进行提交操作，`flushCache`也不能真正清理掉二级缓存，它清理的只是事务缓存中的临时缓存。
+
+查看事务缓存的相关代码，可以看到`clear`方法将临时缓存`entriesToAddOnCommit`设置为空，同时会设置`clearOnCommit`标记为。当其为true时，通过`getObject`获取缓存，即使存在数据也会返回为空。即使没有清除二级缓存，但是从效果上看，没有使用二级缓存数据。
+
+```java
+  public void clear() {
+    clearOnCommit = true;
+    entriesToAddOnCommit.clear();
+  }
+
+  public Object getObject(Object key) {
+    // note zx 先从二级缓存中获取数据，如果未命中，则记录未命中的key
+    // issue #116
+    Object object = delegate.getObject(key);
+    if (object == null) {
+      entriesMissedInCache.add(key);
+    }
+    // issue #146
+    if (clearOnCommit) {
+      return null;
+    } else {
+      return object;
+    }
+  }
+```
+
+通过代码进行验证:
+
+
+
+
 ### 事务缓存 TransactionalCache
 
 `TransactionalCacheManager`用于管理所有的`TransactionalCache`事务缓存。其结构为`Map<Cache, TransactionalCache>`。
@@ -498,8 +546,4 @@ public <E> List<E> query(MappedStatement ms, Object parameterObject, RowBounds r
 ::: warning
 一定需要注意的是，二级缓存的写入发生在事务提交或者回滚阶段，而不是在查询阶段。
 :::
-
-### 二级缓存的触发条件
-
-### 二级缓存的清理
 
