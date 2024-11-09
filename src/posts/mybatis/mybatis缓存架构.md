@@ -514,10 +514,51 @@ public <E> List<E> query(MappedStatement ms, Object parameterObject, RowBounds r
   }
 ```
 
-通过代码进行验证:
+通过代码进行验证，可以看到，两次对象查询结果相同。这里需要注意我们需要通过设置 `<cache readOnly = "true" />` 关闭序列化和反序列化缓存
 
+```java
+    DefaultSqlSession sqlSession1 = (DefaultSqlSession) sqlSessionFactory.openSession();
+    UseCachedAuthorMapper authorMapper1 = sqlSession1.getMapper(UseCachedAuthorMapper.class);
+    DefaultSqlSession sqlSession2 = (DefaultSqlSession) sqlSessionFactory.openSession();
+    UseCachedAuthorMapper authorMapper2 = sqlSession2.getMapper(UseCachedAuthorMapper.class);
 
+    log.debug("================== flushCache 关闭 二级缓存验证");
+    Author result1 = authorMapper1.selectAuthorFlushCacheOff(999);
+    assertNotNull(result1);
+    sqlSession1.commit();
 
+    Author result2 = authorMapper2.selectAuthorFlushCacheOff(999);
+    assertNotNull(result2);
+    // 判断是否为缓存 如果通过相等进行判断需要关闭序列化和反序列化，
+    // 否则虽然走了缓存但是拿到的缓存对象是不同的，因为通过反序列化重新创建了对象
+    // 关闭方式为设置 readOnly = true
+    assertSame(result1, result2);
+
+```
+
+输出日志中可以看到已经命中了二级缓存，`Cache Hit Ratio [org.apache.ibatis.builder.UseCachedAuthorMapper]: 0.5`
+
+``` plaintext
+09:47:12.932 DEBUG [main] o.a.ibatis.session.LocalCacheTest - ================== flushCache 关闭 二级缓存验证
+09:47:12.985 DEBUG [main] o.a.ibatis.executor.CachingExecutor - cache key: -1710940381:1693866310:org.apache.ibatis.builder.UseCachedAuthorMapper.selectAuthorFlushCacheOff:0:2147483647:select * from author where id = ?:999:development
+09:47:12.985 DEBUG [main] o.a.i.c.TransactionalCacheManager - 获取缓存 [class org.apache.ibatis.cache.decorators.SynchronizedCache]
+09:47:12.985 DEBUG [main] o.a.i.c.d.TransactionalCache - 创建TransactionalCache: delegate is class org.apache.ibatis.cache.decorators.SynchronizedCache
+09:47:12.985 DEBUG [main] o.a.i.builder.UseCachedAuthorMapper - Cache Hit Ratio [org.apache.ibatis.builder.UseCachedAuthorMapper]: 0.0
+09:47:12.986 DEBUG [main] o.a.ibatis.executor.BaseExecutor - ### queryStack: 1
+09:47:13.001 DEBUG [main] o.a.i.t.jdbc.JdbcTransaction - Opening JDBC Connection
+09:47:13.002 DEBUG [main] o.a.i.t.jdbc.JdbcTransaction - Setting autocommit to false on JDBC Connection [org.apache.derby.impl.jdbc.EmbedConnection@2097614581 (XID = 26294), (SESSIONID = 7), (DATABASE = ibderby), (DRDAID = null) ]
+09:47:13.003 DEBUG [main] o.a.i.b.U.selectAuthorFlushCacheOff - ==>  Preparing: select * from author where id = ?
+09:47:13.039 DEBUG [main] o.a.i.b.U.selectAuthorFlushCacheOff - ==> Parameters: 999(Integer)
+09:47:13.215 DEBUG [main] o.a.i.b.U.selectAuthorFlushCacheOff - <==      Total: 1
+09:47:13.220 DEBUG [main] o.a.ibatis.executor.BaseExecutor - 一级缓存保存查询结果-1710940381:1693866310:org.apache.ibatis.builder.UseCachedAuthorMapper.selectAuthorFlushCacheOff:0:2147483647:select * from author where id = ?:999:development
+09:47:13.221 DEBUG [main] o.a.i.c.TransactionalCacheManager - 获取缓存 [class org.apache.ibatis.cache.decorators.SynchronizedCache]
+09:47:13.222 DEBUG [main] o.a.ibatis.executor.CachingExecutor - 二级缓存 保存数据-1710940381:1693866310:org.apache.ibatis.builder.UseCachedAuthorMapper.selectAuthorFlushCacheOff:0:2147483647:select * from author where id = ?:999:development
+09:47:13.228 DEBUG [main] o.a.ibatis.executor.CachingExecutor - cache key: -1710940381:1693866310:org.apache.ibatis.builder.UseCachedAuthorMapper.selectAuthorFlushCacheOff:0:2147483647:select * from author where id = ?:999:development
+09:47:13.228 DEBUG [main] o.a.i.c.TransactionalCacheManager - 获取缓存 [class org.apache.ibatis.cache.decorators.SynchronizedCache]
+09:47:13.228 DEBUG [main] o.a.i.c.d.TransactionalCache - 创建TransactionalCache: delegate is class org.apache.ibatis.cache.decorators.SynchronizedCache
+09:47:13.228 DEBUG [main] o.a.i.builder.UseCachedAuthorMapper - Cache Hit Ratio [org.apache.ibatis.builder.UseCachedAuthorMapper]: 0.5
+09:47:13.228 DEBUG [main] o.a.ibatis.executor.CachingExecutor - 二级缓存生效-1710940381:1693866310:org.apache.ibatis.builder.UseCachedAuthorMapper.selectAuthorFlushCacheOff:0:2147483647:select * from author where id = ?:999:development
+```
 
 ### 事务缓存 TransactionalCache
 
@@ -546,4 +587,3 @@ public <E> List<E> query(MappedStatement ms, Object parameterObject, RowBounds r
 ::: warning
 一定需要注意的是，二级缓存的写入发生在事务提交或者回滚阶段，而不是在查询阶段。
 :::
-
