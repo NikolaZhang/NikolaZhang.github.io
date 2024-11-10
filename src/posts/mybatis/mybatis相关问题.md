@@ -1,12 +1,12 @@
 ---
 isOriginal: true
-title: mybatis问答
+title: mybatis相关问题
 date: 2021-06-22
 tag:
   - mybatis
   - Q&A
 category: Q&A
-description: mybatis问答 面试问题
+description: 
 image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 sticky: false
 timeline: true
