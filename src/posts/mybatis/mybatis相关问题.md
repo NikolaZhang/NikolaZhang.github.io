@@ -7,7 +7,7 @@ tag:
   - Q&A
 category: Q&A
 description: 
-image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
+banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 sticky: false
 timeline: true
 article: true

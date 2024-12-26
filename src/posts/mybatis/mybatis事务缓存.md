@@ -5,7 +5,7 @@ tag:
   - 事务缓存
 category: mybatis
 description: 
-image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
+banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 date: 2024-11-09
 
 author: nikola
