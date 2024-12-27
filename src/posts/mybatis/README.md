@@ -7,7 +7,7 @@ category:
 date: 2023-01-12
 ---
 
-- [SqlSession与sql执行](SqlSession与sql执行.md)
+- [mybatis SqlSession与sql执行](mybatisSqlSession与sql执行.md)
 - [mybatis Sql映射文件解析](mybatisSql映射文件解析.md)
 - [mybatis TypeHandler注册方式](mybatisTypeHandler注册方式.md)
 - [mybatis 配置文件解析](mybatis配置文件解析.md)
