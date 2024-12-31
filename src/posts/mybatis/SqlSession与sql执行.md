@@ -1,12 +1,16 @@
 ---
-isOriginal: true
 title: SqlSession与sql执行
-date: 2021-05-29
 tag:
   - mybatis
   - SqlSesssion
-category: 源码
-description: SqlSession与sql执行
+category: mybatis
+description: 关于mybatis parameterHandler的解析
+date: 2021-05-29
+
+author: nikola
+icon: article
+
+isOriginal: true
 sticky: false
 timeline: true
 article: true

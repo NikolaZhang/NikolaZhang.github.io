@@ -1,17 +1,22 @@
 ---
-isOriginal: true
 title: Sql映射文件解析
-date: 2021-04-10
 tag:
   - mybatis
   - mapper
-category: 源码
-description: Sql映射文件解析
+category: mybatis
+description: 关于mybatis Sql映射文件解析
+date: 2021-04-10
+
+author: nikola
+icon: article
+
+isOriginal: true
 sticky: false
 timeline: true
 article: true
 star: false
 ---
+
 
 > 之前谈到[配置文件解析的mappers节点](/category/mybatis/配置文件解析.html#mappers节点)时, 说到两种解析方式即:  
 > `MapperAnnotationBuilder`用于解析`package`配置方式指定的接口类  
