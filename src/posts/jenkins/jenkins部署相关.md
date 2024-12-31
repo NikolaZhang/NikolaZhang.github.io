@@ -9,7 +9,6 @@ tag:
   - 构建
 category: jenkins
 description: jenkins项目构建的一些步骤和问题处理
-image: images/2020-04-03-00-57-20.png
 
 sticky: false
 timeline: true

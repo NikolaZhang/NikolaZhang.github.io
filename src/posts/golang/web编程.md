@@ -9,7 +9,6 @@ tag:
 category: go
 date: 2020-07-04
 description: gin框架文档的学习
-image: 'https://image.nikolazhang.top/wallhaven-nrkxd7.jpg'
 
 sticky: false
 timeline: true
