@@ -8,7 +8,6 @@ tag:
 category: cglib
 date: 2020-06-21
 description: cglib的回调器类型及使用方法
-image: https://tech.nikolazhang.top/040156dd297fb60e53d475e3ac4425af.png
 sticky: false
 timeline: true
 article: true

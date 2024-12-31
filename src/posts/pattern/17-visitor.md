@@ -4,7 +4,6 @@ tag:
   - 访问者模式
 category: 设计模式
 description: 表示一个作用于某对象结构中的各元素的操作，它可以在不改变各元素类的前提下定义作用于这些元素的新操作。
-image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 date: 2024-01-26
 

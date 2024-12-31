@@ -6,7 +6,6 @@ tag:
 category: 源码
 date: 2020-04-13
 description: ThreadLocal源码
-image: https://tech.nikolazhang.top/2020-04-14-21-03-38.png
 sticky: false
 timeline: true
 article: true

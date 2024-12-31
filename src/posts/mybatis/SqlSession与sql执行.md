@@ -7,7 +7,6 @@ tag:
   - SqlSesssion
 category: 源码
 description: SqlSession与sql执行
-image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 sticky: false
 timeline: true
 article: true

@@ -4,7 +4,6 @@ tag:
   - 单例模式
 category: 设计模式
 description: 确保一个类仅有一个实例，并提供全局访问点。
-image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 date: 2024-01-08
 

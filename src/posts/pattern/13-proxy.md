@@ -4,7 +4,6 @@ tag:
   - 代理模式
 category: 设计模式
 description: 其他对象提供一种代理以控制对这个对象的访问。
-image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 date: 2024-01-21
 

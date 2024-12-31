@@ -4,7 +4,6 @@ tag:
   - hexo
 category: blog
 description: 如何使用hexo命令
-image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 date: 2019-12-26
 
 author: nikola

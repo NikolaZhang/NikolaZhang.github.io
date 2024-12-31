@@ -4,7 +4,6 @@ tag:
   - 备忘录模式
 category: 设计模式
 description: 在不破坏封装性的前提下，捕获一个对象的内部状态并在需要时恢复它。
-image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 date: 2024-01-27
 

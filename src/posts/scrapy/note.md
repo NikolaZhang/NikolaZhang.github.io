@@ -5,7 +5,6 @@ tag:
   - 命令
 category: scrapy
 description: scrapy爬虫框架的相关笔记
-image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 date: 2024-01-23
 

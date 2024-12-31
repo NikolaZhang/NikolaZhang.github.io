@@ -7,7 +7,6 @@ tag:
   - top
 category: linux
 description: 在Linux中使用top命令
-image: D:\works\vuepress-blog\.vuepress\public\bg2.png
 date: 2021-05-28
 
 sticky: false

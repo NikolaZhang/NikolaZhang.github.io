@@ -7,7 +7,6 @@ tag:
   - 原理
 category: git
 description: Git命令学习笔记
-image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 
 sticky: false
 timeline: true

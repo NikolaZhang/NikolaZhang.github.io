@@ -4,7 +4,6 @@ tag:
   - 门面模式
 category: 设计模式
 description: 为子系统中的一组接口提供一个统一的高层接口，简化了外部调用接口，隐藏内部复杂性。
-image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 date: 2024-01-20
 

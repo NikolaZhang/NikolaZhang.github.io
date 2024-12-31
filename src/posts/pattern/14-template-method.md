@@ -4,7 +4,6 @@ tag:
   - 模板方法模式
 category: 设计模式
 description: 在一个抽象类中定义一个操作中的算法骨架，而将一些步骤延迟到子类中实现。
-image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 date: 2024-01-29
 

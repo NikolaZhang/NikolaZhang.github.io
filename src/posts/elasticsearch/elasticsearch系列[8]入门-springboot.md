@@ -6,7 +6,6 @@ tag:
   - springboot
 category: ElasticSearch
 description: 如何通过springboot操作es
-image: https://tech.nikolazhang.top/2020-02-10-22-30-43.png
 date: 2020-02-10
 
 sticky: false

@@ -4,7 +4,6 @@ tag:
   - 状态模式
 category: 设计模式
 description: 允许对象在其内部状态改变时改变其行为，对象看起来似乎修改了它的类。
-image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 date: 2024-02-11
 

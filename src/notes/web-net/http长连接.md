@@ -8,7 +8,6 @@ tag:
   - 长连接
   - 原理
 category: 网络
-image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 
 author: nikola

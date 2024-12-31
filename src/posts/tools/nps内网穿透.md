@@ -8,7 +8,6 @@ tag:
   - 远程
 category: nps
 description: nps搭建内网穿透
-image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 sticky: false
 timeline: true
 article: true

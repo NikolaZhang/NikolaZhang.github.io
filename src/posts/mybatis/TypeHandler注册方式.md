@@ -8,7 +8,6 @@ tag:
   - typeHandler
 category: 源码
 description: mybatis 配置文件解析 主要说一说TypeHandler注册方式
-image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 sticky: false
 timeline: true
 article: true

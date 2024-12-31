@@ -7,7 +7,6 @@ tag:
   - docker
 category: docker
 description: 虚拟机多环境配置化 
-image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 sticky: false
 timeline: true
 article: true

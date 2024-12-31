@@ -7,7 +7,6 @@ tag:
   - webhook
 category: 安卓服务器
 description: 使用gitee触发webhook需要外网地址，我们只有内网环境，那么本地如何触发构建呢？
-image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 date: 2024-01-12
 

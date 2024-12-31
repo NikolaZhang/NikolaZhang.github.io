@@ -4,7 +4,6 @@ tag:
   - 工厂方法模式
 category: 设计模式
 description: 定义一个用于创建对象的接口，让子类决定实例化哪一个类。
-image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 date: 2024-01-06
 

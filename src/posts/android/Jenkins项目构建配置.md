@@ -7,7 +7,6 @@ tag:
   - 项目构建
 category: 安卓服务器
 description: 使用Jenkins配置项目构建
-image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 date: 2024-01-09
 

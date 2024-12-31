@@ -4,7 +4,6 @@ tag:
   - 责任链模式
 category: 设计模式
 description: 多个对象都有机会处理请求，避免请求的发送者和接收者之间的耦合关系。
-image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 date: 2024-01-23
 

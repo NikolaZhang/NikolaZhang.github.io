@@ -4,7 +4,6 @@ tag:
   - 过滤器模式
 category: 设计模式
 description: 通过逻辑条件对对象集合进行筛选操作，而不需要修改这些对象。
-image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 date: 2024-01-27
 

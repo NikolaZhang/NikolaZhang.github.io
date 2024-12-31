@@ -4,7 +4,6 @@ tag:
   - 中介者模式
 category: 设计模式
 description: 定义一个中介对象来封装系列对象间的交互，降低对象间的耦合度。
-image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 date: 2024-01-27
 

@@ -4,7 +4,6 @@ tag:
   - 命令模式
 category: 设计模式
 description: 提供了解释语言语法或表达式的方式，通常用于设计小型语言解析器。
-image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 date: 2024-02-10
 

@@ -6,7 +6,6 @@ tag:
   - es删除
 category: ElasticSearch
 description: 简单介绍一下elasticsearch文档的更新和删除
-image: 'https://tech.nikolazhang.top/2020-02-03-17-33-37.png'
 date: 2020-02-03
 
 sticky: false

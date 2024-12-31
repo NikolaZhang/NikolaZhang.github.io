@@ -4,7 +4,6 @@ tag:
   - 组合模式
 category: 设计模式
 description: 表现部分-整体层次结构，允许用户对单个对象和组合对象一视同仁。
-image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 date: 2024-01-19
 

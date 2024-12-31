@@ -4,7 +4,6 @@ tag:
   - 原型模式
 category: 设计模式
 description: 通过复制现有对象来创建新对象，而不是新建实例。
-image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 date: 2024-01-09
 

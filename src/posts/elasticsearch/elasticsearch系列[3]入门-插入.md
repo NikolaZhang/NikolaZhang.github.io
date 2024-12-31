@@ -7,7 +7,6 @@ tag:
   - es映射
 category: ElasticSearch
 description: es文档的插入以及映射的介绍
-image: https://tech.nikolazhang.top/2020-02-03-17-37-04.png
 date: 2020-02-02
 
 sticky: false

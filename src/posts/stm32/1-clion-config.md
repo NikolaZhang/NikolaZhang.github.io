@@ -4,7 +4,6 @@ tag:
   - clion
 category: stm32
 description: The C compiler is not able to compile a simple test program 
-image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 date: 2024-02-22
 
 author: nikola

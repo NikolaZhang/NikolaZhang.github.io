@@ -8,7 +8,6 @@ tag:
 category: 源码
 date: 2020-01-09
 description: 继续分析put
-image: http://image.nikolazhang.top/d8c686dbd6af4697619c11fc042f232d.jpg
 sticky: false
 timeline: true
 article: true

@@ -5,7 +5,6 @@ tag:
   - Abstract Factory
 category: 设计模式
 description: 提供一个创建相关或相互依赖对象家族的接口，而不直接指定具体类。
-image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 date: 2023-12-28
 

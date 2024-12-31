@@ -6,7 +6,6 @@ tag:
   - mysql
 category: 安卓服务器
 description: 安卓手机上使用termux
-image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 date: 2024-01-16
 

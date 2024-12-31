@@ -4,7 +4,6 @@ tag:
   - clion
 category: stm32
 description: 使用clion进行stm开发的配置方式
-image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 date: 2024-03-12
 
 author: nikola

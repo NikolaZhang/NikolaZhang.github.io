@@ -6,7 +6,6 @@ tag:
   - 部署
 category: linux
 description: 简单记录一下如何让新的系统更适合自己的开发环境, 以后有什么需要直接按照这篇文章搞
-image: 'https://tech.nikolazhang.top/2020-01-31-09-43-37.png'
 date: 2020-01-31
 sticky: false
 timeline: true

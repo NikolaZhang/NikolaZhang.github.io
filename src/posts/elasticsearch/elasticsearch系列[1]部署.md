@@ -6,7 +6,6 @@ tag:
   - 部署
 category: ElasticSearch
 description: elasticsearch 的使用部署篇
-image: https://tech.nikolazhang.top/2020-01-31-17-02-57.png
 date: 2020-01-31
 
 sticky: false

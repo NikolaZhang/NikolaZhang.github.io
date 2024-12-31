@@ -4,7 +4,6 @@ tag:
   - 命令模式
 category: 设计模式
 description: 提供一种顺序访问聚合对象元素的方法，而又不需要暴露其底层表示。
-image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 date: 2024-01-25
 

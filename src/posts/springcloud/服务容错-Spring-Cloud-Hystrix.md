@@ -8,7 +8,6 @@ tag:
   - hystrix
 category: 技术
 description: 服务容错的简单介绍
-image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 sticky: false
 timeline: true
 article: true

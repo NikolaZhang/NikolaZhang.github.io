@@ -9,7 +9,6 @@ tag:
   - 视频
 category:
   - 开源
-image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 
 author: nikola

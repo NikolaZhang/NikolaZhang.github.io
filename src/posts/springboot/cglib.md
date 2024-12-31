@@ -7,7 +7,6 @@ tag:
 category: cglib
 date: 2020-06-20
 description: 动态代理的第二篇文章, 讲讲cglib动态代理
-image: https://tech.nikolazhang.top/2020-06-15-18-43-48.png
 sticky: false
 timeline: true
 article: true

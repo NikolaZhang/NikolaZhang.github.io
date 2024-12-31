@@ -8,7 +8,6 @@ tag:
   - sed
 category: linux
 description: 在Linux中使用sed命令
-image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 sticky: false
 timeline: true
 article: true

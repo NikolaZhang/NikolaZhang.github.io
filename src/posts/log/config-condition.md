@@ -7,7 +7,6 @@ tag:
   - 日志
 category: 日志
 description: 日志框架logback的配置介绍
-image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 sticky: false
 timeline: true
 article: true

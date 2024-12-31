@@ -6,7 +6,6 @@ tag:
   - 原理
 category: ElasticSearch
 description: 简单介绍一下elasticsearch的使用方法
-image: 'https://tech.nikolazhang.top/2020-02-02-14-28-27.png'
 date: 2020-02-01
 
 sticky: false

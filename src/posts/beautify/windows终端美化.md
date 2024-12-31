@@ -6,7 +6,6 @@ tag:
   - terminal
 category: beautify
 description: windows终端美化
-image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 date: 2023-03-02
 
 author: nikola

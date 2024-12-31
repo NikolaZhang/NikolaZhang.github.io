@@ -4,7 +4,6 @@ tag:
   - 策略模式
 category: 设计模式
 description: 定义了一系列算法，并将每一个算法封装起来，使它们可以相互替换，让算法的变化独立于使用该算法的客户。
-image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 date: 2024-01-22
 

@@ -8,7 +8,6 @@ category: 源码
 p: .\springboot\springboot源码分析
 date: 2020-05-04
 description: springboot源码分析
-image: https://tech.nikolazhang.top/2020-05-05-21-31-08.png
 sticky: false
 timeline: true
 article: true

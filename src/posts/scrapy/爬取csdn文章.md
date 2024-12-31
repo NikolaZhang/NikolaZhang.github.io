@@ -5,7 +5,6 @@ tag:
   - csdn
 category: scrapy
 description: 使用scrapy框架爬取csdn上的文章
-image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 banner: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 date: 2024-01-23
 

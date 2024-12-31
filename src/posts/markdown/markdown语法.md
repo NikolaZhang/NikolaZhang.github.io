@@ -7,7 +7,6 @@ tag:
   - 语法
 category: markdown
 description: MarkDown语法的学习
-image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 sticky: false
 timeline: true
 article: true

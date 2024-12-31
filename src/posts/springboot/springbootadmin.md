@@ -7,7 +7,6 @@ tag:
   - zookeeper
 category: springboot
 description: 介绍一下基于zookeeper的服务健康监控如何配置
-image: https://tech.nikolazhang.top/2020-04-03-01-10-23.png
 sticky: false
 timeline: true
 article: true

@@ -8,7 +8,6 @@ tag:
   - introduce
 category: 技术
 description: 微服务关键技术介绍
-image: http://image.nikolazhang.top/wallhaven-nrwq11.jpg
 sticky: false
 timeline: true
 article: true

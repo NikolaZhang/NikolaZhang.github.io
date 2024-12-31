@@ -6,7 +6,6 @@ tag:
   - es查询
 category: ElasticSearch
 description: Function score query的介绍
-image: https://tech.nikolazhang.top/2020-02-04-20-39-33.png
 date: 2020-02-05
 
 sticky: false
